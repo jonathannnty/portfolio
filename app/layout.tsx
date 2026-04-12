@@ -5,7 +5,9 @@ import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import MainMenuBar from "./components/menubar";
 import SiteFooter from "./components/site-footer";
+import ReadingProgress from "./components/reading-progress";
 import { site } from "@/content/site";
+import { Analytics } from "@vercel/analytics/next";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -58,8 +60,10 @@ export default function RootLayout({
         <noscript>
           <style>{`.reveal{opacity:1 !important;transform:none !important;}`}</style>
         </noscript>
+        <ReadingProgress />
         <MainMenuBar />
         <main className="flex-1">{children}</main>
+        <Analytics/>
         <SiteFooter />
       </body>
     </html>

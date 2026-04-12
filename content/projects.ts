@@ -29,16 +29,41 @@ export type Project = {
   thumbnail?: string;
   /** Gallery images shown on the detail page (relative to /public). */
   images?: string[];
+  /** When true the card shows an "In Progress" overlay and blocks navigation. */
+  inProgress?: boolean;
 };
 
 export const projects: Project[] = [
+  {
+    slug: "cogs127-case-study",
+    title: "COGS 127 Case Study",
+    tagline:
+      "Currently creating a UX/product design case study for your portfolio; team project with user research, data science, prototyping, and user testing.",
+    period: "2026",
+    sortKey: "2026-04",
+    stack: ["Figma", "Claude"],
+    glyph: "Palette",
+    // links: [
+    //   {
+    //     label: "GitHub Repository",
+    //     href: "https://github.com/jonathannnty/portfolio.git",
+    //   },
+    // ],
+    body: [
+      `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum 
+      dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+    ],
+    inProgress: true,
+    thumbnail: "/images/in-progress.png",
+  },
   {
     slug: "portfolio-website",
     title: "Portfolio Website",
     tagline: "Next.js + anime.js portfolio built using Claude plugins.",
     period: "2026",
     sortKey: "2026-04",
-    stack: ["Next.js 16", "React 19", "Tailwind v4", "anime.js", "Claude"],
+    stack: ["Next.js", "React", "Tailwind", "anime.js", "Claude"],
     glyph: "Code2",
     featured: true,
     links: [

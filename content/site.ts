@@ -15,7 +15,7 @@ export const site = {
   role: "Aspiring Software Engineer",
   tagline:
     "Striving to create web experiences that can be scalable and help people!",
-  location: "Sunny San Diego, California",
+  location: "San Diego, California",
   email: "jonathanty42@gmail.com",
 
   bio: [

@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useRef } from "react";
 import * as Icons from "lucide-react";
 import { ArrowUpRight } from "lucide-react";
-import { animate } from "animejs";
 import type { Project } from "@/content/projects";
 
 /**
@@ -18,25 +17,31 @@ export default function ProjectCard({ project }: { project: Project }) {
     : null;
   const ref = useRef<HTMLAnchorElement>(null);
 
-  const lift = () => {
+  const tilt = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!ref.current) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce || !ref.current) return;
-    animate(ref.current, { y: -4, duration: 280, ease: "outExpo" });
+    if (reduce) return;
+    const rect = ref.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width  - 0.5; // -0.5 to 0.5
+    const y = (e.clientY - rect.top)  / rect.height - 0.5;
+    ref.current.style.transform = `perspective(700px) rotateX(${y * -7}deg) rotateY(${x * 7}deg) translateY(-4px)`;
+    ref.current.style.transition = "transform 0.1s ease-out";
   };
 
-  const settle = () => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce || !ref.current) return;
-    animate(ref.current, { y: 0, duration: 280, ease: "outExpo" });
+  const resetTilt = () => {
+    if (!ref.current) return;
+    ref.current.style.transition = "transform 0.35s ease-out";
+    ref.current.style.transform  = "perspective(700px) rotateX(0deg) rotateY(0deg) translateY(0px)";
   };
 
   return (
     <Link
       ref={ref}
       href={`/projects/${project.slug}`}
-      onMouseEnter={lift}
-      onMouseLeave={settle}
+      onMouseMove={tilt}
+      onMouseLeave={resetTilt}
       className="card group flex h-full flex-col overflow-hidden p-0"
+      style={{ willChange: "transform", transformStyle: "preserve-3d" }}
     >
       <div className="flex flex-1 flex-col p-6">
         <div className="mb-5 flex items-start justify-between">
@@ -65,6 +70,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
                 sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                preload={true}
               />
             </div>
           </div>

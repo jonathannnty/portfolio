@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink } from "lucide-react";
+import CopyLinkButton from "@/app/components/copy-link-button";
 import { projects } from "@/content/projects";
 
 type Params = { slug: string };
@@ -36,13 +37,16 @@ export default async function ProjectDetailPage({
 
   return (
     <article className="container-page pt-20 pb-24 md:pt-28">
-      <Link
-        href="/projects"
-        className="inline-flex items-center gap-1 text-sm font-medium text-[color:var(--color-fg-muted)] hover:text-[color:var(--color-primary-700)]"
-      >
-        <ArrowLeft className="h-4 w-4" />
-        All projects
-      </Link>
+      <div className="flex items-center justify-between">
+        <Link
+          href="/projects"
+          className="inline-flex items-center gap-1 text-sm font-medium text-[color:var(--color-fg-muted)] hover:text-[color:var(--color-primary-700)]"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          All projects
+        </Link>
+        <CopyLinkButton />
+      </div>
 
       <header className="mt-8 max-w-3xl">
         <span className="eyebrow">{project.period}</span>

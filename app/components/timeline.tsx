@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { MapPin, ChevronDown, ExternalLink } from "lucide-react";
 import { animate, stagger } from "animejs";
 import type { Experience } from "@/content/experiences";
+import ImageLightbox from "./image-lightbox";
 
 /**
  * Interactive experience timeline.
@@ -175,14 +175,11 @@ function ExpandedBody({ item, id }: { item: Experience; id: string }) {
           {item.images.map((src, i) => (
             <div
               key={i}
-              className="relative aspect-video overflow-hidden rounded-[var(--radius-md)] border border-[color:var(--color-border)] bg-[color:var(--color-primary-50)]"
+              className="group relative aspect-video overflow-hidden rounded-[var(--radius-md)] border border-[color:var(--color-border)] bg-[color:var(--color-primary-50)]"
             >
-              <Image
+              <ImageLightbox
                 src={src}
                 alt={`${item.role} at ${item.company} — photo ${i + 1}`}
-                fill
-                className="object-cover"
-                sizes="(min-width: 640px) 20vw, 40vw"
               />
             </div>
           ))}

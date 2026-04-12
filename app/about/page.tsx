@@ -26,7 +26,7 @@ export default function AboutPage() {
     <>
       <RevealProvider />
 
-      <Section eyebrow="Who am I?" title={`Hello there I'm ${site.name.split(" ")[0]}.`} illustration={<AboutIllustration />}>
+      <Section eyebrow="Who am I?" title={`Hello there, I'm ${site.name.split(" ")[0]}.`} illustration={<AboutIllustration />}>
         <div className="max-w-2xl space-y-5">
           {site.bio.map((paragraph, i) => (
             <p
