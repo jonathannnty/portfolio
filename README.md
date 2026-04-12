@@ -1,3 +1,5 @@
+# Portfolio Website
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -28,6 +30,10 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Contact Form
+
+The contact form uses Resend. Set `RESEND_API_KEY` and `CONTACT_TO_EMAIL` in your environment. If you want to override the sender, `CONTACT_FROM_EMAIL` must use a Resend-verified domain; otherwise the app falls back to `onboarding@resend.dev`.
 
 ## Deploy on Vercel
 
