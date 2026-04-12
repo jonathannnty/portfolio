@@ -3,7 +3,12 @@ import Section from "../components/section";
 import Timeline from "../components/timeline";
 import CourseworkGrid from "../components/coursework-grid";
 import AwardsGrid from "../components/awards-grid";
+import ResumeViewer from "../components/resume-viewer";
 import RevealProvider from "../components/reveal-provider";
+import AboutIllustration from "../components/illustrations/about-illustration";
+import ExperienceIllustration from "../components/illustrations/experience-illustration";
+import CourseworkIllustration from "../components/illustrations/coursework-illustration";
+import AwardsIllustration from "../components/illustrations/awards-illustration";
 import { site } from "@/content/site";
 import { experiences } from "@/content/experiences";
 
@@ -21,7 +26,7 @@ export default function AboutPage() {
     <>
       <RevealProvider />
 
-      <Section eyebrow="Who am I?" title={`Hello there I'm ${site.name.split(" ")[0]}.`}>
+      <Section eyebrow="Who am I?" title={`Hello there I'm ${site.name.split(" ")[0]}.`} illustration={<AboutIllustration />}>
         <div className="max-w-2xl space-y-5">
           {site.bio.map((paragraph, i) => (
             <p
@@ -32,6 +37,7 @@ export default function AboutPage() {
             </p>
           ))}
         </div>
+        <ResumeViewer />
       </Section>
 
       <Section
@@ -39,6 +45,7 @@ export default function AboutPage() {
         eyebrow="Working Experience"
         title="Here's a chronological timeline of all my roles I've done!"
         subtitle="Click any node to see what I worked on, the stack, and a few highlights."
+        illustration={<ExperienceIllustration />}
         tight
       >
         <Timeline items={sortedExperiences} />
@@ -48,6 +55,7 @@ export default function AboutPage() {
         id="coursework"
         eyebrow="Coursework I've doen"
         title="What have I studied at UC San Diego?"
+        illustration={<CourseworkIllustration />}
         tight
       >
         <CourseworkGrid />
@@ -57,6 +65,7 @@ export default function AboutPage() {
         id="awards"
         eyebrow="Awards & honors"
         title="Recognitions."
+        illustration={<AwardsIllustration />}
         tight
       >
         <AwardsGrid />

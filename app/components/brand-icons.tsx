@@ -34,3 +34,36 @@ export function LinkedinIcon({ className = "h-5 w-5", ...rest }: IconProps) {
     </svg>
   );
 }
+
+export function StravaIcon({ className = "h-5 w-5", ...rest }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" {...rest}>
+      <rect width="24" height="24" rx="3.6" fill="var(--color-primary-600)" />
+      <path
+        fill="var(--color-primary-50)"
+        d="M5.625 13.5L10.875 2.625l5.25 10.875h-3.375l-1.875-4.5-1.875 4.5z"
+      />
+      <path
+        fill="var(--color-primary-200)"
+        d="M13.125 13.5l1.5 3.375 1.5-3.375h2.25l-3.75 7.875-3.75-7.875z"
+      />
+    </svg>
+  );
+}
+
+export function SpotifyIcon({ className = "h-5 w-5", ...rest }: IconProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 16 16"
+      className={className}
+      fill="none"
+      {...rest}
+    >
+      <path
+        fill="var(--color-primary-600)"
+        d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.669 11.538a.5.5 0 0 1-.686.165c-1.879-1.147-4.243-1.407-7.028-.77a.499.499 0 0 1-.222-.973c3.048-.696 5.662-.397 7.77.892a.5.5 0 0 1 .166.686m.979-2.178a.624.624 0 0 1-.858.205c-2.15-1.321-5.428-1.704-7.972-.932a.625.625 0 0 1-.362-1.194c2.905-.881 6.517-.454 8.986 1.063a.624.624 0 0 1 .206.858m.084-2.268C10.154 5.56 5.9 5.419 3.438 6.166a.748.748 0 1 1-.434-1.432c2.825-.857 7.523-.692 10.492 1.07a.747.747 0 1 1-.764 1.288"
+      />
+    </svg>
+  );
+}

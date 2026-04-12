@@ -10,8 +10,7 @@ import { posts } from "@/content/blog";
 
 export default function Home() {
   const featured = projects
-    .filter((p) => p.featured)
-    .concat(projects.filter((p) => !p.featured))
+    .sort((a, b) => b.sortKey.localeCompare(a.sortKey))
     .slice(0, 3);
 
   const recentPosts = [...posts]

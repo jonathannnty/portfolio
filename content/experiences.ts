@@ -24,6 +24,8 @@ export type Experience = {
   stack?: string[];
   /** Optional external link (company page, project showcase, etc). */
   link?: { label: string; href: string };
+  /** Optional images shown in the expanded timeline node. */
+  images?: string[];
 };
 
 export const experiences: Experience[] = [

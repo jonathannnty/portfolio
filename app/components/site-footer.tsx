@@ -7,7 +7,7 @@ export default function SiteFooter() {
     <footer className="mt-24 border-t border-[color:var(--color-border)] bg-[color:var(--color-surface-muted)]">
       <div className="container-page flex flex-col gap-6 py-10 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="font-display text-base font-semibold text-[color:var(--color-fg)]">
+          <p className="text-2xl font-bold text-[color:var(--color-fg)]">
             {site.name}
             <span className="text-[color:var(--color-primary-600)]">.</span>
           </p>

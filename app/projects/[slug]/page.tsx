@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { projects } from "@/content/projects";
@@ -88,6 +89,30 @@ export default async function ProjectDetailPage({
           </p>
         ))}
       </div>
+
+      {project.images && project.images.length > 0 && (
+        <div className="mt-14 max-w-4xl">
+          <h2 className="font-display text-xl font-semibold tracking-tight text-[color:var(--color-fg)] mb-5">
+            Gallery
+          </h2>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {project.images.map((src, i) => (
+              <div
+                key={i}
+                className="relative aspect-video overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--color-border)] bg-[color:var(--color-primary-50)]"
+              >
+                <Image
+                  src={src}
+                  alt={`${project.title} screenshot ${i + 1}`}
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 45vw, (min-width: 640px) 50vw, 100vw"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </article>
   );
 }

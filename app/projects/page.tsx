@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Section from "../components/section";
 import ProjectCard from "../components/project-card";
 import RevealProvider from "../components/reveal-provider";
+import ProjectsIllustration from "../components/illustrations/projects-illustration";
 import { projects } from "@/content/projects";
 
 export const metadata: Metadata = {
@@ -19,6 +20,7 @@ export default function ProjectsPage() {
         eyebrow="Projects"
         title="Things I've worked on!"
         subtitle="A selection of projects either through hackathons or research. Click any card for the full details."
+        illustration={<ProjectsIllustration />}
       >
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {sorted.map((p) => (

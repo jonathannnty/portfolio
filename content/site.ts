@@ -15,7 +15,7 @@ export const site = {
   role: "Aspiring Software Engineer",
   tagline:
     "Striving to create web experiences that can be scalable and help people!",
-  location: "San Diego, California",
+  location: "Sunny San Diego, California",
   email: "jonathanty42@gmail.com",
 
   bio: [
@@ -42,6 +42,16 @@ export const site = {
       label: "LinkedIn",
       href: "https://www.linkedin.com/in/jonathan-ty/",
       handle: "jonathan-ty",
+    },
+    strava: {
+      label: "Strava",
+      href: "https://www.strava.com/athletes/jonathanty",
+      handle: "Jonathan Ty's Strava",
+    },
+    spotify: {
+      label: "Spotify",
+      href: "https://open.spotify.com/user/koshgh1r4l0hsu7w7lww2lt30?si=53def52cc28e4684",
+      handle: "Spotify profile",
     },
     email: {
       label: "Email",

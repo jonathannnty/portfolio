@@ -2,7 +2,13 @@ import type { Metadata } from "next";
 import { Mail, MapPin } from "lucide-react";
 import Section from "../components/section";
 import ContactForm from "../components/contact-form";
-import { GithubIcon, LinkedinIcon } from "../components/brand-icons";
+import {
+  GithubIcon,
+  LinkedinIcon,
+  SpotifyIcon,
+  StravaIcon,
+} from "../components/brand-icons";
+import ContactIllustration from "../components/illustrations/contact-illustration";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -16,6 +22,7 @@ export default function ContactPage() {
       eyebrow="Contact"
       title="Let's talk."
       subtitle="Have a project, a question, or just want to say hi? Drop me a note and I'll get back to you."
+      illustration={<ContactIllustration />}
     >
       <div className="grid gap-12 lg:grid-cols-[1fr_minmax(0,1.2fr)]">
         <aside className="space-y-6">
@@ -53,6 +60,28 @@ export default function ContactPage() {
                   className="hover:text-[color:var(--color-primary-700)]"
                 >
                   {site.socials.linkedin.handle}
+                </a>
+              </li>
+              <li className="flex items-center gap-3 text-[color:var(--color-fg-muted)]">
+                <StravaIcon className="h-4 w-4 text-[color:var(--color-primary-600)]" />
+                <a
+                  href={site.socials.strava.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[color:var(--color-primary-700)]"
+                >
+                  {site.socials.strava.handle}
+                </a>
+              </li>
+              <li className="flex items-center gap-3 text-[color:var(--color-fg-muted)]">
+                <SpotifyIcon className="h-4 w-4 text-[color:var(--color-primary-600)]" />
+                <a
+                  href={site.socials.spotify.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[color:var(--color-primary-700)]"
+                >
+                  {site.socials.spotify.handle}
                 </a>
               </li>
               <li className="flex items-center gap-3 text-[color:var(--color-fg-muted)]">

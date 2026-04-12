@@ -30,7 +30,7 @@ export default function MainMenuBar() {
         <Link
           href="/"
           onClick={() => setMobileOpen(false)}
-          className="font-display text-lg font-bold tracking-tight text-[color:var(--color-fg)]"
+          className="text-2xl font-bold tracking-tight text-[color:var(--color-fg)]"
         >
           {site.name}
           <span className="text-[color:var(--color-primary-600)]">.</span>
@@ -44,7 +44,7 @@ export default function MainMenuBar() {
               <Link
                 key={link.path}
                 href={link.path}
-                className={`relative text-sm transition-colors ${
+                className={`relative text-lg transition-colors ${
                   active
                     ? "font-semibold text-[color:var(--color-primary-700)]"
                     : "text-[color:var(--color-fg-muted)] hover:text-[color:var(--color-primary-600)]"

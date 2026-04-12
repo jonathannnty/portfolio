@@ -1,0 +1,42 @@
+<svg width="726" height="312" viewBox="0 0 726 312" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<path d="M0 278.5L157 311.5L307 235L167.5 220L0 278.5Z" fill="#CDCDCD"/>
+<path d="M29 292.5L208 304L241 207H126L29 292.5Z" fill="#D9D9D9"/>
+<path d="M419 239.5L576 272.5L726 196L586.5 181L419 239.5Z" fill="#CDCDCD"/>
+<g id="Repeat group 1_inner" data-figma-trr="l30u0.05-0f">
+<path d="M370 101.5L513 120.5L591.5 54.5L482.5 46L370 101.5Z" fill="#CDCDCD"/>
+</g>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 3.725)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 7.45)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 11.175)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 14.9)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 18.625)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 22.35)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 26.075)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 29.8)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 33.525)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 37.25)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 40.975)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 44.7)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 48.425)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 52.15)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 55.875)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 59.6)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 63.325)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 67.05)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 70.775)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 74.5)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 78.225)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 81.95)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 85.675)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 89.4)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 93.125)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 96.85)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 100.575)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 104.3)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(0 108.025)"/>
+<path d="M401.474 95.1491L491.5 99L597.725 61.5608L502 45.5L401.474 95.1491Z" fill="#E2E2E2"/>
+<path d="M448 253.5L627 265L660 168H545L448 253.5Z" fill="#D9D9D9"/>
+<path d="M197.5 42.6661L338.5 25.6661L546 42.6661L554 199.728L541.5 232.666L498.5 255.666L191 236.166L186 216.166L166 64.6661L197.5 42.6661Z" fill="#373331"/>
+<path d="M165 63.6661L295 52.1661L505.5 63.6661V211.166L496 256.166L446 263.166L170 252.666L165 232.666L159 92.6661L165 63.6661Z" fill="#433C36"/>
+<path d="M350.514 5.01074C364.44 4.64782 378.87 13.7764 399.906 33.9277L391.335 39.6123C381.528 28.7589 373.526 20.7282 366.43 15.4639C359.149 10.0627 352.303 7.18192 345.003 7.5791C337.85 7.96831 331.224 11.4688 324.289 16.5566C318.886 20.5205 312.86 25.789 305.864 32.0205C324.597 13.2434 338.103 5.33417 350.514 5.01074Z" fill="#1D1616" stroke="#1D1616" stroke-width="10"/>
+</svg>
