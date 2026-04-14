@@ -72,11 +72,8 @@ export default function Hero() {
           Hello — I&apos;m {site.name.split(" ")[0]}
         </span>
 
-        <h1 className="mt-5 max-w-4xl font-display text-4xl font-bold leading-[1.05] tracking-tight text-[color:var(--color-fg)] sm:text-5xl md:text-6xl lg:text-[4.5rem]">
+        <h1 className="mt-5 max-w-4xl font-display text-4xl font-bold leading-[1.05] tracking-tight text-[color:var(--color-fg)] sm:text-4xl md:text-5xl lg:text-[4rem]">
           <span className="hero-stagger block opacity-0">{site.role}</span>
-          <span className="hero-stagger block opacity-0 text-[color:var(--color-primary-700)]">
-            with an eye for details.
-          </span>
         </h1>
 
         <p className="hero-stagger mt-7 max-w-2xl text-lg leading-relaxed text-[color:var(--color-fg-muted)] opacity-0">

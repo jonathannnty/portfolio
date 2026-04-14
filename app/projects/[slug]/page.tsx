@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink } from "lucide-react";
+import CopyLinkButton from "@/app/components/copy-link-button";
 import { projects } from "@/content/projects";
 
 type Params = { slug: string };
@@ -35,13 +37,16 @@ export default async function ProjectDetailPage({
 
   return (
     <article className="container-page pt-20 pb-24 md:pt-28">
-      <Link
-        href="/projects"
-        className="inline-flex items-center gap-1 text-sm font-medium text-[color:var(--color-fg-muted)] hover:text-[color:var(--color-primary-700)]"
-      >
-        <ArrowLeft className="h-4 w-4" />
-        All projects
-      </Link>
+      <div className="flex items-center justify-between">
+        <Link
+          href="/projects"
+          className="inline-flex items-center gap-1 text-sm font-medium text-[color:var(--color-fg-muted)] hover:text-[color:var(--color-primary-700)]"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          All projects
+        </Link>
+        <CopyLinkButton />
+      </div>
 
       <header className="mt-8 max-w-3xl">
         <span className="eyebrow">{project.period}</span>
@@ -88,6 +93,30 @@ export default async function ProjectDetailPage({
           </p>
         ))}
       </div>
+
+      {project.images && project.images.length > 0 && (
+        <div className="mt-14 max-w-4xl">
+          <h2 className="font-display text-xl font-semibold tracking-tight text-[color:var(--color-fg)] mb-5">
+            Gallery
+          </h2>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {project.images.map((src, i) => (
+              <div
+                key={i}
+                className="relative aspect-video overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--color-border)] bg-[color:var(--color-primary-50)]"
+              >
+                <Image
+                  src={src}
+                  alt={`${project.title} screenshot ${i + 1}`}
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 45vw, (min-width: 640px) 50vw, 100vw"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </article>
   );
 }

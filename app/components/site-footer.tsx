@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { site } from "@/content/site";
 import { getCurrentUTCYear } from "@/lib/date";
+import BackToTopButton from "./back-to-top";
 
 export default function SiteFooter() {
   return (
     <footer className="mt-24 border-t border-[color:var(--color-border)] bg-[color:var(--color-surface-muted)]">
       <div className="container-page flex flex-col gap-6 py-10 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="font-display text-base font-semibold text-[color:var(--color-fg)]">
+          <p className="text-2xl font-bold text-[color:var(--color-fg)]">
             {site.name}
             <span className="text-[color:var(--color-primary-600)]">.</span>
           </p>
@@ -59,9 +60,9 @@ export default function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-[color:var(--color-border)]">
-        <div className="container-page py-4 text-xs text-[color:var(--color-fg-subtle)]">
-          © {getCurrentUTCYear()} {site.name}. Built with Next.js, Tailwind, and
-          anime.js.
+        <div className="container-page flex items-center justify-between py-4 text-xs text-[color:var(--color-fg-subtle)]">
+          <span>© {getCurrentUTCYear()} {site.name}. Built with Next.js, Tailwind, and anime.js.</span>
+          <BackToTopButton />
         </div>
       </div>
     </footer>

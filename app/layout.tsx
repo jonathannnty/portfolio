@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 
 import "./globals.css";
 import MainMenuBar from "./components/menubar";
 import SiteFooter from "./components/site-footer";
+import ReadingProgress from "./components/reading-progress";
 import { site } from "@/content/site";
+import { Analytics } from "@vercel/analytics/next";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -18,9 +21,17 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
+const ben = localFont({
+  src: "../ben.ttf",
+  variable: "--font-ben",
+  display: "swap",
+  weight: "400",
+  style: "normal",
+});
+
 export const metadata: Metadata = {
   title: {
-    default: `${site.name} — ${site.role}`,
+    default: `${site.name}`,
     template: `%s — ${site.name}`,
   },
   description: site.tagline,
@@ -39,7 +50,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`js-reveal ${jakarta.variable} ${jetbrains.variable}`}
+      className={`js-reveal ${ben.variable} ${jakarta.variable} ${jetbrains.variable}`}
     >
       <body className="min-h-dvh flex flex-col" suppressHydrationWarning>
         {/* No-JS fallback: browsers that never run our IntersectionObserver
@@ -49,8 +60,10 @@ export default function RootLayout({
         <noscript>
           <style>{`.reveal{opacity:1 !important;transform:none !important;}`}</style>
         </noscript>
+        <ReadingProgress />
         <MainMenuBar />
         <main className="flex-1">{children}</main>
+        <Analytics/>
         <SiteFooter />
       </body>
     </html>

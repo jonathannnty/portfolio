@@ -24,6 +24,8 @@ export type Experience = {
   stack?: string[];
   /** Optional external link (company page, project showcase, etc). */
   link?: { label: string; href: string };
+  /** Optional images shown in the expanded timeline node. */
+  images?: string[];
 };
 
 export const experiences: Experience[] = [
@@ -68,6 +70,7 @@ export const experiences: Experience[] = [
       label: "IT Service Desk",
       href: "https://cse.ucsd.edu",
     },
+    images: ["/images/its-group.jpg"],
   },
   {
     id: "ai-research-fellow",
@@ -84,6 +87,7 @@ export const experiences: Experience[] = [
       label: "Handshake AI",
       href: "https://joinhandshake.com/blog/our-team/introducing-handshake-ai/",
     },
+    images: ["/images/handshake-ai.png"],
   },
   {
     id: "swe-intern-aimia",

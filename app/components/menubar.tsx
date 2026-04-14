@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Mail, Menu, X } from "lucide-react";
+import { animate, stagger } from "animejs";
 import { site } from "@/content/site";
 import { GithubIcon, LinkedinIcon } from "./brand-icons";
 
@@ -23,16 +24,43 @@ const isActive = (pathname: string, path: string) => {
 export default function MainMenuBar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const nameRef = useRef<HTMLSpanElement>(null);
+  const animating = useRef(false);
+
+  const handleNameClick = () => {
+    if (animating.current || !nameRef.current) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const chars = nameRef.current.querySelectorAll<HTMLElement>(".name-char");
+    if (!chars.length) return;
+    animating.current = true;
+    animate(chars, {
+      translateY:  [0, -10, 0],
+      duration:    500,
+      delay:       stagger(55),
+      ease:        "outBack",
+      onComplete:  () => { animating.current = false; },
+    });
+  };
 
   return (
     <nav className="sticky top-0 z-50 border-b border-[color:var(--color-border)] bg-[color:var(--color-bg)]/85 backdrop-blur-md">
       <div className="container-page flex h-16 items-center justify-between">
         <Link
           href="/"
-          onClick={() => setMobileOpen(false)}
-          className="font-display text-lg font-bold tracking-tight text-[color:var(--color-fg)]"
+          onClick={() => { setMobileOpen(false); handleNameClick(); }}
+          className="text-2xl font-bold tracking-tight text-[color:var(--color-fg)]"
         >
-          {site.name}
+          <span ref={nameRef} className="inline-flex">
+            {site.name.split("").map((char, i) => (
+              <span
+                key={i}
+                className="name-char inline-block"
+                style={{ whiteSpace: char === " " ? "pre" : undefined }}
+              >
+                {char === " " ? "\u00A0" : char}
+              </span>
+            ))}
+          </span>
           <span className="text-[color:var(--color-primary-600)]">.</span>
         </Link>
 
@@ -44,7 +72,7 @@ export default function MainMenuBar() {
               <Link
                 key={link.path}
                 href={link.path}
-                className={`relative text-sm transition-colors ${
+                className={`relative text-lg transition-colors ${
                   active
                     ? "font-semibold text-[color:var(--color-primary-700)]"
                     : "text-[color:var(--color-fg-muted)] hover:text-[color:var(--color-primary-600)]"
@@ -57,6 +85,15 @@ export default function MainMenuBar() {
               </Link>
             );
           })}
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-md border border-[color:var(--color-primary-400)] px-3 py-1.5 text-sm font-medium text-[color:var(--color-primary-700)] transition-colors hover:bg-[color:var(--color-primary-50)]"
+          >
+            Resume
+          </a>
+
           <div className="flex items-center gap-4 border-l border-[color:var(--color-border)] pl-6">
             <a
               href={site.socials.github.href}
@@ -119,6 +156,14 @@ export default function MainMenuBar() {
                 </Link>
               );
             })}
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-md px-3 py-2 text-base font-medium text-[color:var(--color-primary-700)] hover:bg-[color:var(--color-primary-50)] transition-colors"
+            >
+              Resume
+            </a>
             <div className="mt-3 flex items-center gap-5 border-t border-[color:var(--color-border)] pt-4">
               <a href={site.socials.github.href} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                 <GithubIcon className="h-5 w-5 text-[color:var(--color-fg-muted)]" />

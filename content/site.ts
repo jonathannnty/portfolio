@@ -43,6 +43,16 @@ export const site = {
       href: "https://www.linkedin.com/in/jonathan-ty/",
       handle: "jonathan-ty",
     },
+    strava: {
+      label: "Strava",
+      href: "https://www.strava.com/athletes/jonathanty",
+      handle: "Jonathan Ty's Strava",
+    },
+    spotify: {
+      label: "Spotify",
+      href: "https://open.spotify.com/user/koshgh1r4l0hsu7w7lww2lt30?si=53def52cc28e4684",
+      handle: "Spotify profile",
+    },
     email: {
       label: "Email",
       href: "mailto:jonathanty42@gmail.com",

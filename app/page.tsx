@@ -4,14 +4,15 @@ import Hero from "./components/hero";
 import Section from "./components/section";
 import RevealProvider from "./components/reveal-provider";
 import ProjectCard from "./components/project-card";
+import InProgressProjectCard from "./components/in-progress-project-card";
 import BlogCard from "./components/blog-card";
+import StartHere from "./components/start-here";
 import { projects } from "@/content/projects";
 import { posts } from "@/content/blog";
 
 export default function Home() {
   const featured = projects
-    .filter((p) => p.featured)
-    .concat(projects.filter((p) => !p.featured))
+    .sort((a, b) => b.sortKey.localeCompare(a.sortKey))
     .slice(0, 3);
 
   const recentPosts = [...posts]
@@ -32,11 +33,21 @@ export default function Home() {
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {featured.map((p) => (
             <div key={p.slug} className="reveal">
-              <ProjectCard project={p} />
+              {p.inProgress ? (
+                <InProgressProjectCard project={p} />
+              ) : (
+                <ProjectCard project={p} />
+              )}
             </div>
           ))}
         </div>
-        <div className="mt-10">
+        <div className="mt-10 space-y-6">
+          <div>
+            <p className="mb-3 text-sm font-medium text-[color:var(--color-fg-muted)]">
+              Not sure where to start?
+            </p>
+            <StartHere />
+          </div>
           <Link
             href="/projects"
             className="inline-flex items-center gap-1 text-sm font-semibold text-[color:var(--color-primary-700)] hover:underline"
