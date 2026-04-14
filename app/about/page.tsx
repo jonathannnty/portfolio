@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Section from "../components/section";
 import Timeline from "../components/timeline";
 import CourseworkGrid from "../components/coursework-grid";
@@ -26,16 +27,37 @@ export default function AboutPage() {
     <>
       <RevealProvider />
 
-      <Section eyebrow="Who am I?" title={`Hello there, I'm ${site.name.split(" ")[0]}.`} illustration={<AboutIllustration />}>
-        <div className="max-w-2xl space-y-5">
-          {site.bio.map((paragraph, i) => (
-            <p
-              key={i}
-              className="text-lg leading-relaxed text-[color:var(--color-fg-muted)]"
-            >
-              {paragraph}
-            </p>
-          ))}
+      <Section
+        eyebrow="Who am I?"
+        title={`Hello there, I'm ${site.name.split(" ")[0]}.`}
+        illustration={<AboutIllustration />}
+      >
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start">
+          <div className="space-y-8">
+            <div className="max-w-2xl space-y-5">
+              {site.bio.map((paragraph, i) => (
+                <p
+                  key={i}
+                  className="text-lg leading-relaxed text-[color:var(--color-fg-muted)]"
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          </div>
+
+          <div className= "mx-auto w-full rounded-[1.9rem] bg-gradient-to-br from-[color:var(--color-primary-200)] via-[color:var(--color-surface)] to-[color:var(--color-primary-300)] p-[1.5px] shadow-[var(--shadow-md)] lg:mx-0">
+            <figure className="relative aspect-[4/5] overflow-hidden rounded-[1.85rem] bg-[color:var(--color-surface)]">
+              <Image
+                src="/images/headshot.jpeg"
+                alt={`${site.name} headshot`}
+                fill
+                priority
+                sizes="(min-width: 1024px) 280px, (min-width: 640px) 280px, 80vw"
+                className="object-cover object-center"
+              />
+            </figure>
+          </div>
         </div>
         <ResumeViewer />
       </Section>

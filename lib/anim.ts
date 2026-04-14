@@ -96,9 +96,6 @@ export function installScrollReveal(selector = ".reveal") {
     return () => {};
   }
 
-  const els = Array.from(document.querySelectorAll<HTMLElement>(selector));
-  if (els.length === 0) return () => {};
-
   const observer = new IntersectionObserver(
     (entries, obs) => {
       for (const entry of entries) {
@@ -112,6 +109,34 @@ export function installScrollReveal(selector = ".reveal") {
     { threshold: 0.18, rootMargin: "0px 0px -60px 0px" },
   );
 
-  els.forEach((el) => observer.observe(el));
-  return () => observer.disconnect();
+  const observeMatches = (root: ParentNode) => {
+    if (root instanceof HTMLElement && root.matches(selector)) {
+      observer.observe(root);
+    }
+
+    root
+      .querySelectorAll<HTMLElement>(selector)
+      .forEach((el) => observer.observe(el));
+  };
+
+  observeMatches(document);
+
+  const mutationObserver = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      mutation.addedNodes.forEach((node) => {
+        if (!(node instanceof HTMLElement)) return;
+        observeMatches(node);
+      });
+    }
+  });
+
+  mutationObserver.observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
+
+  return () => {
+    observer.disconnect();
+    mutationObserver.disconnect();
+  };
 }
