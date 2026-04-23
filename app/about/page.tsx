@@ -75,7 +75,7 @@ export default function AboutPage() {
 
       <Section
         id="coursework"
-        eyebrow="Coursework I've doen"
+        eyebrow="Coursework I've done"
         title="What have I studied at UC San Diego?"
         illustration={<CourseworkIllustration />}
         tight
