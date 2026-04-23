@@ -8,6 +8,7 @@ import SiteFooter from "./components/site-footer";
 import ReadingProgress from "./components/reading-progress";
 import { site } from "@/content/site";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -63,7 +64,8 @@ export default function RootLayout({
         <ReadingProgress />
         <MainMenuBar />
         <main className="flex-1">{children}</main>
-        <Analytics/>
+        <Analytics />
+        <SpeedInsights />
         <SiteFooter />
       </body>
     </html>
