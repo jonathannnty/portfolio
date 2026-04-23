@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { Send, CheckCircle2, AlertCircle } from "lucide-react";
 import { submitContactMessage } from "@/app/contact/actions";
@@ -127,12 +127,51 @@ function Field({ label, name, type, autoComplete, error }: FieldProps) {
   );
 }
 
+const PLANE_ANIM_MS = 1100;
+
 function SubmitButton() {
   const { pending } = useFormStatus();
+  const [launching, setLaunching] = useState(false);
+
+  useEffect(() => {
+    if (pending) setLaunching(true);
+  }, [pending]);
+
+  useEffect(() => {
+    if (!launching) return;
+    const timer = setTimeout(() => setLaunching(false), PLANE_ANIM_MS);
+    return () => clearTimeout(timer);
+  }, [launching]);
+
+  const busy = pending || launching;
+
   return (
-    <button type="submit" className="btn-primary" disabled={pending}>
-      {pending ? "Sending..." : "Send message"}
-      {!pending && <Send className="h-4 w-4" />}
+    <button
+      type="submit"
+      className="btn-primary plane-btn"
+      disabled={pending}
+      data-pending={busy}
+    >
+      <span>{busy ? "Sending..." : "Send message"}</span>
+      <span
+        className="plane-launch relative inline-flex h-4 w-4 items-center justify-center"
+        aria-hidden
+      >
+        <Send className="plane-icon relative h-4 w-4" />
+        <svg
+          className="plane-trail pointer-events-none absolute"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          aria-hidden
+        >
+          <path d="M22 4 Q 6 12 22 20" />
+          <path d="M20 2 Q 2 12 20 22" />
+          <path d="M18 0 Q -2 12 18 24" />
+        </svg>
+      </span>
     </button>
   );
 }

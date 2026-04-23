@@ -24,6 +24,9 @@ export default function ContactPage() {
       subtitle="Have a project, a question, or just want to say hi? Drop me a note and I'll get back to you."
       illustration={<ContactIllustration />}
     >
+      <div className="mb-10 flex justify-center lg:hidden">
+        <ContactIllustration />
+      </div>
       <div className="grid gap-12 lg:grid-cols-[1fr_minmax(0,1.2fr)]">
         <aside className="space-y-6">
           <div className="card p-6">

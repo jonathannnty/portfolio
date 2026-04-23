@@ -49,8 +49,8 @@
     Menlo, monospace;
 
   /* Modular type scale (1.25 ratio) — use these, not arbitrary text-[Npx] */
-  --text-xs: 0.8rem; /* 12 */
-  --text-sm: 0.925rem; /* 14 */
+  --text-xs: 0.875rem; /* 12 */
+  --text-sm: 0.975rem; /* 14 */
   --text-base: 1rem; /* 16 */
   --text-lg: 1.125rem; /* 18 */
   --text-xl: 1.375rem; /* 22 */
@@ -167,7 +167,7 @@
       ),
       radial-gradient(
         55% 60% at 50% 90%,
-        rgba(58, 30, 8, 0.10) 0%,
+        rgba(58, 30, 8, 0.1) 0%,
         transparent 60%
       ),
       linear-gradient(180deg, var(--color-bg) 0%, #f0e5d5 100%);
@@ -187,17 +187,35 @@
 
   /* Card — surfaces that hold content (projects, blog posts, awards) */
   .card {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
+    background:
+      linear-gradient(var(--color-surface), var(--color-surface)) padding-box,
+      linear-gradient(
+          135deg,
+          color-mix(in oklab, var(--color-primary-300) 85%, transparent) 0%,
+          color-mix(in oklab, var(--color-border) 18%, transparent) 30%,
+          color-mix(in oklab, var(--color-primary-200) 48%, transparent) 55%,
+          color-mix(in oklab, var(--color-primary-300) 78%, transparent) 100%
+        )
+        border-box;
+    border: 1px solid transparent;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
     transition:
       transform 200ms var(--ease-out-expo),
       box-shadow 200ms var(--ease-out-expo),
-      border-color 200ms var(--ease-out-expo);
+      background 200ms var(--ease-out-expo);
   }
   .card:hover {
-    border-color: var(--color-primary-300);
+    background:
+      linear-gradient(var(--color-surface), var(--color-surface)) padding-box,
+      linear-gradient(
+          135deg,
+          color-mix(in oklab, var(--color-primary-400) 90%, transparent) 0%,
+          color-mix(in oklab, var(--color-primary-200) 30%, transparent) 28%,
+          color-mix(in oklab, var(--color-border-strong) 20%, transparent) 56%,
+          color-mix(in oklab, var(--color-primary-300) 82%, transparent) 100%
+        )
+        border-box;
     box-shadow: var(--shadow-md);
   }
 
@@ -221,6 +239,103 @@
   }
   .btn-primary:active {
     transform: translateY(1px);
+  }
+
+  /* Send-button plane — nudges on hover, launches off-screen on submit
+     with curved trailing motion lines behind it. Mid-flight the icon
+     shifts from white to brand brown so its outline stays readable
+     against the white contact-form card. */
+  .plane-launch {
+    overflow: visible;
+  }
+  .plane-btn .plane-icon {
+    transition: transform 220ms var(--ease-out-expo);
+  }
+  .plane-btn:hover:not([data-pending="true"]) .plane-icon {
+    transform: translate(2px, -2px) rotate(-8deg);
+  }
+  .plane-btn[data-pending="true"] .plane-icon {
+    animation: planeFlyOut 1100ms var(--ease-out-expo) forwards;
+  }
+
+  @keyframes planeFlyOut {
+    0% {
+      transform: translate(0, 0) rotate(0deg) scale(1);
+      opacity: 1;
+      color: #ffffff;
+    }
+    14% {
+      transform: translate(-7px, 5px) rotate(-12deg) scale(1);
+      opacity: 1;
+      color: #ffffff;
+    }
+    26% {
+      /* plane clears the brown button — swap to brown so it's visible */
+      color: var(--color-primary-700);
+    }
+    40% {
+      transform: translate(18px, -14px) rotate(-22deg) scale(1.05);
+    }
+    100% {
+      transform: translate(100vw, -60vh) rotate(-32deg) scale(1.2);
+      opacity: 0;
+      color: var(--color-primary-700);
+    }
+  }
+
+  /* Curved wavy trails that flutter out behind the plane as it launches,
+     mimicking the paper-airplane motion lines in the reference gif. */
+  .plane-trail {
+    position: absolute;
+    top: 50%;
+    right: 55%;
+    width: 0.9rem;
+    height: 1.1rem;
+    color: #ffffff;
+    opacity: 0;
+    transform: translateY(-30%);
+  }
+  .plane-btn[data-pending="true"] .plane-trail {
+    animation: planeTrailFade 1100ms var(--ease-out-expo) forwards;
+  }
+  .plane-btn[data-pending="true"] .plane-trail path {
+    animation: planeTrailRipple 520ms ease-in-out infinite;
+    transform-origin: 50% 50%;
+  }
+  .plane-btn[data-pending="true"] .plane-trail path:nth-child(2) {
+    animation-delay: 90ms;
+  }
+  .plane-btn[data-pending="true"] .plane-trail path:nth-child(3) {
+    animation-delay: 180ms;
+  }
+
+  @keyframes planeTrailFade {
+    0% {
+      opacity: 0;
+      transform: translate(4px, -30%);
+    }
+    22% {
+      opacity: 1;
+      transform: translate(0, -30%);
+    }
+    65% {
+      opacity: 0.85;
+      transform: translate(-2px, -28%);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-6px, -25%);
+    }
+  }
+
+  @keyframes planeTrailRipple {
+    0%,
+    100% {
+      stroke-opacity: 0.35;
+    }
+    50% {
+      stroke-opacity: 1;
+    }
   }
 
   .btn-ghost {

@@ -16,9 +16,7 @@ import ImageLightbox from "./image-lightbox";
  */
 export default function Timeline({ items }: { items: Experience[] }) {
   const rootRef = useRef<HTMLOListElement>(null);
-  const [openId, setOpenId] = useState<string | null>(
-    items[0]?.id ?? null,
-  );
+  const [openId, setOpenId] = useState<string | null>(items[0]?.id ?? null);
 
   useEffect(() => {
     const reduce =
@@ -46,10 +44,7 @@ export default function Timeline({ items }: { items: Experience[] }) {
       {items.map((item) => {
         const isOpen = openId === item.id;
         return (
-          <li
-            key={item.id}
-            className="timeline-node relative opacity-0"
-          >
+          <li key={item.id} className="timeline-node relative opacity-0">
             {/* Node dot */}
             <span
               aria-hidden
@@ -71,9 +66,7 @@ export default function Timeline({ items }: { items: Experience[] }) {
               onClick={() => toggle(item.id)}
               aria-expanded={isOpen}
               aria-controls={`exp-${item.id}`}
-              className={`card w-full cursor-pointer px-6 py-5 text-left ${
-                isOpen ? "border-[color:var(--color-primary-300)]" : ""
-              }`}
+              className="card w-full cursor-pointer px-6 py-5 text-left"
             >
               <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                 <div>
@@ -105,9 +98,7 @@ export default function Timeline({ items }: { items: Experience[] }) {
                 {item.summary}
               </p>
 
-              {isOpen && (
-                <ExpandedBody item={item} id={`exp-${item.id}`} />
-              )}
+              {isOpen && <ExpandedBody item={item} id={`exp-${item.id}`} />}
             </button>
           </li>
         );

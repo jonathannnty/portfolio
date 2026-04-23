@@ -7,13 +7,19 @@ import type { Project } from "@/content/projects";
 
 export default function ProjectListItem({ project }: { project: Project }) {
   const IconComponent = project.glyph
-    ? (Icons[project.glyph as keyof typeof Icons] as React.ComponentType<{ className?: string }>)
+    ? (Icons[project.glyph as keyof typeof Icons] as React.ComponentType<{
+        className?: string;
+      }>)
     : null;
 
   const inner = (
     <>
       <span className="flex h-8 w-8 flex-none items-center justify-center rounded-md bg-[color:var(--color-primary-50)] text-[color:var(--color-primary-700)]">
-        {IconComponent ? <IconComponent className="h-4 w-4" /> : <span className="text-sm">◉</span>}
+        {IconComponent ? (
+          <IconComponent className="h-4 w-4" />
+        ) : (
+          <span className="text-sm">◉</span>
+        )}
       </span>
 
       <div className="min-w-0 flex-1">
@@ -27,12 +33,16 @@ export default function ProjectListItem({ project }: { project: Project }) {
             </span>
           )}
         </div>
-        <p className="truncate text-sm text-[color:var(--color-fg-muted)]">{project.tagline}</p>
+        <p className="truncate text-sm text-[color:var(--color-fg-muted)]">
+          {project.tagline}
+        </p>
       </div>
 
       <div className="hidden sm:flex flex-wrap gap-1 flex-none">
         {project.stack.slice(0, 3).map((s) => (
-          <span key={s} className="chip text-xs">{s}</span>
+          <span key={s} className="chip text-xs">
+            {s}
+          </span>
         ))}
       </div>
 
@@ -57,7 +67,7 @@ export default function ProjectListItem({ project }: { project: Project }) {
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className="card group flex items-center gap-4 px-5 py-3.5 hover:border-[color:var(--color-primary-300)] transition-colors"
+      className="card group flex items-center gap-4 px-5 py-3.5 transition-colors"
     >
       {inner}
     </Link>
