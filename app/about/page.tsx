@@ -6,6 +6,9 @@ import CourseworkGrid from "../components/coursework-grid";
 import AwardsGrid from "../components/awards-grid";
 import ResumeViewer from "../components/resume-viewer";
 import RevealProvider from "../components/reveal-provider";
+import FlyoverGate from "../components/flyover/flyover-gate";
+import FlyoverSection from "../components/flyover/flyover-section";
+import { FLYOVER_ENV_DEFAULT } from "@/lib/flyover/flag";
 import AboutIllustration from "../components/illustrations/about-illustration";
 import ExperienceIllustration from "../components/illustrations/experience-illustration";
 import CourseworkIllustration from "../components/illustrations/coursework-illustration";
@@ -70,7 +73,11 @@ export default function AboutPage() {
         illustration={<ExperienceIllustration />}
         tight
       >
-        <Timeline items={sortedExperiences} />
+        <FlyoverGate
+          defaultEnabled={FLYOVER_ENV_DEFAULT}
+          flyover={<FlyoverSection experiences={sortedExperiences} />}
+          fallback={<Timeline items={sortedExperiences} />}
+        />
       </Section>
 
       <Section

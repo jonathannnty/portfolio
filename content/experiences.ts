@@ -26,6 +26,30 @@ export type Experience = {
   link?: { label: string; href: string };
   /** Optional images shown in the expanded timeline node. */
   images?: string[];
+  /**
+   * Optional geographic anchor used by the About-page flyover to snap this
+   * experience to the nearest point on the route at ingestion time.
+   */
+  geo?: { lat: number; lng: number };
+  /**
+   * Optional per-experience display hints for the About-page flyover.
+   * All fields optional; sensible defaults apply.
+   *   - `slot`:      pin the card to a specific corner instead of the
+   *                  default diagonal rotation.
+   *   - `emphasis`:  "high" scales the marker up + widens the active
+   *                  window; "low" tones it down. Defaults to "normal".
+   *   - `window`:    override the default ±6% active-checkpoint window
+   *                  (0..1). Useful when a role needs a longer dwell.
+   */
+  flyover?: {
+    slot?:
+      | "bottom-left"
+      | "bottom-right"
+      | "top-left"
+      | "top-right";
+    emphasis?: "low" | "normal" | "high";
+    window?: number;
+  };
 };
 
 export const experiences: Experience[] = [
