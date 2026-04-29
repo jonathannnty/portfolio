@@ -35,6 +35,29 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "idle-sidebar-source-control",
+    title: "IDLE Sidebar with Source Control Integration",
+    tagline:
+      "Split-view diff visualization for Python's IDLE editor with git integration and line-by-line highlighting.",
+    period: "Jan–Mar 2026",
+    sortKey: "2026-03",
+    stack: ["Python", "Git", "Tkinter", "Testing", "UI/UX", "GitHub Copilot"],
+    glyph: "GitBranch",
+    body: [
+      "For a team project in computational linguistics, we built a source-control sidebar feature for Python's IDLE integrated development environment. The goal was to give Python developers native diff visibility and version control context without leaving the editor.",
+      "I specialized in the diff visualization layer, implementing line-by-line syntax highlighting for added/removed/modified code, plus a gutter UI with contextual markers (±). This required tight integration with IDLE's split-view architecture and careful handling of viewport synchronization to keep line numbers aligned across panes.",
+      "I also owned test coverage for the split-view diff behavior, ensuring marker accuracy, synchronization correctness, and edge cases around empty diffs and large files. My commits concentrated on user-facing clarity — making it obvious what changed and why — while the core git engine and sidebar scaffolding were handled by teammates.",
+      "The project followed a branch-heavy workflow with parallel feature streams that converged in the final integration phase. The work shipped as a functional prototype ready for demo.",
+    ],
+    links: [
+      {
+        label: "GitHub Repository",
+        href: "https://github.com/jontan3/group-project-team-super-cool-heh",
+      },
+    ],
+    thumbnail: "/images/IDLE.png",
+  },
+  {
     slug: "cogs127-case-study",
     title: "COGS 127 Case Study",
     tagline:
@@ -43,12 +66,12 @@ export const projects: Project[] = [
     sortKey: "2026-04",
     stack: ["Figma", "Claude"],
     glyph: "Palette",
-    // links: [
-    //   {
-    //     label: "GitHub Repository",
-    //     href: "https://github.com/jonathannnty/portfolio.git",
-    //   },
-    // ],
+    links: [
+      {
+        label: "GitHub Repository",
+        href: "https://github.com/jonathannnty/portfolio.git",
+      },
+    ],
     body: [
       `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
       quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum 
