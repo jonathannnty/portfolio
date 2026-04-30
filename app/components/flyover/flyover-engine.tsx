@@ -185,9 +185,9 @@ function applyGrassFirstCoastalStyle(map: maplibregl.Map) {
         // isn't representable in the narrow FilterSpecification union. We
         // cast through unknown because MapLibre happily evaluates the
         // compound shape at runtime.
-        const merged = (
-          existing ? ["all", existing, WATER_CLASS_FILTER] : WATER_CLASS_FILTER
-        ) as unknown as maplibregl.FilterSpecification;
+        const merged = (existing
+          ? ["all", existing, WATER_CLASS_FILTER]
+          : WATER_CLASS_FILTER) as unknown as maplibregl.FilterSpecification;
         map.setFilter(layer.id, merged);
       } catch {
         /* filter may not apply to this layer */
@@ -272,11 +272,16 @@ function applyGrassFirstCoastalStyle(map: maplibregl.Map) {
               "interpolate",
               ["linear"],
               ["zoom"],
-              9, 2,
-              12, 5,
-              14, 10,
-              16, 20,
-              18, 36,
+              9,
+              2,
+              12,
+              5,
+              14,
+              10,
+              16,
+              20,
+              18,
+              36,
             ],
           },
         } as maplibregl.LayerSpecification,
@@ -346,17 +351,16 @@ export default function FlyoverEngine({ experiences }: Props) {
     const startY = window.scrollY;
     const startProgress = Math.max(
       0,
-      Math.min(
-        1,
-        (startY - (sectionTop - offset)) / sectionHeight,
-      ),
+      Math.min(1, (startY - (sectionTop - offset)) / sectionHeight),
     );
 
     type KF = { progress: number; dwellSec: number };
     const kfs: KF[] = [{ progress: startProgress, dwellSec: 0 }];
-    if (startProgress < P.tiltEnd) kfs.push({ progress: P.tiltEnd, dwellSec: 0 });
+    if (startProgress < P.tiltEnd)
+      kfs.push({ progress: P.tiltEnd, dwellSec: 0 });
     for (const cp of resolvedCps) {
-      const cpProg = P.tiltEnd + cp.checkpoint.progress * (P.flyEnd - P.tiltEnd);
+      const cpProg =
+        P.tiltEnd + cp.checkpoint.progress * (P.flyEnd - P.tiltEnd);
       if (cpProg > startProgress + 0.001) {
         kfs.push({ progress: cpProg, dwellSec: 2.5 });
       }
@@ -396,9 +400,15 @@ export default function FlyoverEngine({ experiences }: Props) {
     const cancel = () => stopAutoplay();
     const onKey = (e: KeyboardEvent) => {
       if (
-        ["ArrowDown", "ArrowUp", "PageDown", "PageUp", " ", "Home", "End"].includes(
-          e.key,
-        )
+        [
+          "ArrowDown",
+          "ArrowUp",
+          "PageDown",
+          "PageUp",
+          " ",
+          "Home",
+          "End",
+        ].includes(e.key)
       ) {
         cancel();
       }
@@ -514,7 +524,11 @@ export default function FlyoverEngine({ experiences }: Props) {
         const coords = route.points.map((p) => [p.lng, p.lat]);
         const zonePalette = getZonePalette(theme);
         const boundaries = Array.from(
-          new Set([0, ...cps.map((cp) => cp.checkpoint.pointIndex), route.points.length - 1]),
+          new Set([
+            0,
+            ...cps.map((cp) => cp.checkpoint.pointIndex),
+            route.points.length - 1,
+          ]),
         ).sort((a, b) => a - b);
         const zoneFeatures: Array<{
           type: "Feature";
@@ -732,9 +746,7 @@ export default function FlyoverEngine({ experiences }: Props) {
           const aboveTop = y - 24 - cardH;
           const belowTop = y + 28;
           const top =
-            aboveTop >= pad
-              ? aboveTop
-              : Math.min(ch - cardH - pad, belowTop);
+            aboveTop >= pad ? aboveTop : Math.min(ch - cardH - pad, belowTop);
           let left = x - cardW / 2;
           left = Math.max(pad, Math.min(cw - cardW - pad, left));
           el.style.left = `${left}px`;
@@ -973,10 +985,7 @@ export default function FlyoverEngine({ experiences }: Props) {
       style={{ height: "500vh" }}
       aria-label="Scroll-driven route flyover"
     >
-      <div
-        ref={stickyRef}
-        className="relative h-screen w-full overflow-hidden"
-      >
+      <div ref={stickyRef} className="relative h-screen w-full overflow-hidden">
         {/* Map canvas — masked so its edges dissolve into the page
             background instead of meeting it at a hard rectangle. Overlays
             (hint chip, legend, cards) are siblings and stay unmasked. */}
@@ -1034,7 +1043,10 @@ export default function FlyoverEngine({ experiences }: Props) {
         {/* Proximity card. Anchored via pixel-projected lng/lat from the
             active checkpoint, so it hovers near the pin rather than a
             fixed corner. Clickable — opens the full experience modal. */}
-        <div className="pointer-events-none absolute inset-0" aria-live="polite">
+        <div
+          className="pointer-events-none absolute inset-0"
+          aria-live="polite"
+        >
           {active && activeIdx !== null && (
             <button
               ref={cardAnchorRef}
