@@ -37,6 +37,8 @@
   --color-accent: #d97706; /* amber — used sparingly for highlights */
   --color-danger: #b91c1c;
   --color-success: #15803d;
+  --color-sky-soft: #dff3ff;
+  --color-meadow-soft: #eaf5db;
 
   /* ---------- Typography ---------- */
   /* next/font injects these CSS variables from app/layout.tsx */
@@ -152,25 +154,30 @@
     }
   }
 
-  /* Ambient hero gradient — slow-drifting radial brown wash */
+  /* Hero backdrop behind the illustrated scene */
   .hero-gradient {
     background:
       radial-gradient(
-        60% 50% at 20% 20%,
-        rgba(168, 110, 42, 0.16) 0%,
+        55% 45% at 18% 18%,
+        color-mix(in oklab, var(--color-sky-soft) 75%, white) 0%,
         transparent 60%
       ),
       radial-gradient(
-        50% 45% at 80% 30%,
-        rgba(212, 166, 110, 0.12) 0%,
+        48% 45% at 84% 18%,
+        color-mix(in oklab, var(--color-primary-100) 62%, white) 0%,
         transparent 60%
       ),
       radial-gradient(
-        55% 60% at 50% 90%,
-        rgba(58, 30, 8, 0.1) 0%,
+        70% 46% at 50% 100%,
+        color-mix(in oklab, var(--color-meadow-soft) 80%, transparent) 0%,
         transparent 60%
       ),
-      linear-gradient(180deg, var(--color-bg) 0%, #f0e5d5 100%);
+      linear-gradient(
+        180deg,
+        var(--color-sky-soft) 0%,
+        var(--color-bg) 45%,
+        var(--color-meadow-soft) 100%
+      );
     background-size: 200% 200%;
     animation: heroDrift 22s var(--ease-in-out) infinite;
   }
@@ -182,6 +189,147 @@
     }
     50% {
       background-position: 100% 50%;
+    }
+  }
+
+  .hero-scene {
+    z-index: 0;
+    isolation: isolate;
+  }
+
+  @media (max-width: 1024px) {
+    .hero-scene {
+      display: none;
+    }
+  }
+
+  .hero-grass-band {
+    position: absolute;
+    inset-inline: -4%;
+    bottom: 0;
+    z-index: 2;
+    height: min(64%, clamp(16rem, 40vh, 30rem));
+    overflow: hidden;
+  }
+
+  .hero-grass {
+    position: absolute;
+    inset-inline: 0;
+    bottom: -7rem;
+    width: 108%;
+    height: 100%;
+    object-fit: cover;
+    object-position: bottom center;
+    transform: scale(1.18);
+    transform-origin: bottom center;
+  }
+
+  .hero-tree-stage {
+    position: absolute;
+    right: clamp(-7rem, -7vw, -2rem);
+    bottom: clamp(-0.75rem, -1vw, 0rem);
+    z-index: 3;
+    width: clamp(19rem, 43vw, 42rem);
+    aspect-ratio: 940 / 998;
+    transform-origin: bottom right;
+  }
+
+  .hero-tree {
+    position: absolute;
+    right: 0;
+    bottom: 4rem;
+    z-index: 3;
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    filter: drop-shadow(0 1.25rem 1.75rem rgba(58, 30, 8, 0.18));
+    user-select: none;
+  }
+
+  .hero-leaf-field {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .hero-leaf {
+    position: absolute;
+    top: var(--leaf-top);
+    left: var(--leaf-left);
+    width: clamp(4rem, 6vw, 5.5rem);
+    height: auto;
+    opacity: 0;
+    transform-origin: 50% 20%;
+    animation: heroLeafFall var(--leaf-duration) linear infinite;
+    animation-delay: var(--leaf-delay);
+    will-change: transform, opacity;
+    user-select: none;
+  }
+
+  @keyframes heroLeafFall {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, -0.75rem, 0) rotate(-18deg)
+        scale(var(--leaf-scale));
+    }
+    12% {
+      opacity: 0.92;
+    }
+    45% {
+      transform: translate3d(
+          calc(var(--leaf-drift) + 7rem),
+          calc(var(--leaf-drop) - 14rem),
+          0
+        )
+        rotate(calc(var(--leaf-spin) - 140deg)) scale(var(--leaf-scale));
+    }
+    78% {
+      opacity: 0.78;
+    }
+    100% {
+      opacity: 0;
+      transform: translate3d(var(--leaf-drift), var(--leaf-drop), 0)
+        rotate(var(--leaf-spin)) scale(var(--leaf-scale));
+    }
+  }
+
+  @media (max-width: 900px) {
+    .hero-grass-band {
+      height: min(68%, clamp(14rem, 36vh, 24rem));
+    }
+
+    .hero-tree-stage {
+      right: clamp(-5rem, -12vw, -2rem);
+      bottom: -0.5rem;
+      width: clamp(15rem, 56vw, 28rem);
+    }
+
+    .hero-tree {
+      bottom: 2rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero-grass-band {
+      inset-inline: -8%;
+      height: min(72%, clamp(14rem, 40vh, 26rem));
+    }
+
+    .hero-tree-stage {
+      right: -5.5rem;
+      bottom: -0.75rem;
+      width: clamp(13rem, 78vw, 22rem);
+      opacity: 0.68;
+    }
+
+    .hero-tree {
+      bottom: 1rem;
+    }
+
+    .hero-leaf {
+      width: clamp(3rem, 12vw, 4.5rem);
     }
   }
 
@@ -413,6 +561,10 @@
 @media (prefers-reduced-motion: reduce) {
   .hero-gradient {
     animation: none;
+  }
+  .hero-leaf {
+    animation: none !important;
+    opacity: 0;
   }
   *,
   *::before,
