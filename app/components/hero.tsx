@@ -1,86 +1,158 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { type CSSProperties, useEffect, useRef } from "react";
 import { ArrowRight, Mail } from "lucide-react";
-import { animate, stagger } from "animejs";
 import { site } from "@/content/site";
+import { revealStagger } from "@/lib/anim";
+
+type SceneStyle = CSSProperties & Record<`--${string}`, string>;
+
+const fallingLeaves: Array<{ id: string; style: SceneStyle }> = [
+  {
+    id: "near-canopy",
+    style: {
+      "--leaf-top": "8%",
+      "--leaf-left": "45%",
+      "--leaf-scale": "0.32",
+      "--leaf-drift": "-12rem",
+      "--leaf-drop": "30rem",
+      "--leaf-spin": "320deg",
+      "--leaf-duration": "9.5s",
+      "--leaf-delay": "-1.5s",
+    },
+  },
+  {
+    id: "high-branch",
+    style: {
+      "--leaf-top": "13%",
+      "--leaf-left": "60%",
+      "--leaf-scale": "0.24",
+      "--leaf-drift": "-17rem",
+      "--leaf-drop": "34rem",
+      "--leaf-spin": "-280deg",
+      "--leaf-duration": "11s",
+      "--leaf-delay": "-5s",
+    },
+  },
+  {
+    id: "outer-edge",
+    style: {
+      "--leaf-top": "24%",
+      "--leaf-left": "72%",
+      "--leaf-scale": "0.28",
+      "--leaf-drift": "-21rem",
+      "--leaf-drop": "29rem",
+      "--leaf-spin": "360deg",
+      "--leaf-duration": "10.5s",
+      "--leaf-delay": "-7s",
+    },
+  },
+  {
+    id: "low-branch",
+    style: {
+      "--leaf-top": "29%",
+      "--leaf-left": "50%",
+      "--leaf-scale": "0.21",
+      "--leaf-drift": "-15rem",
+      "--leaf-drop": "27rem",
+      "--leaf-spin": "-420deg",
+      "--leaf-duration": "12s",
+      "--leaf-delay": "-3.2s",
+    },
+  },
+  {
+    id: "small-gust",
+    style: {
+      "--leaf-top": "18%",
+      "--leaf-left": "38%",
+      "--leaf-scale": "0.18",
+      "--leaf-drift": "-10rem",
+      "--leaf-drop": "24rem",
+      "--leaf-spin": "260deg",
+      "--leaf-duration": "8.5s",
+      "--leaf-delay": "-6.5s",
+    },
+  },
+];
 
 /**
- * Hero — the first thing visitors see on the home page.
- *
- * - Ambient drifting green gradient backdrop via .hero-gradient (globals.css).
- * - Headline split into per-line elements so anime.js can stagger them in.
- * - Two floating "orb" decorations that loop subtly to add life.
- * - Everything short-circuits when prefers-reduced-motion is set.
+ * Hero - the first thing visitors see on the home page.
  */
 export default function Hero() {
   const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const reduce =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!rootRef.current) return;
 
-    if (reduce || !rootRef.current) return;
-
-    // Stagger the headline lines + eyebrow + subhead + CTAs
-    animate(".hero-stagger", {
-      y: [40, 0],
-      opacity: [0, 1],
+    revealStagger(rootRef.current.querySelectorAll(".hero-stagger"), {
+      delay: 120,
       duration: 1000,
-      delay: stagger(110, { start: 120 }),
-      ease: "outExpo",
-    });
-
-    // Ambient orbs — loop with alternating direction
-    animate(".hero-orb-a", {
-      x: [0, 28, 0],
-      y: [0, -14, 0],
-      scale: [1, 1.05, 1],
-      duration: 9000,
-      loop: true,
-      ease: "inOutQuad",
-    });
-    animate(".hero-orb-b", {
-      x: [0, -22, 0],
-      y: [0, 18, 0],
-      scale: [1, 0.95, 1],
-      duration: 11000,
-      loop: true,
-      ease: "inOutQuad",
+      stagger: 110,
     });
   }, []);
 
   return (
-    <div
-      ref={rootRef}
-      className="hero-gradient relative overflow-hidden"
-    >
-      {/* Decorative orbs — purely visual, aria-hidden */}
+    <div ref={rootRef} className="hero-gradient relative overflow-hidden">
       <div
         aria-hidden
-        className="hero-orb-a pointer-events-none absolute -top-24 -left-16 h-72 w-72 rounded-full bg-[color:var(--color-primary-300)]/40 blur-3xl"
-      />
-      <div
-        aria-hidden
-        className="hero-orb-b pointer-events-none absolute -bottom-24 -right-10 h-96 w-96 rounded-full bg-[color:var(--color-accent)]/20 blur-3xl"
-      />
+        className="hero-scene pointer-events-none absolute inset-0"
+      >
+        <div className="hero-grass-band">
+          <Image
+            className="hero-grass"
+            src="/images/Grass.svg"
+            alt=""
+            width={2126}
+            height={483}
+            sizes="100vw"
+            preload
+          />
+        </div>
 
-      <div className="container-page relative flex min-h-[72vh] flex-col justify-center py-24 md:py-32">
-        <span className="hero-stagger eyebrow opacity-0">
-          Hello — I&apos;m {site.name.split(" ")[0]}
+        <div className="hero-tree-stage">
+          <div className="hero-leaf-field">
+            {fallingLeaves.map((leaf) => (
+              <Image
+                key={leaf.id}
+                className="hero-leaf"
+                src="/images/Leaf.svg"
+                alt=""
+                width={97}
+                height={127}
+                style={leaf.style}
+              />
+            ))}
+          </div>
+
+          <Image
+            className="hero-tree"
+            src="/images/Tree.svg"
+            alt=""
+            width={940}
+            height={998}
+            preload
+          />
+        </div>
+      </div>
+
+      <div className="container-page relative z-10 flex min-h-[72vh] flex-col justify-center py-24 md:py-32 lg:pr-[28rem]">
+        <span className="hero-stagger eyebrow opacity-100 motion-safe:opacity-0 [letter-spacing:0]">
+          Hello - I&apos;m {site.name.split(" ")[0]}
         </span>
 
-        <h1 className="mt-5 max-w-4xl font-display text-4xl font-bold leading-[1.05] tracking-tight text-[color:var(--color-fg)] sm:text-4xl md:text-5xl lg:text-[4rem]">
-          <span className="hero-stagger block opacity-0">{site.role}</span>
+        <h1 className="mt-5 max-w-4xl font-display text-4xl font-bold leading-[1.05] tracking-normal text-[color:var(--color-fg)] sm:text-4xl md:text-5xl lg:text-[4rem]">
+          <span className="hero-stagger block opacity-100 motion-safe:opacity-0">
+            {site.role}
+          </span>
         </h1>
 
-        <p className="hero-stagger mt-7 max-w-2xl text-lg leading-relaxed text-[color:var(--color-fg-muted)] opacity-0">
+        <p className="hero-stagger mt-7 max-w-2xl text-lg leading-relaxed text-[color:var(--color-fg-muted)] opacity-100 motion-safe:opacity-0">
           {site.tagline}
         </p>
 
-        <div className="hero-stagger mt-10 flex flex-wrap items-center gap-4 opacity-0">
+        <div className="hero-stagger mt-10 flex flex-wrap items-center gap-4 opacity-100 motion-safe:opacity-0">
           <Link href="/projects" className="btn-primary">
             See my work
             <ArrowRight className="h-4 w-4" />
