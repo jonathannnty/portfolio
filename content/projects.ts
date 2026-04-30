@@ -39,7 +39,7 @@ export const projects: Project[] = [
     title: "IDLE Sidebar with Source Control Integration",
     tagline:
       "Split-view diff visualization for Python's IDLE editor with git integration and line-by-line highlighting.",
-    period: "Jan–Mar 2026",
+    period: "January–March 2026",
     sortKey: "2026-03",
     stack: ["Python", "Git", "Tkinter", "Testing", "UI/UX", "GitHub Copilot"],
     glyph: "GitBranch",
@@ -62,7 +62,7 @@ export const projects: Project[] = [
     title: "COGS 127 Case Study",
     tagline:
       "Currently creating a UX/product design case study for your portfolio; team project with user research, data science, prototyping, and user testing.",
-    period: "2026",
+    period: "April-Present 2026",
     sortKey: "2026-04",
     stack: ["Figma", "Claude"],
     glyph: "Palette",
@@ -84,7 +84,7 @@ export const projects: Project[] = [
     slug: "portfolio-website",
     title: "Portfolio Website",
     tagline: "Next.js + anime.js portfolio built using Claude plugins.",
-    period: "2026",
+    period: "April-Present 2026",
     sortKey: "2026-04",
     stack: ["Next.js", "React", "Tailwind", "anime.js", "Claude"],
     glyph: "Code2",
@@ -133,7 +133,7 @@ export const projects: Project[] = [
     title: "Pathfinder AI: Multi-Agent Career Guidance",
     tagline:
       "4-agent career coach that turns user intake into ranked paths and actionable plans.",
-    period: "2026",
+    period: "March 2026",
     sortKey: "2026-03",
     stack: [
       "TypeScript",
