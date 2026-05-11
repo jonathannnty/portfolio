@@ -291,8 +291,8 @@ export const projects: Project[] = [
       "We designed a pipeline that aligned audio cues with time-series sensor data from 9-axis IMU devices, allowing activities to be labeled in real time without post-processing. I focused on building data preprocessing scripts and structuring the dataset for LSTM-based models, which ultimately achieved higher validation accuracy compared to button-based and standard baseline methods.",
       "Looking back, I think we could’ve explored more robust generalization across different environments and users. Still, this project shifted how I think about data collection, not just optimizing models, but questioning the assumptions behind how data is gathered in the first place.",
     ],
-    thumbnail: "/images/pannuto-group-poster.jpg",
-    heroImage: "/images/pannuto-group-poster.jpg",
+    thumbnail: "/images/pannuto-thumbnail.png",
+    heroImage: "/images/pannuto-thumbnail.png",
     links: [
       {
         label: "Pannuto Group Poster",
