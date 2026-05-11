@@ -5,8 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import CopyLinkButton from "@/app/components/copy-link-button";
 import { projects } from "@/content/projects";
-import { toSlugId } from "@/lib/toc";
-import type { Heading } from "@/lib/toc";
+import { toSlugId, type Heading } from "@/lib/toc";
 import { ProjectTOCDesktop, ProjectTOCMobile } from "@/app/components/project-toc";
 
 type Params = { slug: string };
