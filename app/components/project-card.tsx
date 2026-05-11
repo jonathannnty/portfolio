@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRef } from "react";
-import * as Icons from "lucide-react";
 import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/content/projects";
 
@@ -12,9 +11,6 @@ import type { Project } from "@/content/projects";
  * Hover triggers a subtle anime.js lift.
  */
 export default function ProjectCard({ project }: { project: Project }) {
-  const IconComponent = project.glyph
-    ? (Icons[project.glyph as keyof typeof Icons] as React.ComponentType<{ className?: string }>)
-    : null;
   const ref = useRef<HTMLAnchorElement>(null);
 
   const tilt = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -44,17 +40,7 @@ export default function ProjectCard({ project }: { project: Project }) {
       style={{ willChange: "transform", transformStyle: "preserve-3d" }}
     >
       <div className="flex flex-1 flex-col p-6">
-        <div className="mb-5 flex items-start justify-between">
-          <span
-            aria-hidden
-            className="flex h-10 w-10 items-center justify-center rounded-md bg-[color:var(--color-primary-50)] font-mono text-xl text-[color:var(--color-primary-700)]"
-          >
-            {IconComponent ? (
-              <IconComponent className="h-5 w-5" />
-            ) : (
-              <span className="text-base">◉</span>
-            )}
-          </span>
+        <div className="mb-5 flex items-start justify-end">
           <span className="font-mono text-xs text-[color:var(--color-fg-subtle)]">
             {project.period}
           </span>

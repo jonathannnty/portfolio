@@ -35,8 +35,6 @@ export type Project = {
   stack: string[];
   /** Optional links — repo, live demo, writeup. */
   links?: { label: string; href: string }[];
-  /** Lucide icon name shown as a visual marker on the card. */
-  glyph?: string;
   /** Full writeup, one paragraph per array entry. */
   body: string[];
   /** Whether to show this on the home page "featured work" strip. */
@@ -60,7 +58,6 @@ export const projects: Project[] = [
     period: "January–March 2026",
     sortKey: "2026-03",
     stack: ["Python", "Git", "Tkinter", "Testing", "UI/UX", "GitHub Copilot"],
-    glyph: "GitBranch",
     body: [
       "For a team project in computational linguistics, we built a source-control sidebar feature for Python's IDLE integrated development environment. The goal was to give Python developers native diff visibility and version control context without leaving the editor.",
       "I specialized in the diff visualization layer, implementing line-by-line syntax highlighting for added/removed/modified code, plus a gutter UI with contextual markers (±). This required tight integration with IDLE's split-view architecture and careful handling of viewport synchronization to keep line numbers aligned across panes.",
@@ -83,7 +80,6 @@ export const projects: Project[] = [
     period: "Spring 2026",
     sortKey: "2026-04",
     stack: ["UX Research", "User Interviews", "Figma", "Prototyping"],
-    glyph: "Palette",
     links: [
       // {
       //   label: "GitHub Repository",
@@ -263,7 +259,6 @@ export const projects: Project[] = [
     period: "April-Present 2026",
     sortKey: "2026-04",
     stack: ["Next.js", "React", "Tailwind", "anime.js", "Claude"],
-    glyph: "Code2",
     featured: true,
     links: [
       {
@@ -286,7 +281,6 @@ export const projects: Project[] = [
     period: "2024–2025",
     sortKey: "2025-05",
     stack: ["Python", "NumPy", "Pandas", "PyTorch", "LSTM", "GitHub Copilot"],
-    glyph: "Microscope",
     body: [
       "This research project came about from my group's participation in the UCSD CSE Department's Early Research Scholars Program. In a team of 4, we learned how traditional human activity recognition (HAR) datasets rely heavily on video recording and manual annotation, which is time-consuming and difficult to scale. Our project explored whether synchronized audio instructions could replace these methods, making data collection faster and more accessible for both researchers and participants.",
       "We designed a pipeline that aligned audio cues with time-series sensor data from 9-axis IMU devices, allowing activities to be labeled in real time without post-processing. I focused on building data preprocessing scripts and structuring the dataset for LSTM-based models, which ultimately achieved higher validation accuracy compared to button-based and standard baseline methods.",
@@ -322,7 +316,6 @@ export const projects: Project[] = [
       "Claude",
       "GitHub Copilot",
     ],
-    glyph: "Binary",
     body: [
       "For DiamondHacks 2026, in a team of 2, we built Pathfinder AI intended to be a full-stack career guidance platform using React, Fastify API, and a Python agent service.",
       "My teammate worked on a four-agent pipeline: Research, Profile Analysis, Recommendations, and Report Generation. It runs a structured intake-to-analysis flow, validates recommendation quality, and produces clear outputs for users and demo judges.",

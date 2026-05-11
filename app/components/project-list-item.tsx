@@ -1,27 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import * as Icons from "lucide-react";
 import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/content/projects";
 
 export default function ProjectListItem({ project }: { project: Project }) {
-  const IconComponent = project.glyph
-    ? (Icons[project.glyph as keyof typeof Icons] as React.ComponentType<{
-        className?: string;
-      }>)
-    : null;
-
   const inner = (
     <>
-      <span className="flex h-8 w-8 flex-none items-center justify-center rounded-md bg-[color:var(--color-primary-50)] text-[color:var(--color-primary-700)]">
-        {IconComponent ? (
-          <IconComponent className="h-4 w-4" />
-        ) : (
-          <span className="text-sm">◉</span>
-        )}
-      </span>
-
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
           <span className="font-display font-semibold text-[color:var(--color-fg)] truncate">
