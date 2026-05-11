@@ -91,7 +91,6 @@ export const projects: Project[] = [
       // },
     ],
     body: [],
-    inProgress: true,
     thumbnail: "/images/get-it-done-thumbnail.png",
     images: ["/images/kid-walking.jpg", "/images/kid-walking2.png"],
     sections: [
@@ -277,7 +276,7 @@ export const projects: Project[] = [
       "The experience timeline, hero headline, and scroll reveals are powered by anime.js v4, keeping the JavaScript footprint small while still allowing staggered, spring-y motion that would be clumsy to express in raw CSS.",
       "The contact form uses a Next.js server action that hands off to Resend — no API route, no third-party form service, no client-side secrets.",
     ],
-    thumbnail: "/images/portfolio.png",
+    thumbnail: "/images/portfolio-website-thumbnail.png",
   },
   {
     slug: "audio-har-data-collection",
