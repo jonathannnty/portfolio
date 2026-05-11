@@ -5,6 +5,9 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import CopyLinkButton from "@/app/components/copy-link-button";
 import { projects } from "@/content/projects";
+import { toSlugId } from "@/lib/toc";
+import type { Heading } from "@/lib/toc";
+import { ProjectTOCDesktop, ProjectTOCMobile } from "@/app/components/project-toc";
 
 type Params = { slug: string };
 
@@ -34,6 +37,15 @@ export default async function ProjectDetailPage({
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
   if (!project) notFound();
+
+  const headings: Heading[] = [
+    ...(project.sections ?? []).map((sec) => ({
+      label: sec.heading,
+      id: toSlugId(sec.heading),
+    })),
+    ...(project.images?.length ? [{ label: "Gallery", id: "gallery" }] : []),
+  ];
+  const hasTOC = headings.length >= 2;
 
   return (
     <div className="relative">
@@ -133,7 +145,10 @@ export default async function ProjectDetailPage({
                   className="h-7 w-[3px] flex-shrink-0 rounded-full bg-[color:var(--color-accent)]"
                   aria-hidden="true"
                 />
-                <h2 className="font-display text-2xl font-bold tracking-tight text-[color:var(--color-fg)]">
+                <h2
+                  id={toSlugId(sec.heading)}
+                  className="font-display text-2xl font-bold tracking-tight text-[color:var(--color-fg)]"
+                >
                   {sec.heading}
                 </h2>
               </div>
@@ -223,7 +238,10 @@ export default async function ProjectDetailPage({
 
       {project.images && project.images.length > 0 && (
         <div className="mt-14 max-w-4xl">
-          <h2 className="font-display text-xl font-semibold tracking-tight text-[color:var(--color-fg)] mb-5">
+          <h2
+            id="gallery"
+            className="font-display text-xl font-semibold tracking-tight text-[color:var(--color-fg)] mb-5"
+          >
             Gallery
           </h2>
           <div className="grid gap-4 sm:grid-cols-2">
