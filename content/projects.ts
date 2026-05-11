@@ -327,8 +327,8 @@ export const projects: Project[] = [
       "My teammate worked on a four-agent pipeline: Research, Profile Analysis, Recommendations, and Report Generation. It runs a structured intake-to-analysis flow, validates recommendation quality, and produces clear outputs for users and demo judges.",
       "I focused on reliability as much as features by adding test coverage, operator playbooks, observability endpoints, and demo contingency workflows so the product could run confidently in live hackathon settings!",
     ],
-    thumbnail: "/images/pathfinder_thumbnail.png",
-    heroImage: "/images/pathfinder_thumbnail.png",
+    thumbnail: "/images/pathfinder-thumbnail.png",
+    heroImage: "/images/pathfinder-thumbnail.png",
     links: [
       {
         label: "GitHub Repository",
