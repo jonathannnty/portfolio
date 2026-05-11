@@ -11,6 +11,7 @@ export function useTOCActiveId(ids: string[]): string {
 
   useEffect(() => {
     if (!idsKey) return;
+    setActiveId(ids[0] ?? "");
 
     const observer = new IntersectionObserver(
       (entries) => {
