@@ -342,8 +342,8 @@
     box-shadow: var(--shadow-sm);
     position: relative;
     transition:
-      transform 200ms var(--ease-out-expo),
-      box-shadow 200ms var(--ease-out-expo);
+      transform 150ms var(--ease-out-expo),
+      box-shadow 150ms var(--ease-out-expo);
   }
   .card:hover {
     --brushed-color: var(--color-primary-300);
@@ -656,8 +656,8 @@
       opacity: 1;
       transform: translateY(0);
       transition:
-        opacity 700ms var(--ease-out-expo),
-        transform 700ms var(--ease-out-expo);
+        opacity 550ms var(--ease-out-expo),
+        transform 550ms var(--ease-out-expo);
     }
   }
 }

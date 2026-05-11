@@ -21,12 +21,12 @@ export default function ProjectCard({ project }: { project: Project }) {
     const x = (e.clientX - rect.left) / rect.width  - 0.5; // -0.5 to 0.5
     const y = (e.clientY - rect.top)  / rect.height - 0.5;
     ref.current.style.transform = `perspective(700px) rotateX(${y * -7}deg) rotateY(${x * 7}deg) translateY(-4px)`;
-    ref.current.style.transition = "transform 0.1s ease-out";
+    ref.current.style.transition = "transform 0.08s linear";
   };
 
   const resetTilt = () => {
     if (!ref.current) return;
-    ref.current.style.transition = "transform 0.35s ease-out";
+    ref.current.style.transition = "transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)";
     ref.current.style.transform  = "perspective(700px) rotateX(0deg) rotateY(0deg) translateY(0px)";
   };
 
@@ -54,7 +54,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                 src={project.thumbnail}
                 alt={`${project.title} preview`}
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
                 sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                 preload={true}
               />

@@ -59,9 +59,9 @@ export default function ImageLightbox({ src, alt }: Props) {
     }
     if (imgRef.current) {
       animate(imgRef.current, {
-        scale:    [0.5, 1],
+        scale:    [0.88, 1],
         opacity:  [0, 1],
-        duration: 400,
+        duration: 300,
         ease:     "outBack",
       });
     }
@@ -85,17 +85,17 @@ export default function ImageLightbox({ src, alt }: Props) {
 
     if (imgRef.current) {
       animate(imgRef.current, {
-        scale:    [1, 0.5],
+        scale:    [1, 0.92],
         opacity:  [1, 0],
-        duration: 260,
-        ease:     "inBack",
+        duration: 180,
+        ease:     "outExpo",
       });
     }
     if (backdropRef.current) {
       animate(backdropRef.current, {
         opacity:    [1, 0],
-        duration:   260,
-        ease:       "outQuad",
+        duration:   180,
+        ease:       "outExpo",
         onComplete: () => { setOpen(false); closing.current = false; },
       });
     }
@@ -156,7 +156,7 @@ export default function ImageLightbox({ src, alt }: Props) {
           src={src}
           alt={alt}
           fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
+          className="object-cover transition-transform duration-200 group-hover:scale-105"
           sizes="(min-width: 640px) 20vw, 40vw"
         />
       </div>

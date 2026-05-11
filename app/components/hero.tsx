@@ -87,9 +87,9 @@ export default function Hero() {
     if (!rootRef.current) return;
 
     revealStagger(rootRef.current.querySelectorAll(".hero-stagger"), {
-      delay: 120,
-      duration: 1000,
-      stagger: 110,
+      delay: 80,
+      duration: 750,
+      stagger: 70,
     });
   }, []);
 

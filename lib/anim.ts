@@ -38,10 +38,10 @@ export function revealStagger(
 ) {
   if (prefersReducedMotion()) return;
   return animate(targets, {
-    y: [36, 0],
+    y: [24, 0],
     opacity: [0, 1],
-    duration: options.duration ?? 900,
-    delay: stagger(options.stagger ?? 90, { start: options.delay ?? 0 }),
+    duration: options.duration ?? 700,
+    delay: stagger(options.stagger ?? 55, { start: options.delay ?? 0 }),
     ease: EASE.outExpo,
   });
 }
@@ -64,7 +64,7 @@ export function cardHoverIn(target: TargetsParam) {
   if (prefersReducedMotion()) return;
   return animate(target, {
     y: -4,
-    duration: 280,
+    duration: 150,
     ease: EASE.outExpo,
   });
 }
@@ -73,7 +73,7 @@ export function cardHoverOut(target: TargetsParam) {
   if (prefersReducedMotion()) return;
   return animate(target, {
     y: 0,
-    duration: 280,
+    duration: 150,
     ease: EASE.outExpo,
   });
 }

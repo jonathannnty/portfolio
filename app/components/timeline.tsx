@@ -25,10 +25,10 @@ export default function Timeline({ items }: { items: Experience[] }) {
     if (reduce || !rootRef.current) return;
 
     animate(rootRef.current.querySelectorAll(".timeline-node"), {
-      x: [-24, 0],
+      x: [-16, 0],
       opacity: [0, 1],
-      duration: 700,
-      delay: stagger(90, { start: 80 }),
+      duration: 550,
+      delay: stagger(65, { start: 60 }),
       ease: "outExpo",
     });
   }, []);
