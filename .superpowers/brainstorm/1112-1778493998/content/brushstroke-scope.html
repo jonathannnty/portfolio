@@ -1,0 +1,191 @@
+<h2>Which elements should get the brushstroke treatment?</h2>
+<p class="subtitle">Green = brushstroke border · Gray = stays solid. Shown as a layout map of the projects page.</p>
+
+<div class="cards">
+
+  <!-- A: Selective -->
+  <div class="card" data-choice="selective" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#f7f9f7;padding:14px 18px;">
+      <svg width="100%" height="200" viewBox="0 0 260 200" font-family="monospace" font-size="7">
+        <!-- Nav bar - SOLID gray -->
+        <rect x="0" y="0" width="260" height="20" rx="2" fill="#e8ede8"/>
+        <text x="8" y="13" fill="#888">Jonathan Ty.</text>
+        <rect x="190" y="5" width="38" height="11" rx="2" fill="none" stroke="#aaa" stroke-width="1"/>
+        <text x="209" y="13.5" text-anchor="middle" fill="#aaa">Resume</text>
+        <line x1="0" y1="20" x2="260" y2="20" stroke="#ccc" stroke-width="0.8"/>
+
+        <!-- Page heading area -->
+        <rect x="8" y="28" width="130" height="7" rx="2" fill="#c8d8c8" opacity="0.7"/>
+        <rect x="8" y="40" width="90" height="5" rx="2" fill="#c8d8c8" opacity="0.5"/>
+
+        <!-- Chips row - BRUSHSTROKE green -->
+        <defs>
+          <filter id="s-a" x="-15%" y="-15%" width="130%" height="130%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.032" numOctaves="4" seed="7" result="n"/>
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+        </defs>
+        <rect x="8" y="52" width="36" height="11" rx="5.5" fill="none" stroke="#3d6b47" stroke-width="1.3" filter="url(#s-a)"/>
+        <text x="26" y="60.5" text-anchor="middle" fill="#3d6b47">React</text>
+        <rect x="50" y="52" width="42" height="11" rx="5.5" fill="none" stroke="#3d6b47" stroke-width="1.3" filter="url(#s-a)"/>
+        <text x="71" y="60.5" text-anchor="middle" fill="#3d6b47">Next.js</text>
+        <rect x="98" y="52" width="38" height="11" rx="5.5" fill="none" stroke="#3d6b47" stroke-width="1.3" filter="url(#s-a)"/>
+        <text x="117" y="60.5" text-anchor="middle" fill="#3d6b47">Tailwind</text>
+
+        <!-- Cards grid - BRUSHSTROKE green -->
+        <!-- Card 1 -->
+        <rect x="8" y="72" width="115" height="72" rx="5" fill="white" stroke="#3d6b47" stroke-width="1.4" filter="url(#s-a)"/>
+        <rect x="14" y="78" width="100" height="28" rx="3" fill="#e8f0e8"/>
+        <rect x="14" y="112" width="70" height="5" rx="1" fill="#c8d8c8" opacity="0.8"/>
+        <rect x="14" y="121" width="55" height="4" rx="1" fill="#c8d8c8" opacity="0.6"/>
+        <rect x="14" y="130" width="50" height="10" rx="2" fill="none" stroke="#3d6b47" stroke-width="1.1" filter="url(#s-a)"/>
+        <text x="39" y="138" text-anchor="middle" fill="#3d6b47" font-size="6">View →</text>
+
+        <!-- Card 2 -->
+        <rect x="135" y="72" width="117" height="72" rx="5" fill="white" stroke="#3d6b47" stroke-width="1.4" filter="url(#s-a)"/>
+        <rect x="141" y="78" width="104" height="28" rx="3" fill="#e8f0e8"/>
+        <rect x="141" y="112" width="72" height="5" rx="1" fill="#c8d8c8" opacity="0.8"/>
+        <rect x="141" y="121" width="58" height="4" rx="1" fill="#c8d8c8" opacity="0.6"/>
+        <rect x="141" y="130" width="50" height="10" rx="2" fill="none" stroke="#3d6b47" stroke-width="1.1" filter="url(#s-a)"/>
+        <text x="166" y="138" text-anchor="middle" fill="#3d6b47" font-size="6">View →</text>
+
+        <!-- Footer - SOLID gray -->
+        <line x1="0" y1="158" x2="260" y2="158" stroke="#ccc" stroke-width="0.8"/>
+        <rect x="8" y="163" width="80" height="5" rx="1" fill="#d0d8d0" opacity="0.6"/>
+        <rect x="8" y="172" width="60" height="4" rx="1" fill="#d0d8d0" opacity="0.4"/>
+
+        <!-- Legend -->
+        <rect x="8" y="184" width="8" height="8" rx="1" fill="none" stroke="#3d6b47" stroke-width="1.5"/>
+        <text x="20" y="191" fill="#3d6b47">Cards, chips, buttons</text>
+        <rect x="140" y="184" width="8" height="8" rx="1" fill="none" stroke="#aaa" stroke-width="1"/>
+        <text x="152" y="191" fill="#888">Nav, footer, images</text>
+      </svg>
+    </div>
+    <div class="card-body">
+      <h3>A — Selective</h3>
+      <p>Only cards, chips, and buttons get the treatment. Nav border, image frames, blockquotes, and contact form stay solid.</p>
+    </div>
+  </div>
+
+  <!-- B: Everything UI -->
+  <div class="card" data-choice="ui-all" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#f7f9f7;padding:14px 18px;">
+      <svg width="100%" height="200" viewBox="0 0 260 200" font-family="monospace" font-size="7">
+        <defs>
+          <filter id="s-b" x="-15%" y="-15%" width="130%" height="130%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.032" numOctaves="4" seed="11" result="n"/>
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+        </defs>
+        <!-- Nav - SOLID gray -->
+        <rect x="0" y="0" width="260" height="20" rx="2" fill="#e8ede8"/>
+        <text x="8" y="13" fill="#888">Jonathan Ty.</text>
+        <rect x="190" y="5" width="38" height="11" rx="2" fill="none" stroke="#3d6b47" stroke-width="1.2" filter="url(#s-b)"/>
+        <text x="209" y="13.5" text-anchor="middle" fill="#3d6b47">Resume</text>
+        <line x1="0" y1="20" x2="260" y2="20" stroke="#ccc" stroke-width="0.8"/>
+
+        <!-- Page heading -->
+        <rect x="8" y="28" width="130" height="7" rx="2" fill="#c8d8c8" opacity="0.7"/>
+        <rect x="8" y="40" width="90" height="5" rx="2" fill="#c8d8c8" opacity="0.5"/>
+
+        <!-- Chips - BRUSHSTROKE -->
+        <rect x="8" y="52" width="36" height="11" rx="5.5" fill="none" stroke="#3d6b47" stroke-width="1.3" filter="url(#s-b)"/>
+        <text x="26" y="60.5" text-anchor="middle" fill="#3d6b47">React</text>
+        <rect x="50" y="52" width="42" height="11" rx="5.5" fill="none" stroke="#3d6b47" stroke-width="1.3" filter="url(#s-b)"/>
+        <text x="71" y="60.5" text-anchor="middle" fill="#3d6b47">Next.js</text>
+        <rect x="98" y="52" width="38" height="11" rx="5.5" fill="none" stroke="#3d6b47" stroke-width="1.3" filter="url(#s-b)"/>
+        <text x="117" y="60.5" text-anchor="middle" fill="#3d6b47">Tailwind</text>
+
+        <!-- Cards - BRUSHSTROKE -->
+        <rect x="8" y="72" width="115" height="72" rx="5" fill="white" stroke="#3d6b47" stroke-width="1.4" filter="url(#s-b)"/>
+        <rect x="14" y="78" width="100" height="28" rx="3" fill="#e8f0e8" stroke="#3d6b47" stroke-width="1" filter="url(#s-b)"/>
+        <rect x="14" y="112" width="70" height="5" rx="1" fill="#c8d8c8" opacity="0.8"/>
+        <rect x="14" y="121" width="55" height="4" rx="1" fill="#c8d8c8" opacity="0.6"/>
+        <rect x="14" y="130" width="50" height="10" rx="2" fill="none" stroke="#3d6b47" stroke-width="1.1" filter="url(#s-b)"/>
+        <text x="39" y="138" text-anchor="middle" fill="#3d6b47" font-size="6">View →</text>
+
+        <rect x="135" y="72" width="117" height="72" rx="5" fill="white" stroke="#3d6b47" stroke-width="1.4" filter="url(#s-b)"/>
+        <rect x="141" y="78" width="104" height="28" rx="3" fill="#e8f0e8" stroke="#3d6b47" stroke-width="1" filter="url(#s-b)"/>
+        <rect x="141" y="112" width="72" height="5" rx="1" fill="#c8d8c8" opacity="0.8"/>
+        <rect x="141" y="121" width="58" height="4" rx="1" fill="#c8d8c8" opacity="0.6"/>
+        <rect x="141" y="130" width="50" height="10" rx="2" fill="none" stroke="#3d6b47" stroke-width="1.1" filter="url(#s-b)"/>
+        <text x="166" y="138" text-anchor="middle" fill="#3d6b47" font-size="6">View →</text>
+
+        <!-- Footer - solid -->
+        <line x1="0" y1="158" x2="260" y2="158" stroke="#ccc" stroke-width="0.8"/>
+        <rect x="8" y="163" width="80" height="5" rx="1" fill="#d0d8d0" opacity="0.6"/>
+        <rect x="8" y="172" width="60" height="4" rx="1" fill="#d0d8d0" opacity="0.4"/>
+
+        <!-- Legend -->
+        <rect x="8" y="184" width="8" height="8" rx="1" fill="none" stroke="#3d6b47" stroke-width="1.5"/>
+        <text x="20" y="191" fill="#3d6b47">Cards, chips, buttons, image frames, resume btn</text>
+      </svg>
+    </div>
+    <div class="card-body">
+      <h3>B — All UI Elements <span style="color:#4a7c59;font-size:0.75rem;">(Recommended)</span></h3>
+      <p>Everything interactive + image frames get the treatment. Nav/footer structure lines stay solid so the page skeleton stays clean.</p>
+    </div>
+  </div>
+
+  <!-- C: Truly everything -->
+  <div class="card" data-choice="everything" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#f7f9f7;padding:14px 18px;">
+      <svg width="100%" height="200" viewBox="0 0 260 200" font-family="monospace" font-size="7">
+        <defs>
+          <filter id="s-c" x="-15%" y="-15%" width="130%" height="130%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.032" numOctaves="4" seed="19" result="n"/>
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+        </defs>
+        <!-- Nav - brushstroke resume btn -->
+        <rect x="0" y="0" width="260" height="20" rx="2" fill="#e8ede8"/>
+        <text x="8" y="13" fill="#888">Jonathan Ty.</text>
+        <rect x="190" y="5" width="38" height="11" rx="2" fill="none" stroke="#3d6b47" stroke-width="1.2" filter="url(#s-c)"/>
+        <text x="209" y="13.5" text-anchor="middle" fill="#3d6b47">Resume</text>
+        <!-- Nav bottom line brushstroke -->
+        <line x1="0" y1="20" x2="260" y2="20" stroke="#3d6b47" stroke-width="1" filter="url(#s-c)"/>
+
+        <!-- Page heading -->
+        <rect x="8" y="28" width="130" height="7" rx="2" fill="#c8d8c8" opacity="0.7"/>
+        <rect x="8" y="40" width="90" height="5" rx="2" fill="#c8d8c8" opacity="0.5"/>
+
+        <!-- Chips -->
+        <rect x="8" y="52" width="36" height="11" rx="5.5" fill="none" stroke="#3d6b47" stroke-width="1.3" filter="url(#s-c)"/>
+        <text x="26" y="60.5" text-anchor="middle" fill="#3d6b47">React</text>
+        <rect x="50" y="52" width="42" height="11" rx="5.5" fill="none" stroke="#3d6b47" stroke-width="1.3" filter="url(#s-c)"/>
+        <text x="71" y="60.5" text-anchor="middle" fill="#3d6b47">Next.js</text>
+        <rect x="98" y="52" width="38" height="11" rx="5.5" fill="none" stroke="#3d6b47" stroke-width="1.3" filter="url(#s-c)"/>
+        <text x="117" y="60.5" text-anchor="middle" fill="#3d6b47">Tailwind</text>
+
+        <!-- Cards + image frames -->
+        <rect x="8" y="72" width="115" height="72" rx="5" fill="white" stroke="#3d6b47" stroke-width="1.4" filter="url(#s-c)"/>
+        <rect x="14" y="78" width="100" height="28" rx="3" fill="#e8f0e8" stroke="#3d6b47" stroke-width="1" filter="url(#s-c)"/>
+        <rect x="14" y="112" width="70" height="5" rx="1" fill="#c8d8c8" opacity="0.8"/>
+        <rect x="14" y="121" width="55" height="4" rx="1" fill="#c8d8c8" opacity="0.6"/>
+        <rect x="14" y="130" width="50" height="10" rx="2" fill="none" stroke="#3d6b47" stroke-width="1.1" filter="url(#s-c)"/>
+        <text x="39" y="138" text-anchor="middle" fill="#3d6b47" font-size="6">View →</text>
+
+        <rect x="135" y="72" width="117" height="72" rx="5" fill="white" stroke="#3d6b47" stroke-width="1.4" filter="url(#s-c)"/>
+        <rect x="141" y="78" width="104" height="28" rx="3" fill="#e8f0e8" stroke="#3d6b47" stroke-width="1" filter="url(#s-c)"/>
+        <rect x="141" y="112" width="72" height="5" rx="1" fill="#c8d8c8" opacity="0.8"/>
+        <rect x="141" y="121" width="58" height="4" rx="1" fill="#c8d8c8" opacity="0.6"/>
+        <rect x="141" y="130" width="50" height="10" rx="2" fill="none" stroke="#3d6b47" stroke-width="1.1" filter="url(#s-c)"/>
+        <text x="166" y="138" text-anchor="middle" fill="#3d6b47" font-size="6">View →</text>
+
+        <!-- Footer brushstroke line -->
+        <line x1="0" y1="158" x2="260" y2="158" stroke="#3d6b47" stroke-width="1" filter="url(#s-c)"/>
+        <rect x="8" y="163" width="80" height="5" rx="1" fill="#d0d8d0" opacity="0.6"/>
+        <rect x="8" y="172" width="60" height="4" rx="1" fill="#d0d8d0" opacity="0.4"/>
+
+        <!-- Legend -->
+        <rect x="8" y="184" width="8" height="8" rx="1" fill="none" stroke="#3d6b47" stroke-width="1.5"/>
+        <text x="20" y="191" fill="#3d6b47">Everything — including nav line, footer line, all borders</text>
+      </svg>
+    </div>
+    <div class="card-body">
+      <h3>C — Truly Everything</h3>
+      <p>Every CSS border site-wide, including the nav bottom line and footer divider. Maximum handdrawn feel, but structural lines may look jittery.</p>
+    </div>
+  </div>
+
+</div>

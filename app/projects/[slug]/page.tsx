@@ -159,7 +159,7 @@ export default async function ProjectDetailPage({
                         return (
                           <blockquote
                             key={bIdx}
-                            className="my-6 border-l-[3px] border-[color:var(--color-accent)] pl-6 py-1"
+                            className="my-6 brushed-l pl-6 py-1"
                           >
                             <p className="font-display text-xl font-medium italic leading-relaxed tracking-tight text-[color:var(--color-fg)]">
                               {block.text}
@@ -187,17 +187,16 @@ export default async function ProjectDetailPage({
                       }
                       if (block.type === "image") {
                         return (
-                          <div
-                            key={bIdx}
-                            className="relative my-6 aspect-[16/9] overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--color-border)] bg-[color:var(--color-primary-50)]"
-                          >
-                            <Image
-                              src={block.src}
-                              alt={block.alt}
-                              fill
-                              className="object-cover"
-                              sizes="(min-width: 768px) 48rem, 100vw"
-                            />
+                          <div key={bIdx} className="brushed my-6 rounded-[var(--radius-lg)]">
+                            <div className="relative aspect-[16/9] overflow-hidden rounded-[var(--radius-lg)] bg-[color:var(--color-primary-50)]">
+                              <Image
+                                src={block.src}
+                                alt={block.alt}
+                                fill
+                                className="object-cover"
+                                sizes="(min-width: 768px) 48rem, 100vw"
+                              />
+                            </div>
                           </div>
                         );
                       }
@@ -229,17 +228,16 @@ export default async function ProjectDetailPage({
           </h2>
           <div className="grid gap-4 sm:grid-cols-2">
             {project.images.map((src, i) => (
-              <div
-                key={i}
-                className="relative aspect-video overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--color-border)] bg-[color:var(--color-primary-50)]"
-              >
-                <Image
-                  src={src}
-                  alt={`${project.title} screenshot ${i + 1}`}
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 1024px) 45vw, (min-width: 640px) 50vw, 100vw"
-                />
+              <div key={i} className="brushed rounded-[var(--radius-lg)]">
+                <div className="relative aspect-video overflow-hidden rounded-[var(--radius-lg)] bg-[color:var(--color-primary-50)]">
+                  <Image
+                    src={src}
+                    alt={`${project.title} screenshot ${i + 1}`}
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 1024px) 45vw, (min-width: 640px) 50vw, 100vw"
+                  />
+                </div>
               </div>
             ))}
           </div>

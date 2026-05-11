@@ -43,7 +43,7 @@ export default function MainMenuBar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-[color:var(--color-border)] bg-[color:var(--color-bg)]/85 backdrop-blur-md">
+    <nav className="sticky top-0 z-50 brushed-b bg-[color:var(--color-bg)]/85 backdrop-blur-md">
       <div className="container-page flex h-16 items-center justify-between">
         <Link
           href="/"
@@ -89,12 +89,16 @@ export default function MainMenuBar() {
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-md border border-[color:var(--color-primary-400)] px-3 py-1.5 text-sm font-medium text-[color:var(--color-primary-700)] transition-colors hover:bg-[color:var(--color-primary-50)]"
+            className="brushed rounded-md px-3 py-1.5 text-sm font-medium text-[color:var(--color-primary-700)] transition-colors hover:bg-[color:var(--color-primary-50)]"
+            style={{ "--brushed-color": "var(--color-primary-400)" } as React.CSSProperties}
           >
             Resume
           </a>
 
-          <div className="flex items-center gap-4 border-l border-[color:var(--color-border)] pl-6">
+          <div
+            className="brushed-l flex items-center gap-4 pl-6"
+            style={{ "--brushed-color": "var(--color-border)", "--brushed-width": "1px" } as React.CSSProperties}
+          >
             <a
               href={site.socials.github.href}
               target="_blank"
@@ -126,7 +130,7 @@ export default function MainMenuBar() {
         {/* Mobile toggle */}
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-[color:var(--color-border)] text-[color:var(--color-fg)] md:hidden"
+          className="brushed inline-flex h-10 w-10 items-center justify-center rounded-md text-[color:var(--color-fg)] md:hidden"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
           onClick={() => setMobileOpen((o) => !o)}
@@ -137,7 +141,7 @@ export default function MainMenuBar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="border-t border-[color:var(--color-border)] bg-[color:var(--color-bg)] md:hidden">
+        <div className="brushed-t bg-[color:var(--color-bg)] md:hidden">
           <div className="container-page flex flex-col gap-1 py-4">
             {links.map((link) => {
               const active = isActive(pathname, link.path);
@@ -164,7 +168,7 @@ export default function MainMenuBar() {
             >
               Resume
             </a>
-            <div className="mt-3 flex items-center gap-5 border-t border-[color:var(--color-border)] pt-4">
+            <div className="brushed-t mt-3 flex items-center gap-5 pt-4">
               <a href={site.socials.github.href} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                 <GithubIcon className="h-5 w-5 text-[color:var(--color-fg-muted)]" />
               </a>

@@ -61,6 +61,15 @@ export default function RootLayout({
         <noscript>
           <style>{`.reveal{opacity:1 !important;transform:none !important;}`}</style>
         </noscript>
+        {/* Global brushstroke filter — referenced by all .brushed* border pseudo-elements */}
+        <svg aria-hidden="true" style={{ position: "absolute", width: 0, height: 0, overflow: "hidden" }}>
+          <defs>
+            <filter id="brushstroke-noise">
+              <feTurbulence type="fractalNoise" baseFrequency="0.032" numOctaves="4" seed="7" result="n" />
+              <feDisplacementMap in="SourceGraphic" in2="n" scale="5" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+          </defs>
+        </svg>
         <ReadingProgress />
         <MainMenuBar />
         <main className="flex-1">{children}</main>

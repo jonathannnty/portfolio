@@ -335,35 +335,18 @@
 
   /* Card — surfaces that hold content (projects, blog posts, awards) */
   .card {
-    background:
-      linear-gradient(var(--color-surface), var(--color-surface)) padding-box,
-      linear-gradient(
-          135deg,
-          color-mix(in oklab, var(--color-primary-300) 85%, transparent) 0%,
-          color-mix(in oklab, var(--color-border) 18%, transparent) 30%,
-          color-mix(in oklab, var(--color-primary-200) 48%, transparent) 55%,
-          color-mix(in oklab, var(--color-primary-300) 78%, transparent) 100%
-        )
-        border-box;
-    border: 1px solid transparent;
+    --brushed-color: var(--color-primary-200);
+    background: var(--color-surface);
+    border: none;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
+    position: relative;
     transition:
       transform 200ms var(--ease-out-expo),
-      box-shadow 200ms var(--ease-out-expo),
-      background 200ms var(--ease-out-expo);
+      box-shadow 200ms var(--ease-out-expo);
   }
   .card:hover {
-    background:
-      linear-gradient(var(--color-surface), var(--color-surface)) padding-box,
-      linear-gradient(
-          135deg,
-          color-mix(in oklab, var(--color-primary-400) 90%, transparent) 0%,
-          color-mix(in oklab, var(--color-primary-200) 30%, transparent) 28%,
-          color-mix(in oklab, var(--color-border-strong) 20%, transparent) 56%,
-          color-mix(in oklab, var(--color-primary-300) 82%, transparent) 100%
-        )
-        border-box;
+    --brushed-color: var(--color-primary-300);
     box-shadow: var(--shadow-md);
   }
 
@@ -487,36 +470,112 @@
   }
 
   .btn-ghost {
+    --brushed-color: var(--color-border-strong);
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     padding: 0.75rem 1.25rem;
     background: transparent;
     color: var(--color-primary-700);
-    border: 1px solid var(--color-border-strong);
+    border: none;
     border-radius: var(--radius-md);
     font-weight: 600;
     font-size: var(--text-sm);
-    transition: all 180ms var(--ease-out-expo);
+    position: relative;
+    transition: background 180ms var(--ease-out-expo);
   }
   .btn-ghost:hover {
+    --brushed-color: var(--color-primary-500);
     background: var(--color-primary-50);
-    border-color: var(--color-primary-500);
   }
 
   /* Tag/chip — technology labels, categories */
   .chip {
+    --brushed-color: var(--color-primary-200);
     display: inline-flex;
     align-items: center;
     padding: 0.25rem 0.625rem;
     background: var(--color-primary-50);
     color: var(--color-primary-800);
-    border: 1px solid var(--color-primary-200);
+    border: none;
     border-radius: var(--radius-full);
     font-size: var(--text-xs);
     font-weight: 500;
     font-family: var(--font-mono);
     letter-spacing: 0.02em;
+    position: relative;
+  }
+
+  /* ─── Brushstroke border system ──────────────────────────────────────────── */
+
+  /* Shared ::before for all all-sides brush borders */
+  .brushed::before,
+  .card::before,
+  .chip::before,
+  .btn-ghost::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: var(--brushed-width, 1px) solid var(--brushed-color, var(--color-border));
+    border-radius: inherit;
+    pointer-events: none;
+    filter: url(#brushstroke-noise);
+  }
+
+  /* Utility: all-sides */
+  .brushed {
+    --brushed-color: var(--color-border);
+    position: relative;
+    border: none;
+  }
+
+  /* Utility: bottom-only */
+  .brushed-b {
+    --brushed-color: var(--color-border);
+    position: relative;
+    border-bottom: none !important;
+  }
+  .brushed-b::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    border-bottom: var(--brushed-width, 1px) solid var(--brushed-color);
+    pointer-events: none;
+    filter: url(#brushstroke-noise);
+  }
+
+  /* Utility: top-only */
+  .brushed-t {
+    --brushed-color: var(--color-border);
+    position: relative;
+    border-top: none !important;
+  }
+  .brushed-t::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    border-top: var(--brushed-width, 1px) solid var(--brushed-color);
+    pointer-events: none;
+    filter: url(#brushstroke-noise);
+  }
+
+  /* Utility: left-only (pull quotes) */
+  .brushed-l {
+    --brushed-color: var(--color-accent);
+    --brushed-width: 3px;
+    position: relative;
+    border-left: none !important;
+  }
+  .brushed-l::after {
+    content: '';
+    position: absolute;
+    inset-block: 0;
+    left: 0;
+    border-left: var(--brushed-width) solid var(--brushed-color);
+    pointer-events: none;
+    filter: url(#brushstroke-noise);
   }
 
   /* Eyebrow — small uppercase label above section titles */

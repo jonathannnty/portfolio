@@ -32,7 +32,7 @@ export default function InProgressProjectCard({ project }: { project: Project })
     <div
       ref={cardRef}
       onClick={handleClick}
-      className="card group relative flex h-full flex-col overflow-hidden p-0 cursor-not-allowed select-none"
+      className="card group relative flex h-full flex-col p-0 cursor-not-allowed select-none"
     >
       {/* Card body — same layout as ProjectCard */}
       <div className="flex flex-1 flex-col p-6">

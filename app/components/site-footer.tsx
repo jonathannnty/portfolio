@@ -5,7 +5,7 @@ import BackToTopButton from "./back-to-top";
 
 export default function SiteFooter() {
   return (
-    <footer className="mt-24 border-t border-[color:var(--color-border)] bg-[color:var(--color-surface-muted)]">
+    <footer className="brushed-t mt-24 bg-[color:var(--color-surface-muted)]">
       <div className="container-page flex flex-col gap-6 py-10 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="text-2xl font-bold text-[color:var(--color-fg)]">
@@ -59,7 +59,7 @@ export default function SiteFooter() {
           </a>
         </div>
       </div>
-      <div className="border-t border-[color:var(--color-border)]">
+      <div className="brushed-t">
         <div className="container-page flex items-center justify-between py-4 text-xs text-[color:var(--color-fg-subtle)]">
           <span>© {getCurrentUTCYear()} {site.name}. Built with Next.js, Tailwind, and anime.js.</span>
           <BackToTopButton />

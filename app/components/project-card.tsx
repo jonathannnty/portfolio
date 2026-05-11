@@ -36,7 +36,7 @@ export default function ProjectCard({ project }: { project: Project }) {
       href={`/projects/${project.slug}`}
       onMouseMove={tilt}
       onMouseLeave={resetTilt}
-      className="card group flex h-full flex-col overflow-hidden p-0"
+      className="card group flex h-full flex-col p-0"
       style={{ willChange: "transform", transformStyle: "preserve-3d" }}
     >
       <div className="flex flex-1 flex-col p-6">
