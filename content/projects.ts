@@ -92,7 +92,7 @@ export const projects: Project[] = [
     ],
     body: [],
     inProgress: true,
-    thumbnail: "/images/kid-walking.jpg",
+    thumbnail: "/images/get-it-done-thumbnail.png",
     images: ["/images/kid-walking.jpg", "/images/kid-walking2.png"],
     sections: [
       {
