@@ -135,8 +135,11 @@ export default async function ProjectDetailPage({
         )}
       </header>
 
+      <div className={`mt-12${hasTOC ? " xl:grid xl:grid-cols-[minmax(0,1fr)_192px] xl:gap-x-12 xl:items-start" : ""}`}>
+        <div>
+          {hasTOC && <ProjectTOCMobile headings={headings} />}
       {project.sections && project.sections.length > 0 ? (
-        <div className="mt-12 max-w-3xl">
+        <div className="max-w-3xl">
           {project.sections.map((sec, si) => (
             <section key={si} className={si > 0 ? "mt-16" : ""}>
               <div className="flex items-center gap-3 mb-8">
@@ -223,7 +226,7 @@ export default async function ProjectDetailPage({
           ))}
         </div>
       ) : (
-        <div className="mt-12 max-w-3xl space-y-5">
+        <div className="max-w-3xl space-y-5">
           {project.body.map((paragraph, i) => (
             <p
               key={i}
@@ -260,6 +263,16 @@ export default async function ProjectDetailPage({
           </div>
         </div>
       )}
+        </div>
+
+        {hasTOC && (
+          <aside className="hidden xl:block">
+            <div className="sticky top-24">
+              <ProjectTOCDesktop headings={headings} />
+            </div>
+          </aside>
+        )}
+      </div>
       </article>
     </div>
   );
