@@ -83,16 +83,103 @@ export default async function ProjectDetailPage({
         )}
       </header>
 
-      <div className="mt-12 max-w-3xl space-y-5">
-        {project.body.map((paragraph, i) => (
-          <p
-            key={i}
-            className="text-base leading-7 text-[color:var(--color-fg)]"
-          >
-            {paragraph}
-          </p>
-        ))}
-      </div>
+      {project.sections && project.sections.length > 0 ? (
+        <div className="mt-12 max-w-3xl">
+          {project.sections.map((sec, si) => (
+            <section key={si} className={si > 0 ? "mt-16" : ""}>
+              <div className="flex items-center gap-3 mb-8">
+                <span
+                  className="h-7 w-[3px] flex-shrink-0 rounded-full bg-[color:var(--color-accent)]"
+                  aria-hidden="true"
+                />
+                <h2 className="font-display text-2xl font-bold tracking-tight text-[color:var(--color-fg)]">
+                  {sec.heading}
+                </h2>
+              </div>
+
+              {sec.subsections.map((subsec, ssi) => (
+                <div key={ssi} className={ssi > 0 ? "mt-10" : ""}>
+                  {subsec.heading && (
+                    <span className="eyebrow block mb-3">{subsec.heading}</span>
+                  )}
+                  <div className="space-y-4">
+                    {subsec.content.map((block, bIdx) => {
+                      if (block.type === "paragraph") {
+                        return (
+                          <p
+                            key={bIdx}
+                            className="text-base leading-7 text-[color:var(--color-fg)]"
+                          >
+                            {block.text}
+                          </p>
+                        );
+                      }
+                      if (block.type === "pullQuote") {
+                        return (
+                          <blockquote
+                            key={bIdx}
+                            className="my-6 border-l-[3px] border-[color:var(--color-accent)] pl-6 py-1"
+                          >
+                            <p className="font-display text-xl font-medium italic leading-relaxed tracking-tight text-[color:var(--color-fg)]">
+                              {block.text}
+                            </p>
+                          </blockquote>
+                        );
+                      }
+                      if (block.type === "list") {
+                        return (
+                          <ul key={bIdx} className="my-1 ml-1 space-y-3">
+                            {block.items.map((item, iIdx) => (
+                              <li
+                                key={iIdx}
+                                className="flex gap-3 text-base leading-7 text-[color:var(--color-fg)]"
+                              >
+                                <span
+                                  className="mt-[0.6rem] h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[color:var(--color-accent)]"
+                                  aria-hidden="true"
+                                />
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        );
+                      }
+                      if (block.type === "image") {
+                        return (
+                          <div
+                            key={bIdx}
+                            className="relative my-6 aspect-[16/9] overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--color-border)] bg-[color:var(--color-primary-50)]"
+                          >
+                            <Image
+                              src={block.src}
+                              alt={block.alt}
+                              fill
+                              className="object-cover"
+                              sizes="(min-width: 768px) 48rem, 100vw"
+                            />
+                          </div>
+                        );
+                      }
+                      return null;
+                    })}
+                  </div>
+                </div>
+              ))}
+            </section>
+          ))}
+        </div>
+      ) : (
+        <div className="mt-12 max-w-3xl space-y-5">
+          {project.body.map((paragraph, i) => (
+            <p
+              key={i}
+              className="text-base leading-7 text-[color:var(--color-fg)]"
+            >
+              {paragraph}
+            </p>
+          ))}
+        </div>
+      )}
 
       {project.images && project.images.length > 0 && (
         <div className="mt-14 max-w-4xl">
