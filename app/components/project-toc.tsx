@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import type { Heading } from "@/lib/toc";
 
-export type { Heading };
-
 export function useTOCActiveId(ids: string[]): string {
   const [activeId, setActiveId] = useState(ids[0] ?? "");
   const idsKey = ids.join(",");
@@ -24,7 +22,7 @@ export function useTOCActiveId(ids: string[]): string {
       { rootMargin: "0px 0px -70% 0px", threshold: 0 },
     );
 
-    idsKey.split(",").forEach((id) => {
+    ids.forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
