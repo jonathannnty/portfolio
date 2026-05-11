@@ -42,7 +42,7 @@ export default async function ProjectDetailPage({
         aria-hidden="true"
         className="project-hero-bg pointer-events-none absolute inset-x-0 top-0 h-[28rem] overflow-hidden"
       >
-        <div className="absolute inset-0 opacity-[0.28]">
+        <div className="absolute inset-0 opacity-[0.28] blur-sm">
           {project.heroImage ? (
             <Image
               src={project.heroImage}
