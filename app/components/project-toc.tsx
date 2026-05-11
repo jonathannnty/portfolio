@@ -33,3 +33,42 @@ export function useTOCActiveId(ids: string[]): string {
 
   return activeId;
 }
+
+export function ProjectTOCDesktop({ headings }: { headings: Heading[] }) {
+  const activeId = useTOCActiveId(headings.map((h) => h.id));
+
+  const handleClick = (id: string) => {
+    const smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.getElementById(id)?.scrollIntoView({
+      behavior: smooth ? "smooth" : "auto",
+      block: "start",
+    });
+  };
+
+  return (
+    <nav aria-label="On this page">
+      <p className="eyebrow mb-3">On this page</p>
+      <ul className="flex flex-col gap-0.5">
+        {headings.map((h) => (
+          <li key={h.id}>
+            <a
+              href={`#${h.id}`}
+              onClick={(e) => {
+                e.preventDefault();
+                handleClick(h.id);
+              }}
+              className={[
+                "block border-l-2 pl-3 py-0.5 text-sm leading-relaxed transition-colors duration-150",
+                activeId === h.id
+                  ? "border-[color:var(--color-primary-500)] text-[color:var(--color-primary-700)] font-medium"
+                  : "border-transparent text-[color:var(--color-fg-muted)] hover:text-[color:var(--color-fg)] hover:border-[color:var(--color-border-strong)]",
+              ].join(" ")}
+            >
+              {h.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
