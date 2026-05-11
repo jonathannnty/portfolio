@@ -135,7 +135,7 @@ export default async function ProjectDetailPage({
         )}
       </header>
 
-      <div className={`mt-12${hasTOC ? " xl:grid xl:grid-cols-[minmax(0,1fr)_192px] xl:gap-x-12 xl:items-start" : ""}`}>
+      <div className={`mt-12${hasTOC ? " xl:grid xl:grid-cols-[minmax(0,1fr)_192px] xl:gap-x-12" : ""}`}>
         <div>
           {hasTOC && <ProjectTOCMobile headings={headings} />}
           {project.sections && project.sections.length > 0 ? (
@@ -266,10 +266,8 @@ export default async function ProjectDetailPage({
         </div>
 
         {hasTOC && (
-          <aside className="hidden xl:block">
-            <div className="sticky top-24">
-              <ProjectTOCDesktop headings={headings} />
-            </div>
+          <aside className="hidden xl:block sticky top-24 self-start min-h-screen">
+            <ProjectTOCDesktop headings={headings} />
           </aside>
         )}
       </div>
