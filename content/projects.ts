@@ -85,10 +85,10 @@ export const projects: Project[] = [
     stack: ["UX Research", "User Interviews", "Figma", "Prototyping"],
     glyph: "Palette",
     links: [
-      {
-        label: "GitHub Repository",
-        href: "https://github.com/jonathannnty/portfolio.git",
-      },
+      // {
+      //   label: "GitHub Repository",
+      //   href: "https://github.com/jonathannnty/portfolio.git",
+      // },
     ],
     body: [],
     inProgress: true,
