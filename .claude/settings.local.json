@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(grep -E '\\\\.\\(tsx?|css|json\\)$')"
+      "Bash(grep -E '\\\\.\\(tsx?|css|json\\)$')",
+      "Bash(Get-ChildItem -Path . -Directory)",
+      "Bash(Select-Object Name)",
+      "PowerShell(Copy-Item \"c:\\\\Users\\\\jonat\\\\OneDrive\\\\Desktop\\\\Projects\\\\portfolio\\\\content\\\\kid-walking.jpg\" \"c:\\\\Users\\\\jonat\\\\OneDrive\\\\Desktop\\\\Projects\\\\portfolio\\\\public\\\\images\\\\kid-walking.jpg\" -Force)",
+      "PowerShell(Copy-Item \"c:\\\\Users\\\\jonat\\\\OneDrive\\\\Desktop\\\\Projects\\\\portfolio\\\\content\\\\kid-walking2.png\" \"c:\\\\Users\\\\jonat\\\\OneDrive\\\\Desktop\\\\Projects\\\\portfolio\\\\public\\\\images\\\\kid-walking2.png\" -Force)"
     ]
   }
 }
