@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ChevronDown } from "lucide-react";
 import type { Heading } from "@/lib/toc";
 
 export type { Heading };
@@ -70,5 +71,59 @@ export function ProjectTOCDesktop({ headings }: { headings: Heading[] }) {
         ))}
       </ul>
     </nav>
+  );
+}
+
+export function ProjectTOCMobile({ headings }: { headings: Heading[] }) {
+  const [open, setOpen] = useState(false);
+  const activeId = useTOCActiveId(headings.map((h) => h.id));
+
+  const handleClick = (id: string) => {
+    setOpen(false);
+    const smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.getElementById(id)?.scrollIntoView({
+      behavior: smooth ? "smooth" : "auto",
+      block: "start",
+    });
+  };
+
+  return (
+    <div className="xl:hidden mb-6">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        className="flex w-full items-center justify-between rounded-md bg-[color:var(--color-primary-50)] px-3 py-2 text-sm font-medium text-[color:var(--color-primary-700)]"
+      >
+        <span>On this page</span>
+        <ChevronDown
+          className={`h-4 w-4 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+
+      {open && (
+        <ul className="mt-2 border-t border-[color:var(--color-border)] pt-2 flex flex-col gap-0.5">
+          {headings.map((h) => (
+            <li key={h.id}>
+              <a
+                href={`#${h.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleClick(h.id);
+                }}
+                className={[
+                  "block border-l-2 pl-3 py-0.5 text-sm leading-relaxed transition-colors duration-150",
+                  activeId === h.id
+                    ? "border-[color:var(--color-primary-500)] text-[color:var(--color-primary-700)] font-medium"
+                    : "border-transparent text-[color:var(--color-fg-muted)] hover:text-[color:var(--color-fg)] hover:border-[color:var(--color-border-strong)]",
+                ].join(" ")}
+              >
+                {h.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 }
