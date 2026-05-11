@@ -80,7 +80,7 @@ export default function MainMenuBar() {
               >
                 {link.name}
                 {active && (
-                  <span className="absolute -bottom-[22px] left-0 right-0 h-[2px] bg-[color:var(--color-primary-600)]" />
+                  <span className="absolute -bottom-[18px] left-0 right-0 h-[2px] bg-[color:var(--color-primary-600)]" />
                 )}
               </Link>
             );

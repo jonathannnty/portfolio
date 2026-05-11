@@ -1,0 +1,86 @@
+<h2>Desktop TOC Sidebar — Which style fits the portfolio?</h2>
+<p class="subtitle">All three sit fixed on the right side of the screen. Pick the one that feels right for the overall aesthetic.</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:1.5rem; background:#faf7f4; display:flex; gap:1.5rem; align-items:flex-start;">
+      <!-- Mockup: minimal sticky rail -->
+      <div style="width:140px; flex-shrink:0; border-left:2px solid #e0cdb8; padding-left:12px; font-size:11px; line-height:1.8; color:#5c4a38; font-family:ui-sans-serif,system-ui,sans-serif;">
+        <div style="color:#6e4218; font-weight:700; border-left:2px solid #a86e2a; margin-left:-14px; padding-left:12px;">Overview</div>
+        <div>Research</div>
+        <div>Design</div>
+        <div>Implementation</div>
+        <div>Gallery</div>
+      </div>
+      <div style="flex:1;">
+        <div style="height:9px; background:#e0cdb8; border-radius:4px; margin-bottom:6px; width:90%;"></div>
+        <div style="height:9px; background:#e0cdb8; border-radius:4px; margin-bottom:6px; width:75%;"></div>
+        <div style="height:9px; background:#e0cdb8; border-radius:4px; margin-bottom:6px; width:85%;"></div>
+        <div style="height:9px; background:#e0cdb8; border-radius:4px; width:60%;"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Minimal rail</h3>
+      <p>Text links with a left-border rail. Active heading highlighted in brand brown. No background — blends into the page.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:1.5rem; background:#faf7f4; display:flex; gap:1.5rem; align-items:flex-start;">
+      <!-- Mockup: floating card -->
+      <div style="width:148px; flex-shrink:0; background:#fff; border-radius:10px; box-shadow:0 6px 20px -8px rgba(58,30,8,0.14), 0 2px 6px -2px rgba(58,30,8,0.08); padding:12px; font-size:11px; line-height:1.8; color:#5c4a38; font-family:ui-sans-serif,system-ui,sans-serif; border:1px solid #e0cdb8;">
+        <div style="font-size:9px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#8c7060; margin-bottom:8px;">On this page</div>
+        <div style="color:#6e4218; font-weight:600; background:#f5e6d0; border-radius:5px; padding:2px 8px; margin-bottom:3px;">Overview</div>
+        <div style="padding:2px 8px; margin-bottom:3px;">Research</div>
+        <div style="padding:2px 8px; margin-bottom:3px;">Design</div>
+        <div style="padding:2px 8px; margin-bottom:3px;">Implementation</div>
+        <div style="padding:2px 8px;">Gallery</div>
+      </div>
+      <div style="flex:1;">
+        <div style="height:9px; background:#e0cdb8; border-radius:4px; margin-bottom:6px; width:90%;"></div>
+        <div style="height:9px; background:#e0cdb8; border-radius:4px; margin-bottom:6px; width:75%;"></div>
+        <div style="height:9px; background:#e0cdb8; border-radius:4px; margin-bottom:6px; width:85%;"></div>
+        <div style="height:9px; background:#e0cdb8; border-radius:4px; width:60%;"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Floating card</h3>
+      <p>A white card with soft shadow and a small "On this page" eyebrow. Active item gets a warm highlight pill. Clearly separated from content.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:1.5rem; background:#faf7f4; display:flex; gap:1.5rem; align-items:flex-start;">
+      <!-- Mockup: dot + label -->
+      <div style="width:140px; flex-shrink:0; font-size:11px; line-height:1.9; color:#5c4a38; font-family:ui-sans-serif,system-ui,sans-serif;">
+        <div style="display:flex; align-items:center; gap:6px; color:#6e4218; font-weight:700;">
+          <div style="width:7px; height:7px; border-radius:50%; background:#a86e2a; flex-shrink:0;"></div>Overview
+        </div>
+        <div style="display:flex; align-items:center; gap:6px;">
+          <div style="width:5px; height:5px; border-radius:50%; background:#e0cdb8; flex-shrink:0; margin-left:1px;"></div>Research
+        </div>
+        <div style="display:flex; align-items:center; gap:6px;">
+          <div style="width:5px; height:5px; border-radius:50%; background:#e0cdb8; flex-shrink:0; margin-left:1px;"></div>Design
+        </div>
+        <div style="display:flex; align-items:center; gap:6px;">
+          <div style="width:5px; height:5px; border-radius:50%; background:#e0cdb8; flex-shrink:0; margin-left:1px;"></div>Implementation
+        </div>
+        <div style="display:flex; align-items:center; gap:6px;">
+          <div style="width:5px; height:5px; border-radius:50%; background:#e0cdb8; flex-shrink:0; margin-left:1px;"></div>Gallery
+        </div>
+      </div>
+      <div style="flex:1;">
+        <div style="height:9px; background:#e0cdb8; border-radius:4px; margin-bottom:6px; width:90%;"></div>
+        <div style="height:9px; background:#e0cdb8; border-radius:4px; margin-bottom:6px; width:75%;"></div>
+        <div style="height:9px; background:#e0cdb8; border-radius:4px; margin-bottom:6px; width:85%;"></div>
+        <div style="height:9px; background:#e0cdb8; border-radius:4px; width:60%;"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Dot indicator</h3>
+      <p>Dot-and-label pairs. Active dot is filled brand brown; inactive dots are light. Clean, icon-like feel — inspired by reading progress trackers.</p>
+    </div>
+  </div>
+
+</div>

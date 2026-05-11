@@ -10,7 +10,15 @@
       "Bash(npx tsc *)",
       "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\jonat\\\\OneDrive\\\\Desktop\\\\Projects\\\\portfolio\" -Recurse -Directory)",
       "Bash(Select-Object -First 20)",
-      "Bash(bash *)"
+      "Bash(bash *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(node -e ' *)",
+      "Bash(npm run *)",
+      "Bash(git stash *)",
+      "Bash(Select-String -Path \"app/globals.css\" -Pattern \"eyebrow|color-primary|color-fg|color-border|color-accent\")",
+      "Bash(Select-Object -First 30)",
+      "Bash(git push *)"
     ]
   }
 }

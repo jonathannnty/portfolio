@@ -57,7 +57,7 @@ export const projects: Project[] = [
     title: "IDLE Sidebar with Source Control Integration",
     tagline:
       "Split-view diff visualization for Python's IDLE editor with git integration and line-by-line highlighting.",
-    period: "January–March 2026",
+    period: "March 2026",
     sortKey: "2026-03",
     stack: ["Python", "Git", "Tkinter", "Testing", "UI/UX", "GitHub Copilot"],
     body: [
@@ -80,7 +80,7 @@ export const projects: Project[] = [
     title: "Get It Done, For The Rest Of Us",
     tagline:
       "Extending San Diego's civic reporting app to the students who walk past the potholes every morning.",
-    period: "Spring 2026",
+    period: "June 2026",
     sortKey: "2026-04",
     stack: ["UX Research", "User Interviews", "Figma", "Prototyping"],
     links: [
@@ -260,7 +260,7 @@ export const projects: Project[] = [
     slug: "portfolio-website",
     title: "Portfolio Website",
     tagline: "Next.js + anime.js portfolio built using Claude plugins.",
-    period: "April-Present 2026",
+    period: "Ongoing",
     sortKey: "2026-04",
     stack: ["Next.js", "React", "Tailwind", "anime.js", "Claude"],
     featured: true,
@@ -283,7 +283,7 @@ export const projects: Project[] = [
     title: "Audio-Based Human Activity Recognition",
     tagline:
       "Rethinking how activity data is collected: faster, more scalable, and less tedious!",
-    period: "2024–2025",
+    period: "June 2025",
     sortKey: "2025-05",
     stack: ["Python", "NumPy", "Pandas", "PyTorch", "LSTM", "GitHub Copilot"],
     body: [

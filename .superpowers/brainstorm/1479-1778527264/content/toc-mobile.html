@@ -1,0 +1,102 @@
+<h2>Mobile TOC — How should navigation appear on small screens?</h2>
+<p class="subtitle">The right-side rail disappears on mobile. Pick how readers navigate headings without it.</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#faf7f4; padding:1.25rem; display:flex; justify-content:center; align-items:flex-end; gap:1rem; min-height:140px; position:relative;">
+      <!-- Phone outline with content + FAB -->
+      <div style="width:120px; border:2px solid #c4a88a; border-radius:14px; overflow:hidden; background:#fff; font-size:9px; font-family:ui-sans-serif,system-ui,sans-serif;">
+        <div style="background:#faf7f4; padding:6px 8px; border-bottom:1px solid #e0cdb8; font-size:8px; font-weight:600; color:#6e4218;">Project Title</div>
+        <div style="padding:8px; color:#5c4a38; line-height:1.6;">
+          <div style="height:5px; background:#e0cdb8; border-radius:3px; margin-bottom:4px; width:90%;"></div>
+          <div style="height:5px; background:#e0cdb8; border-radius:3px; margin-bottom:4px; width:80%;"></div>
+          <div style="height:5px; background:#e0cdb8; border-radius:3px; margin-bottom:10px; width:75%;"></div>
+          <!-- FAB -->
+          <div style="position:absolute; bottom:20px; right:28px; width:28px; height:28px; border-radius:50%; background:#a86e2a; display:flex; align-items:center; justify-content:center; color:white; font-size:13px; box-shadow:0 3px 8px rgba(58,30,8,0.28);">≡</div>
+        </div>
+      </div>
+      <!-- Bottom sheet peek -->
+      <div style="width:120px; border:2px solid #c4a88a; border-radius:14px; overflow:hidden; background:#fff; font-size:9px; font-family:ui-sans-serif,system-ui,sans-serif;">
+        <div style="padding:8px; color:#5c4a38; line-height:1.6; filter:blur(0.8px); opacity:0.4;">
+          <div style="height:5px; background:#e0cdb8; border-radius:3px; margin-bottom:4px; width:90%;"></div>
+          <div style="height:5px; background:#e0cdb8; border-radius:3px; margin-bottom:4px; width:75%;"></div>
+        </div>
+        <!-- Bottom sheet -->
+        <div style="background:#fff; border-top:2px solid #e0cdb8; padding:8px; border-radius:0 0 12px 12px;">
+          <div style="width:24px; height:3px; background:#e0cdb8; border-radius:2px; margin:0 auto 8px;"></div>
+          <div style="font-size:7px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#8c7060; margin-bottom:5px;">On this page</div>
+          <div style="color:#6e4218; font-weight:700; border-left:2px solid #a86e2a; padding-left:5px; margin-bottom:3px; font-size:8px;">Overview</div>
+          <div style="color:#5c4a38; padding-left:7px; margin-bottom:2px; font-size:8px;">Research</div>
+          <div style="color:#5c4a38; padding-left:7px; margin-bottom:2px; font-size:8px;">Design</div>
+          <div style="color:#5c4a38; padding-left:7px; font-size:8px;">Gallery</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Floating button + bottom sheet</h3>
+      <p>A small ≡ FAB (floating action button) sits at the bottom-right. Tap to slide up a bottom sheet listing all headings. Dismisses on tap-outside or link tap.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#faf7f4; padding:1.25rem; display:flex; justify-content:center; gap:1rem; min-height:140px;">
+      <!-- Phone: collapsed -->
+      <div style="width:120px; border:2px solid #c4a88a; border-radius:14px; overflow:hidden; background:#fff; font-size:9px; font-family:ui-sans-serif,system-ui,sans-serif;">
+        <div style="background:#faf7f4; padding:6px 8px; border-bottom:1px solid #e0cdb8; font-size:8px; font-weight:600; color:#6e4218;">Project Title</div>
+        <!-- Inline collapsed TOC -->
+        <div style="margin:8px; background:#f5e6d0; border-radius:7px; padding:6px 8px; cursor:pointer;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:7px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#6e4218;">On this page</span>
+            <span style="color:#8c7060; font-size:10px;">▾</span>
+          </div>
+        </div>
+        <div style="padding:8px; color:#5c4a38; line-height:1.6;">
+          <div style="height:5px; background:#e0cdb8; border-radius:3px; margin-bottom:4px; width:90%;"></div>
+          <div style="height:5px; background:#e0cdb8; border-radius:3px; margin-bottom:4px; width:80%;"></div>
+          <div style="height:5px; background:#e0cdb8; border-radius:3px; width:70%;"></div>
+        </div>
+      </div>
+      <!-- Phone: expanded -->
+      <div style="width:120px; border:2px solid #c4a88a; border-radius:14px; overflow:hidden; background:#fff; font-size:9px; font-family:ui-sans-serif,system-ui,sans-serif;">
+        <div style="background:#faf7f4; padding:6px 8px; border-bottom:1px solid #e0cdb8; font-size:8px; font-weight:600; color:#6e4218;">Project Title</div>
+        <!-- Inline expanded TOC -->
+        <div style="margin:8px; background:#f5e6d0; border-radius:7px; padding:6px 8px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
+            <span style="font-size:7px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#6e4218;">On this page</span>
+            <span style="color:#8c7060; font-size:10px;">▴</span>
+          </div>
+          <div style="border-left:2px solid #a86e2a; padding-left:5px; margin-bottom:2px; font-size:8px; color:#6e4218; font-weight:700;">Overview</div>
+          <div style="padding-left:7px; margin-bottom:2px; font-size:8px; color:#5c4a38;">Research</div>
+          <div style="padding-left:7px; margin-bottom:2px; font-size:8px; color:#5c4a38;">Design</div>
+          <div style="padding-left:7px; font-size:8px; color:#5c4a38;">Gallery</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Inline collapsible (top of article)</h3>
+      <p>A compact "On this page" accordion sits inline at the top of the content, collapsed by default. Tap to expand and jump. Stays in the document flow — no overlay or FAB needed.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#faf7f4; padding:1.25rem; display:flex; justify-content:center; align-items:center; min-height:140px;">
+      <div style="width:120px; border:2px solid #c4a88a; border-radius:14px; overflow:hidden; background:#fff; font-size:9px; font-family:ui-sans-serif,system-ui,sans-serif;">
+        <div style="background:#faf7f4; padding:6px 8px; border-bottom:1px solid #e0cdb8; font-size:8px; font-weight:600; color:#6e4218;">Project Title</div>
+        <div style="padding:8px; color:#5c4a38; line-height:1.6;">
+          <div style="height:5px; background:#e0cdb8; border-radius:3px; margin-bottom:4px; width:90%;"></div>
+          <div style="height:5px; background:#e0cdb8; border-radius:3px; margin-bottom:4px; width:80%;"></div>
+          <div style="height:5px; background:#e0cdb8; border-radius:3px; margin-bottom:6px; width:75%;"></div>
+          <div style="height:5px; background:#e0cdb8; border-radius:3px; margin-bottom:4px; width:85%;"></div>
+          <div style="height:5px; background:#e0cdb8; border-radius:3px; width:65%;"></div>
+        </div>
+      </div>
+      <div style="position:absolute; right:32px; top:50%; transform:translateY(-50%); font-size:28px; color:#c4a88a; opacity:0.5;">∅</div>
+    </div>
+    <div class="card-body">
+      <h3>C — Hidden on mobile</h3>
+      <p>TOC only shows on desktop (≥1024px). Mobile readers scroll normally. Simple, no extra UI complexity. Works best for shorter projects.</p>
+    </div>
+  </div>
+
+</div>
