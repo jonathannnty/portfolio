@@ -43,6 +43,8 @@ export type Project = {
   thumbnail?: string;
   /** Gallery images shown on the detail page (relative to /public). */
   images?: string[];
+  /** Full-bleed background image for the project page hero area (relative to /public). */
+  heroImage?: string;
   /** Structured write-up sections. When present, replaces the flat body array. */
   sections?: ProjectSection[];
   /** When true the card shows an "In Progress" overlay and blocks navigation. */
@@ -70,7 +72,8 @@ export const projects: Project[] = [
         href: "https://github.com/jontan3/group-project-team-super-cool-heh",
       },
     ],
-    thumbnail: "/images/IDLE.png",
+    thumbnail: "/images/IDLE-thumbnail.png",
+    heroImage: "/images/IDLE-thumbnail.png",
   },
   {
     slug: "cogs127-case-study",
@@ -88,6 +91,7 @@ export const projects: Project[] = [
     ],
     body: [],
     thumbnail: "/images/get-it-done-thumbnail.png",
+    heroImage: "/images/get-it-done-thumbnail.png",
     images: ["/images/kid-walking.jpg", "/images/kid-walking2.png"],
     sections: [
       {
@@ -266,6 +270,7 @@ export const projects: Project[] = [
         href: "https://github.com/jonathannnty/portfolio.git",
       },
     ],
+    heroImage: "/images/portfolio-website-thumbnail.png",
     body: [
       "I wanted a portfolio that felt built rather than assembled — no templates, no off-the-shelf component library. The whole design is driven by a green-centered token system in globals.css, and every accent on the site pulls from that palette.",
       "The experience timeline, hero headline, and scroll reveals are powered by anime.js v4, keeping the JavaScript footprint small while still allowing staggered, spring-y motion that would be clumsy to express in raw CSS.",
@@ -287,6 +292,7 @@ export const projects: Project[] = [
       "Looking back, I think we could’ve explored more robust generalization across different environments and users. Still, this project shifted how I think about data collection, not just optimizing models, but questioning the assumptions behind how data is gathered in the first place.",
     ],
     thumbnail: "/images/pannuto-group-poster.jpg",
+    heroImage: "/images/pannuto-group-poster.jpg",
     links: [
       {
         label: "Pannuto Group Poster",
@@ -322,6 +328,7 @@ export const projects: Project[] = [
       "I focused on reliability as much as features by adding test coverage, operator playbooks, observability endpoints, and demo contingency workflows so the product could run confidently in live hackathon settings!",
     ],
     thumbnail: "/images/pathfinder.png",
+    heroImage: "/images/pathfinder.png",
     links: [
       {
         label: "GitHub Repository",

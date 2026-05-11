@@ -36,7 +36,48 @@ export default async function ProjectDetailPage({
   if (!project) notFound();
 
   return (
-    <article className="container-page pt-20 pb-24 md:pt-28">
+    <div className="relative">
+      {/* Hero background — spans from top of page through the header */}
+      <div
+        aria-hidden="true"
+        className="project-hero-bg pointer-events-none absolute inset-x-0 top-0 h-[28rem] overflow-hidden"
+      >
+        <div className="absolute inset-0 opacity-[0.28]">
+          {project.heroImage ? (
+            <Image
+              src={project.heroImage}
+              alt=""
+              fill
+              className="object-cover object-top"
+              sizes="100vw"
+              priority
+            />
+          ) : (
+            <div className="project-hero-placeholder absolute inset-0" />
+          )}
+        </div>
+        <svg
+          className="project-hero-grain absolute inset-0 h-full w-full"
+          aria-hidden="true"
+        >
+          <filter id="hero-noise">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.8"
+              numOctaves="4"
+              stitchTiles="stitch"
+            />
+          </filter>
+          <rect
+            width="100%"
+            height="100%"
+            filter="url(#hero-noise)"
+            opacity="0.12"
+          />
+        </svg>
+      </div>
+
+      <article className="container-page relative pt-20 pb-24 md:pt-28">
       <div className="flex items-center justify-between">
         <Link
           href="/projects"
@@ -204,6 +245,7 @@ export default async function ProjectDetailPage({
           </div>
         </div>
       )}
-    </article>
+      </article>
+    </div>
   );
 }
