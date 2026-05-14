@@ -16,6 +16,11 @@ import { experiences } from "@/content/experiences";
 export const metadata: Metadata = {
   title: "About",
   description: `About ${site.name} — experience, coursework, and awards.`,
+  openGraph: {
+    title: `About ${site.name}`,
+    description: `About ${site.name} — experience, coursework, and awards.`,
+    url: "/about",
+  },
 };
 
 export default function AboutPage() {
@@ -31,6 +36,7 @@ export default function AboutPage() {
         eyebrow="Who am I?"
         title={`Hello there, I'm ${site.name.split(" ")[0]}.`}
         illustration={<AboutIllustration />}
+        titleAs="h1"
       >
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start">
           <div className="space-y-8">

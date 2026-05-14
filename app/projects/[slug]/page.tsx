@@ -25,6 +25,21 @@ export async function generateMetadata({
   return {
     title: project.title,
     description: project.tagline,
+    openGraph: {
+      title: project.title,
+      description: project.tagline,
+      url: `/projects/${slug}`,
+      ...(project.heroImage
+        ? {
+            images: [
+              {
+                url: project.heroImage,
+                alt: project.title,
+              },
+            ],
+          }
+        : {}),
+    },
   };
 }
 

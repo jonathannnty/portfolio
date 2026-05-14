@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Hero from "./components/hero";
@@ -8,6 +9,17 @@ import InProgressProjectCard from "./components/in-progress-project-card";
 import BlogCard from "./components/blog-card";
 import { projects } from "@/content/projects";
 import { posts } from "@/content/blog";
+import { site } from "@/content/site";
+
+export const metadata: Metadata = {
+  title: `${site.name} — ${site.role}`,
+  description: site.tagline,
+  openGraph: {
+    title: `${site.name} — ${site.role}`,
+    description: site.tagline,
+    url: "/",
+  },
+};
 
 export default function Home() {
   const featured = projects

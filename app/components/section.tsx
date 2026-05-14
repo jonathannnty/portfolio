@@ -1,10 +1,5 @@
 import type { ReactNode } from "react";
 
-/**
- * Section wrapper used on every page. Enforces consistent vertical rhythm,
- * container width, and eyebrow/title/subtitle typography so the style guide
- * is applied the same way everywhere.
- */
 type SectionProps = {
   eyebrow?: string;
   title?: string;
@@ -19,6 +14,12 @@ type SectionProps = {
    * Hidden below the `lg` breakpoint so it never crowds the title on mobile.
    */
   illustration?: ReactNode;
+  /**
+   * The HTML heading level for the section title. Use "h1" on the
+   * first/primary section of a page to maintain H1 → H2 → H3 hierarchy.
+   * Defaults to "h2".
+   */
+  titleAs?: "h1" | "h2";
 };
 
 export default function Section({
@@ -29,8 +30,10 @@ export default function Section({
   children,
   tight,
   illustration,
+  titleAs = "h2",
 }: SectionProps) {
   const hasHeader = eyebrow || title || subtitle;
+  const TitleTag = titleAs;
 
   return (
     <section
@@ -43,9 +46,9 @@ export default function Section({
           <div className="max-w-2xl flex-1 min-w-0">
             {eyebrow && <span className="eyebrow">{eyebrow}</span>}
             {title && (
-              <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-[color:var(--color-fg)] sm:text-4xl">
+              <TitleTag className="mt-3 font-display text-3xl font-bold tracking-tight text-[color:var(--color-fg)] sm:text-4xl">
                 {title}
-              </h2>
+              </TitleTag>
             )}
             {subtitle && (
               <p className="mt-4 text-base leading-relaxed text-[color:var(--color-fg-muted)] sm:text-lg">

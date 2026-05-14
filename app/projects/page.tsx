@@ -4,10 +4,16 @@ import ProjectsGrid from "../components/projects-grid";
 import RevealProvider from "../components/reveal-provider";
 import ProjectsIllustration from "../components/illustrations/projects-illustration";
 import { projects } from "@/content/projects";
+import { site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Projects",
   description: "A selection of things I've designed, built, and shipped.",
+  openGraph: {
+    title: `Projects — ${site.name}`,
+    description: "A selection of things I've designed, built, and shipped.",
+    url: "/projects",
+  },
 };
 
 export default async function ProjectsPage({
@@ -25,6 +31,7 @@ export default async function ProjectsPage({
         title="Things I've worked on!"
         subtitle="A selection of projects either through hackathons or research. Filter, search, or browse by view."
         illustration={<ProjectsIllustration />}
+        titleAs="h1"
       >
         <ProjectsGrid projects={projects} initialPersona={persona ?? null} />
       </Section>

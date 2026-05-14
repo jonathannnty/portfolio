@@ -14,6 +14,11 @@ import { site } from "@/content/site";
 export const metadata: Metadata = {
   title: "Contact",
   description: `Get in touch with ${site.name}.`,
+  openGraph: {
+    title: `Contact ${site.name}`,
+    description: `Get in touch with ${site.name}.`,
+    url: "/contact",
+  },
 };
 
 export default function ContactPage() {
@@ -23,6 +28,7 @@ export default function ContactPage() {
       title="Let's talk."
       subtitle="Have a project, a question, or just want to say hi? Drop me a note and I'll get back to you."
       illustration={<ContactIllustration />}
+      titleAs="h1"
     >
       <div className="mb-10 flex justify-center lg:hidden">
         <ContactIllustration />
@@ -30,9 +36,9 @@ export default function ContactPage() {
       <div className="grid gap-12 lg:grid-cols-[1fr_minmax(0,1.2fr)]">
         <aside className="space-y-6">
           <div className="card p-6">
-            <h3 className="font-display text-base font-semibold text-[color:var(--color-fg)]">
+            <h2 className="font-display text-base font-semibold text-[color:var(--color-fg)]">
               Other ways to reach me
-            </h3>
+            </h2>
             <ul className="mt-4 space-y-3 text-sm">
               <li className="flex items-center gap-3 text-[color:var(--color-fg-muted)]">
                 <Mail className="h-4 w-4 text-[color:var(--color-primary-600)]" />
