@@ -25,6 +25,8 @@ export default function ExperienceRail({ items }: ExperienceRailProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const hintRef = useRef<HTMLDivElement>(null);
 
+  const collapseTimers = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
+
   // Per-item animated nodes (desktop only)
   const shellRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const dotRefs = useRef<Record<string, HTMLSpanElement | null>>({});
@@ -41,6 +43,7 @@ export default function ExperienceRail({ items }: ExperienceRailProps) {
         hint.style.opacity = "0";
         hint.style.pointerEvents = "none";
       } else {
+        hint.style.pointerEvents = "none";
         animate(hint, { opacity: 0, duration: 400, ease: "outQuint" });
       }
     };
@@ -70,12 +73,15 @@ export default function ExperienceRail({ items }: ExperienceRailProps) {
       if (body) {
         body.style.opacity = "0";
         const delay = noAnim ? 0 : 320;
-        setTimeout(() => {
-          if (!body) return;
+        const timerId = setTimeout(() => {
           body.style.maxHeight = "0";
           body.style.overflow = "hidden";
           body.style.visibility = "hidden";
+          delete collapseTimers.current[prev];
         }, delay);
+        if (!noAnim) {
+          collapseTimers.current[prev] = timerId;
+        }
       }
 
       if (noAnim) {
@@ -90,6 +96,12 @@ export default function ExperienceRail({ items }: ExperienceRailProps) {
 
     /* ── Expand new card ── */
     if (openId) {
+      // Cancel any pending collapse timer for this card
+      if (collapseTimers.current[openId]) {
+        clearTimeout(collapseTimers.current[openId]);
+        delete collapseTimers.current[openId];
+      }
+
       const shell = shellRefs.current[openId];
       const dot = dotRefs.current[openId];
       const entry = entryRefs.current[openId];
