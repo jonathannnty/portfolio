@@ -13,3 +13,12 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - The lightbox raw `<img>` in `app/components/image-lightbox.tsx` is intentional (full-resolution overlay). The ESLint disable comment is correct — do not replace it with `<Image />`.
 - `app/sitemap.ts` auto-generates `/sitemap.xml` from `content/projects.ts` and `content/blog.tsx`. Add new routes to the `staticRoutes` array there.
 - `public/robots.txt` allows all crawlers and points to the sitemap.
+
+# Experience Rail
+
+- `ExperienceRail` (exported from `app/components/timeline.tsx`) is the replacement for the old `Timeline` component. The export name changed but the **file path did not** — existing imports of `"../components/timeline"` are unaffected.
+- Consumer: `app/about/page.tsx` renders `<ExperienceRail items={sortedExperiences} />`. The prop interface is identical to the old `Timeline` — `{ items: Experience[] }`.
+- Desktop (`≥ md`): horizontal-scroll filmstrip with a dot-anchored rail line, collapsed cards at 144 px, expanded cards at 320 px. Clicking a card runs anime.js animations (card width, dot scale, marginRight push, content fade + bullet stagger). Only one card open at a time.
+- Mobile (`< md`): vertical left-border accordion, identical layout to the old Timeline. Expanded content is handled by the `MobileExpandedBody` sub-component (same file), which includes images via `ImageLightbox`.
+- All anime.js calls are gated behind `prefersReducedMotion()`. When reduced motion is set, styles are applied instantly without transitions.
+- Images in expanded desktop cards are **out of scope** (follow-up task). Images still appear in the mobile expanded body.
