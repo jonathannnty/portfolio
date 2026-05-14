@@ -48,7 +48,7 @@ export default function MainMenuBar() {
         <Link
           href="/"
           onClick={() => { setMobileOpen(false); handleNameClick(); }}
-          className="text-2xl font-bold tracking-tight text-[color:var(--color-fg)]"
+          className="font-display text-2xl font-bold tracking-tight text-[color:var(--color-fg)]"
         >
           <span ref={nameRef} className="inline-flex">
             {site.name.split("").map((char, i) => (
@@ -72,7 +72,7 @@ export default function MainMenuBar() {
               <Link
                 key={link.path}
                 href={link.path}
-                className={`relative text-lg transition-colors ${
+                className={`relative font-display text-lg transition-colors ${
                   active
                     ? "font-semibold text-[color:var(--color-primary-700)]"
                     : "text-[color:var(--color-fg-muted)] hover:text-[color:var(--color-primary-600)]"
@@ -150,7 +150,7 @@ export default function MainMenuBar() {
                   key={link.path}
                   href={link.path}
                   onClick={() => setMobileOpen(false)}
-                  className={`rounded-md px-3 py-2 text-base transition-colors ${
+                  className={`rounded-md px-3 py-2 font-display text-base transition-colors ${
                     active
                       ? "bg-[color:var(--color-primary-50)] font-semibold text-[color:var(--color-primary-700)]"
                       : "text-[color:var(--color-fg)] hover:bg-[color:var(--color-surface-muted)]"

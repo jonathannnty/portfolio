@@ -8,7 +8,7 @@ export default function SiteFooter() {
     <footer className="brushed-t mt-24 bg-[color:var(--color-surface-muted)]">
       <div className="container-page flex flex-col gap-6 py-10 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-2xl font-bold text-[color:var(--color-fg)]">
+          <p className="font-display text-2xl font-bold text-[color:var(--color-fg)]">
             {site.name}
             <span className="text-[color:var(--color-primary-600)]">.</span>
           </p>
@@ -16,7 +16,7 @@ export default function SiteFooter() {
             {site.location}
           </p>
         </div>
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-[color:var(--color-fg-muted)]">
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-2 font-display text-sm text-[color:var(--color-fg-muted)]">
           <Link
             href="/about"
             className="hover:text-[color:var(--color-primary-700)]"
