@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
+import { Nunito_Sans, JetBrains_Mono } from "next/font/google";
 
 import "./globals.css";
 import MainMenuBar from "./components/menubar";
@@ -10,10 +10,11 @@ import { site } from "@/content/site";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-const jakarta = Plus_Jakarta_Sans({
-  variable: "--font-jakarta",
+const nunito = Nunito_Sans({
+  variable: "--font-nunito",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 const jetbrains = JetBrains_Mono({
@@ -61,7 +62,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`js-reveal ${ben.variable} ${jakarta.variable} ${jetbrains.variable}`}
+      className={`js-reveal ${ben.variable} ${nunito.variable} ${jetbrains.variable}`}
     >
       <body className="min-h-dvh flex flex-col" suppressHydrationWarning>
         {/* No-JS fallback: browsers that never run our IntersectionObserver

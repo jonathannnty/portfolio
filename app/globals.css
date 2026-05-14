@@ -41,11 +41,13 @@
   --color-meadow-soft: #eaf5db;
 
   /* ---------- Typography ---------- */
-  /* next/font injects these CSS variables from app/layout.tsx */
+  /* next/font injects --font-ben, --font-nunito, --font-jetbrains from app/layout.tsx.
+     Ben = display headings only (hard to read at small sizes).
+     Nunito Sans = body/UI text. JetBrains Mono = code/eyebrows/timestamps. */
   --font-sans:
-    var(--font-ben), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    var(--font-nunito), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
     Roboto, sans-serif;
-  --font-display: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-ben), ui-sans-serif, system-ui, sans-serif;
   --font-mono:
     var(--font-jetbrains), ui-monospace, "JetBrains Mono", SFMono-Regular,
     Menlo, monospace;
