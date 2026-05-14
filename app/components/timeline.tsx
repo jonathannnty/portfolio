@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ExternalLink } from "lucide-react";
+import { ChevronDown, ExternalLink, MapPin } from "lucide-react";
 import { animate, stagger } from "animejs";
 import type { Experience } from "@/content/experiences";
 import ImageLightbox from "./image-lightbox";
@@ -86,6 +86,7 @@ export default function ExperienceRail({ items }: ExperienceRailProps) {
 
       if (noAnim) {
         if (shell) shell.style.width = "144px";
+        if (dot) dot.style.transform = "scale(1)";
         if (entry) entry.style.marginRight = "12px";
       } else {
         if (shell) animate(shell, { width: "144px", duration: 320, ease: "inExpo" });
@@ -151,6 +152,14 @@ export default function ExperienceRail({ items }: ExperienceRailProps) {
 
     prevOpenRef.current = openId;
   }, [openId]);
+
+  // Cancel any pending collapse timers on unmount
+  useEffect(() => {
+    const timers = collapseTimers.current;
+    return () => {
+      Object.values(timers).forEach(clearTimeout);
+    };
+  }, []);
 
   function toggle(id: string) {
     setOpenId((cur) => (cur === id ? null : id));
@@ -364,13 +373,19 @@ export default function ExperienceRail({ items }: ExperienceRailProps) {
                       {item.company}
                     </p>
                   </div>
-                  <span className="font-mono text-xs text-[color:var(--color-fg-subtle)]">
-                    {item.period}
-                  </span>
+                  <div className="flex items-center gap-3 text-xs text-[color:var(--color-fg-subtle)]">
+                    <span className="font-mono">{item.period}</span>
+                    <ChevronDown
+                      className={`h-4 w-4 transition-transform duration-300 ${
+                        isOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </div>
                 </div>
 
                 {item.location && (
-                  <p className="mt-2 text-xs text-[color:var(--color-fg-subtle)]">
+                  <p className="mt-2 flex items-center gap-1.5 text-xs text-[color:var(--color-fg-subtle)]">
+                    <MapPin className="h-3.5 w-3.5" />
                     {item.location}
                   </p>
                 )}
@@ -396,7 +411,13 @@ function MobileExpandedBody({ item, id }: { item: Experience; id: string }) {
   const bodyRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (prefersReducedMotion() || !bodyRef.current) return;
+    if (!bodyRef.current) return;
+    if (prefersReducedMotion()) {
+      bodyRef.current.querySelectorAll<HTMLElement>(".mob-hl").forEach((el) => {
+        el.style.opacity = "1";
+      });
+      return;
+    }
     animate(bodyRef.current, {
       opacity: [0, 1],
       translateY: [-6, 0],
