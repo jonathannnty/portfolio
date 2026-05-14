@@ -31,6 +31,115 @@ export default function ExperienceRail({ items }: ExperienceRailProps) {
   const entryRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const bodyRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
+  // Scroll hint: fade out on first scroll event
+  useEffect(() => {
+    const container = scrollRef.current;
+    const hint = hintRef.current;
+    if (!container || !hint) return;
+    const handler = () => {
+      if (prefersReducedMotion()) {
+        hint.style.opacity = "0";
+        hint.style.pointerEvents = "none";
+      } else {
+        animate(hint, { opacity: 0, duration: 400, ease: "outQuint" });
+      }
+    };
+    container.addEventListener("scroll", handler, { once: true });
+    return () => container.removeEventListener("scroll", handler);
+  }, []);
+
+  // Desktop card expand / collapse animations
+  useEffect(() => {
+    const noAnim = prefersReducedMotion();
+    const prev = prevOpenRef.current;
+
+    // Skip on initial mount (both null)
+    if (openId === null && prev === null) {
+      prevOpenRef.current = openId;
+      return;
+    }
+
+    /* ── Collapse previous card ── */
+    if (prev && prev !== openId) {
+      const shell = shellRefs.current[prev];
+      const dot = dotRefs.current[prev];
+      const entry = entryRefs.current[prev];
+      const body = bodyRefs.current[prev];
+
+      // Instantly hide expanded content
+      if (body) {
+        body.style.opacity = "0";
+        const delay = noAnim ? 0 : 320;
+        setTimeout(() => {
+          if (!body) return;
+          body.style.maxHeight = "0";
+          body.style.overflow = "hidden";
+          body.style.visibility = "hidden";
+        }, delay);
+      }
+
+      if (noAnim) {
+        if (shell) shell.style.width = "144px";
+        if (entry) entry.style.marginRight = "12px";
+      } else {
+        if (shell) animate(shell, { width: "144px", duration: 320, ease: "inExpo" });
+        if (dot) animate(dot, { scale: 1, duration: 200, ease: "outQuint" });
+        if (entry) animate(entry, { marginRight: "12px", duration: 320, ease: "inExpo" });
+      }
+    }
+
+    /* ── Expand new card ── */
+    if (openId) {
+      const shell = shellRefs.current[openId];
+      const dot = dotRefs.current[openId];
+      const entry = entryRefs.current[openId];
+      const body = bodyRefs.current[openId];
+
+      if (noAnim) {
+        if (shell) shell.style.width = "320px";
+        if (entry) entry.style.marginRight = "24px";
+        if (body) {
+          body.style.maxHeight = "2000px";
+          body.style.overflow = "visible";
+          body.style.opacity = "1";
+          body.style.visibility = "visible";
+          // Ensure highlight bullets are visible under reduced motion
+          body.querySelectorAll<HTMLElement>(".rail-hl").forEach((el) => {
+            el.style.opacity = "1";
+          });
+        }
+      } else {
+        if (shell) animate(shell, { width: "320px", duration: 420, ease: "outExpo" });
+        if (dot) animate(dot, { scale: 1.25, duration: 250, ease: "outBack" });
+        if (entry) animate(entry, { marginRight: "24px", duration: 420, ease: "outExpo" });
+        if (body) {
+          body.style.maxHeight = "2000px";
+          body.style.overflow = "visible";
+          body.style.visibility = "visible";
+          animate(body, {
+            opacity: [0, 1],
+            translateY: [-6, 0],
+            duration: 300,
+            delay: 80,
+            ease: "outQuint",
+          });
+          const highlights = body.querySelectorAll<HTMLElement>(".rail-hl");
+          if (highlights.length > 0) {
+            animate(highlights, {
+              opacity: [0, 1],
+              translateX: [-8, 0],
+              duration: 360,
+              delay: stagger(40, { start: 120 }),
+              ease: "outExpo",
+            });
+          }
+        }
+      }
+    }
+
+    prevOpenRef.current = openId;
+  }, [openId]);
+
   function toggle(id: string) {
     setOpenId((cur) => (cur === id ? null : id));
   }
