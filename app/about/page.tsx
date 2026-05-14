@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Section from "../components/section";
-import Timeline from "../components/timeline";
+import ExperienceRail from "../components/timeline";
 import CourseworkGrid from "../components/coursework-grid";
 import AwardsGrid from "../components/awards-grid";
 import ResumeViewer from "../components/resume-viewer";
@@ -76,7 +76,7 @@ export default function AboutPage() {
         illustration={<ExperienceIllustration />}
         tight
       >
-        <Timeline items={sortedExperiences} />
+        <ExperienceRail items={sortedExperiences} />
       </Section>
 
       <Section
