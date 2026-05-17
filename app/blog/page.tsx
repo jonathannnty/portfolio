@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Section from "../components/section";
 import BlogCard from "../components/blog-card";
 import RevealProvider from "../components/reveal-provider";
 import BlogIllustration from "../components/illustrations/blog-illustration";
+import ActivityStrip from "../components/activity/activity-strip";
 import { posts } from "@/content/blog";
 import { site } from "@/content/site";
+import { getSpotifyData } from "@/lib/activity/spotify";
+import { getGitHubData } from "@/lib/activity/github";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -15,6 +19,16 @@ export const metadata: Metadata = {
     url: "/blog",
   },
 };
+
+async function ActivityData() {
+  const [spotify, github] = await Promise.all([getSpotifyData(), getGitHubData()]);
+  return <ActivityStrip spotify={spotify} github={github} />;
+}
+
+function ActivitySkeleton() {
+  // Fixed height matches the collapsed bar so blog posts don't shift when strip loads
+  return <div className="h-10 mb-8" aria-hidden="true" />;
+}
 
 export default function BlogIndexPage() {
   const sorted = [...posts].sort((a, b) => b.date.localeCompare(a.date));
@@ -29,6 +43,10 @@ export default function BlogIndexPage() {
         illustration={<BlogIllustration />}
         titleAs="h1"
       >
+        <Suspense fallback={<ActivitySkeleton />}>
+          <ActivityData />
+        </Suspense>
+
         <div className="grid gap-6 md:grid-cols-2">
           {sorted.map((p) => (
             <div key={p.slug} className="reveal">
