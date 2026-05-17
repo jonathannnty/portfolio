@@ -41,6 +41,7 @@ export default function ActivityStrip({ spotify, github }: Props) {
           onClick={() => setOpen((prev) => !prev)}
           className="btn-ghost flex items-center gap-1 text-xs flex-none py-1 px-2"
           aria-expanded={open}
+          aria-controls="activity-body"
           aria-label={open ? "Collapse activity section" : "Expand activity section"}
         >
           {open ? "hide" : "show"}
@@ -54,6 +55,7 @@ export default function ActivityStrip({ spotify, github }: Props) {
 
       {/* Expandable body — CSS grid-template-rows trick, no JS height measurement */}
       <div
+        id="activity-body"
         aria-hidden={!open || undefined}
         className="grid motion-reduce:transition-none"
         style={{

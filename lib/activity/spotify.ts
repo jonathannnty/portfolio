@@ -39,12 +39,11 @@ async function getAccessToken(): Promise<string | null> {
 }
 
 export async function getSpotifyData(): Promise<SpotifyData> {
-  const token = await getAccessToken();
-  if (!token) return null;
-
-  const authHeader = { Authorization: `Bearer ${token}` };
-
   try {
+    const token = await getAccessToken();
+    if (!token) return null;
+
+    const authHeader = { Authorization: `Bearer ${token}` };
     const nowRes = await fetch(NOW_PLAYING_URL, {
       headers: authHeader,
       next: { revalidate: 60 },
