@@ -14,7 +14,7 @@ function tier(count: number): string {
 
 export default function GitHubHeatmap({ data }: Props) {
   return (
-    <div className="flex gap-[3px] overflow-x-auto" aria-label="GitHub contribution heatmap">
+    <div className="flex justify-end gap-[3px] overflow-hidden" aria-label="GitHub contribution heatmap">
       {data.weeks.map((week, wi) => (
         <div key={wi} className="flex flex-col gap-[3px]">
           {week.days.map((count, di) => (

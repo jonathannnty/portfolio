@@ -24,11 +24,6 @@ export default function ActivityStrip({ spotify, github }: Props) {
         </span>
 
         <div className="flex items-center gap-2 flex-1 min-w-0 overflow-hidden">
-          {spotify && (
-            <span className="chip text-xs truncate max-w-[200px]">
-              {spotify.title} — {spotify.artist}
-            </span>
-          )}
           {github && github.totalThisWeek > 0 && (
             <span className="chip text-xs flex-none whitespace-nowrap">
               {github.totalThisWeek} contributions this week
