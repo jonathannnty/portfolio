@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { SpotifyData } from "@/lib/activity/spotify";
 
 type Props = { data: NonNullable<SpotifyData> };
@@ -5,48 +6,91 @@ type Props = { data: NonNullable<SpotifyData> };
 export default function SpotifyWidget({ data }: Props) {
   return (
     <div className="min-w-0">
-      <a
-        href={data.songUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center gap-3 group/spotify min-w-0"
-      >
-        {/* Placeholder — swap this div for your own image asset when ready */}
-        <div className="w-12 h-12 rounded-sm flex-none bg-[color:var(--color-surface-muted)] flex items-center justify-center shrink-0">
-          <svg viewBox="0 0 24 24" className="w-5 h-5 text-[color:var(--color-fg-subtle)]" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z" />
-          </svg>
-        </div>
+      {/* Track info */}
+      <div className="flex items-center gap-3 min-w-0">
+        <a
+          href={data.songUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-none shrink-0 group/art"
+        >
+          <Image
+            src={data.albumArt}
+            alt={data.title}
+            width={48}
+            height={48}
+            className="rounded-sm transition-opacity duration-150 group-hover/art:opacity-75"
+          />
+        </a>
 
         <div className="min-w-0">
           <p className="font-mono text-[10px] uppercase tracking-widest opacity-50 mb-0.5">
             {data.isPlaying ? "Now playing" : "Last played"}
           </p>
-          <p className="font-display font-semibold text-sm text-[color:var(--color-fg)] truncate transition-colors duration-150 group-hover/spotify:text-[color:var(--color-primary-700)]">
-            {data.title}
-          </p>
+          <a
+            href={data.songUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group/title"
+          >
+            <p className="font-display font-semibold text-sm text-[color:var(--color-fg)] truncate transition-colors duration-150 group-hover/title:text-[color:var(--color-primary-700)]">
+              {data.title}
+            </p>
+          </a>
           <p className="font-mono text-xs text-[color:var(--color-fg-muted)] truncate">
             {data.artist}
           </p>
+          {data.playlistName && (
+            <p className="font-mono text-[10px] text-[color:var(--color-fg-subtle)] truncate mt-0.5">
+              {data.playlistUrl ? (
+                <a
+                  href={data.playlistUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors duration-150 hover:text-[color:var(--color-primary-700)]"
+                >
+                  in: {data.playlistName}
+                </a>
+              ) : (
+                `in: ${data.playlistName}`
+              )}
+            </p>
+          )}
         </div>
-      </a>
+      </div>
 
-      {/* Record player — replace with your own animated asset when ready */}
-      <div className="mt-3 flex items-center gap-2.5">
-        <svg
-          viewBox="0 0 56 56"
-          width="36"
-          height="36"
-          aria-hidden="true"
-          className={`flex-none ${data.isPlaying ? "animate-spin [animation-duration:3s]" : "opacity-30"}`}
+      {/* Vinyl record — replace /vinyl.png with your own asset when ready */}
+      <div className="mt-3 flex items-center gap-3">
+        <div
+          className={`relative w-20 h-20 flex-none motion-reduce:transition-none ${
+            data.isPlaying
+              ? "animate-spin [animation-duration:3s]"
+              : "opacity-30"
+          }`}
         >
-          <circle cx="28" cy="28" r="27" fill="#18181b" />
-          <circle cx="28" cy="28" r="23" fill="none" stroke="#3f3f46" strokeWidth="1.5" />
-          <circle cx="28" cy="28" r="19" fill="none" stroke="#3f3f46" strokeWidth="1.5" />
-          <circle cx="28" cy="28" r="15" fill="none" stroke="#3f3f46" strokeWidth="1.5" />
-          <circle cx="28" cy="28" r="10" fill="var(--color-primary-700)" />
-          <circle cx="28" cy="28" r="2.5" fill="#18181b" />
-        </svg>
+          <Image
+            src="/vinyl.png"
+            alt=""
+            aria-hidden="true"
+            fill
+            className="object-contain"
+            sizes="80px"
+          />
+          {/* Album art overlay in the center groove */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="relative w-8 h-8 rounded-full overflow-hidden">
+              <Image
+                src={data.albumArt}
+                alt=""
+                aria-hidden="true"
+                fill
+                className="object-cover"
+                sizes="32px"
+              />
+            </div>
+          </div>
+        </div>
+
         <span className="font-mono text-[10px] uppercase tracking-widest opacity-40">
           {data.isPlaying ? "Now spinning" : "Idle"}
         </span>
