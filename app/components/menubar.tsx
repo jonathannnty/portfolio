@@ -48,7 +48,7 @@ export default function MainMenuBar() {
         <Link
           href="/"
           onClick={() => { setMobileOpen(false); handleNameClick(); }}
-          className="font-display text-2xl font-bold tracking-tight text-[color:var(--color-fg)]"
+          className="whitespace-nowrap font-display text-2xl font-bold tracking-tight text-[color:var(--color-fg)]"
         >
           <span ref={nameRef} className="inline-flex">
             {site.name.split("").map((char, i) => (

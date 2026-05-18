@@ -11,7 +11,7 @@ export default function BackToTopButton() {
     <button
       type="button"
       onClick={scrollToTop}
-      className="inline-flex items-center gap-1.5 text-sm text-[color:var(--color-fg-muted)] transition-colors hover:text-[color:var(--color-primary-700)]"
+      className="inline-flex items-center gap-1.5 text-sm text-[color:var(--color-fg-muted)] transition-colors hover:text-[color:var(--color-primary-700)] active:scale-95"
     >
       <ArrowUp className="h-3.5 w-3.5" />
       Back to top

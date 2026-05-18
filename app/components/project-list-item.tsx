@@ -9,7 +9,7 @@ export default function ProjectListItem({ project }: { project: Project }) {
     <>
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
-          <span className="font-display font-semibold text-[color:var(--color-fg)] truncate">
+          <span className="font-display font-semibold text-[color:var(--color-fg)] truncate transition-colors duration-150 group-hover:text-[color:var(--color-primary-700)]">
             {project.title}
           </span>
           {project.inProgress && (

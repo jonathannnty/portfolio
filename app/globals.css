@@ -199,12 +199,6 @@
     isolation: isolate;
   }
 
-  @media (max-width: 1024px) {
-    .hero-scene {
-      display: none;
-    }
-  }
-
   .hero-grass-band {
     position: absolute;
     inset-inline: -4%;
@@ -297,22 +291,43 @@
     }
   }
 
+  /* Tablet (900px–1024px) */
+  @media (max-width: 1024px) {
+    .hero-grass-band {
+      height: min(65%, clamp(15rem, 39vh, 27rem));
+    }
+
+    .hero-tree-stage {
+      right: clamp(-28rem, -36vw, -16rem);
+      bottom: 0;
+      height: 100%;
+      width: auto;
+    }
+
+    .hero-tree {
+      bottom: 0;
+    }
+  }
+
+  /* Small tablet / large phone (640px–900px) */
   @media (max-width: 900px) {
     .hero-grass-band {
       height: min(68%, clamp(14rem, 36vh, 24rem));
     }
 
     .hero-tree-stage {
-      right: clamp(-5rem, -12vw, -2rem);
-      bottom: -0.5rem;
-      width: clamp(15rem, 56vw, 28rem);
+      right: clamp(-24rem, -32vw, -12rem);
+      bottom: 0;
+      height: 100%;
+      width: auto;
     }
 
     .hero-tree {
-      bottom: 2rem;
+      bottom: 0;
     }
   }
 
+  /* Phone (<640px) */
   @media (max-width: 640px) {
     .hero-grass-band {
       inset-inline: -8%;
@@ -320,14 +335,14 @@
     }
 
     .hero-tree-stage {
-      right: -5.5rem;
-      bottom: -0.75rem;
-      width: clamp(13rem, 78vw, 22rem);
-      opacity: 0.68;
+      right: -14rem;
+      bottom: 0;
+      height: 100%;
+      width: auto;
     }
 
     .hero-tree {
-      bottom: 1rem;
+      bottom: 0;
     }
 
     .hero-leaf {
@@ -350,6 +365,7 @@
   .card:hover {
     --brushed-color: var(--color-primary-300);
     box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
   }
 
   /* Button — primary CTA */
@@ -484,11 +500,14 @@
     font-weight: 600;
     font-size: var(--text-sm);
     position: relative;
-    transition: background 180ms var(--ease-out-expo);
+    transition: background 180ms var(--ease-out-expo), transform 180ms var(--ease-out-expo);
   }
   .btn-ghost:hover {
     --brushed-color: var(--color-primary-500);
     background: var(--color-primary-50);
+  }
+  .btn-ghost:active {
+    transform: translateY(1px);
   }
 
   /* Tag/chip — technology labels, categories */

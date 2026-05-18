@@ -26,8 +26,7 @@ async function ActivityData() {
 }
 
 function ActivitySkeleton() {
-  // Fixed height matches the collapsed bar so blog posts don't shift when strip loads
-  return <div className="h-10 mb-8" aria-hidden="true" />;
+  return <div className="h-28 mb-8" aria-hidden="true" />;
 }
 
 export default function BlogIndexPage() {

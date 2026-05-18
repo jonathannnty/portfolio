@@ -19,25 +19,25 @@ export default function SiteFooter() {
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 font-display text-sm text-[color:var(--color-fg-muted)]">
           <Link
             href="/about"
-            className="hover:text-[color:var(--color-primary-700)]"
+            className="transition-colors duration-150 hover:text-[color:var(--color-primary-700)]"
           >
             About
           </Link>
           <Link
             href="/projects"
-            className="hover:text-[color:var(--color-primary-700)]"
+            className="transition-colors duration-150 hover:text-[color:var(--color-primary-700)]"
           >
             Projects
           </Link>
           <Link
             href="/blog"
-            className="hover:text-[color:var(--color-primary-700)]"
+            className="transition-colors duration-150 hover:text-[color:var(--color-primary-700)]"
           >
             Blog
           </Link>
           <Link
             href="/contact"
-            className="hover:text-[color:var(--color-primary-700)]"
+            className="transition-colors duration-150 hover:text-[color:var(--color-primary-700)]"
           >
             Contact
           </Link>
@@ -45,7 +45,7 @@ export default function SiteFooter() {
             href={site.socials.github.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-[color:var(--color-primary-700)]"
+            className="transition-colors duration-150 hover:text-[color:var(--color-primary-700)]"
           >
             GitHub
           </a>
@@ -53,7 +53,7 @@ export default function SiteFooter() {
             href={site.socials.linkedin.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-[color:var(--color-primary-700)]"
+            className="transition-colors duration-150 hover:text-[color:var(--color-primary-700)]"
           >
             LinkedIn
           </a>

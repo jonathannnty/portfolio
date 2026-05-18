@@ -4,6 +4,7 @@ export type SpotifyData = {
   artist: string;
   albumArt: string;
   songUrl: string;
+  playedAt?: string;
   playlistName?: string;
   playlistUrl?: string;
 } | null;
@@ -117,6 +118,7 @@ export async function getSpotifyData(): Promise<SpotifyData> {
       artist: (track.artists as { name: string }[]).map((a) => a.name).join(", "),
       albumArt: (track.album.images as { url: string }[])[0]?.url ?? "",
       songUrl: track.external_urls.spotify as string,
+      playedAt: item.played_at as string | undefined,
       ...recentPlaylist,
     };
   } catch {

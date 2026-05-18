@@ -3,30 +3,72 @@ import type { SpotifyData } from "@/lib/activity/spotify";
 
 type Props = { data: NonNullable<SpotifyData> };
 
+function formatRelativeTime(iso: string): string {
+  const diff = Date.now() - new Date(iso).getTime();
+  const minutes = Math.floor(diff / 60_000);
+  if (minutes < 1) return "just now";
+  if (minutes < 60) return `${minutes}m ago`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours}h ago`;
+  const days = Math.floor(hours / 24);
+  return `${days}d ago`;
+}
+
 export default function SpotifyWidget({ data }: Props) {
+  const timestamp = data.isPlaying
+    ? "now"
+    : data.playedAt
+    ? formatRelativeTime(data.playedAt)
+    : null;
+
   return (
-    <div className="min-w-0">
-      {/* Track info */}
-      <div className="flex items-center gap-3 min-w-0">
-        <a
-          href={data.songUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex-none shrink-0 group/art"
+    <div className="flex flex-col gap-2">
+      <p className="font-mono text-[10px] uppercase tracking-widest opacity-50">
+        Spotify Activity
+      </p>
+      <div className="flex items-center gap-4 min-w-0">
+        {/* Vinyl record — replace /vinyl.png with your own asset when ready */}
+        <div
+          className={`relative w-20 h-20 flex-none motion-reduce:transition-none ${
+            data.isPlaying
+              ? "animate-spin [animation-duration:3s]"
+              : "opacity-30"
+          }`}
         >
           <Image
-            src={data.albumArt}
-            alt={data.title}
-            width={48}
-            height={48}
-            className="rounded-sm transition-opacity duration-150 group-hover/art:opacity-75"
+            src="/vinyl.png"
+            alt=""
+            aria-hidden="true"
+            fill
+            className="object-contain"
+            sizes="80px"
           />
-        </a>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="relative w-8 h-8 rounded-full overflow-hidden">
+              <Image
+                src={data.albumArt}
+                alt=""
+                aria-hidden="true"
+                fill
+                className="object-cover"
+                sizes="64px"
+              />
+            </div>
+          </div>
+        </div>
 
-        <div className="min-w-0">
-          <p className="font-mono text-[10px] uppercase tracking-widest opacity-50 mb-0.5">
-            {data.isPlaying ? "Now playing" : "Last played"}
-          </p>
+        {/* Song info */}
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center justify-between gap-2">
+            <p className="font-mono text-[10px] uppercase tracking-widest opacity-50">
+              {data.isPlaying ? "Now playing" : "Last played"}
+            </p>
+            {timestamp && (
+              <p className="font-mono text-[10px] opacity-40 flex-none">
+                {timestamp}
+              </p>
+            )}
+          </div>
           <a
             href={data.songUrl}
             target="_blank"
@@ -57,43 +99,6 @@ export default function SpotifyWidget({ data }: Props) {
             </p>
           )}
         </div>
-      </div>
-
-      {/* Vinyl record — replace /vinyl.png with your own asset when ready */}
-      <div className="mt-3 flex items-center gap-3">
-        <div
-          className={`relative w-20 h-20 flex-none motion-reduce:transition-none ${
-            data.isPlaying
-              ? "animate-spin [animation-duration:3s]"
-              : "opacity-30"
-          }`}
-        >
-          <Image
-            src="/vinyl.png"
-            alt=""
-            aria-hidden="true"
-            fill
-            className="object-contain"
-            sizes="80px"
-          />
-          {/* Album art overlay in the center groove */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="relative w-8 h-8 rounded-full overflow-hidden">
-              <Image
-                src={data.albumArt}
-                alt=""
-                aria-hidden="true"
-                fill
-                className="object-cover"
-                sizes="32px"
-              />
-            </div>
-          </div>
-        </div>
-
-        <span className="font-mono text-[10px] uppercase tracking-widest opacity-40">
-          {data.isPlaying ? "Now spinning" : "Idle"}
-        </span>
       </div>
     </div>
   );
