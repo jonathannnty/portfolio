@@ -1,6 +1,6 @@
 import { getSpotifyData } from "@/lib/activity/spotify";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 export async function GET() {
   const data = await getSpotifyData();

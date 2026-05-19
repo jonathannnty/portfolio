@@ -1,7 +1,12 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import type { SpotifyData } from "@/lib/activity/spotify";
 
 type Props = { data: NonNullable<SpotifyData> };
+
+const POLL_MS = 30_000;
 
 function formatRelativeTime(iso: string): string {
   const diff = Date.now() - new Date(iso).getTime();
@@ -14,7 +19,23 @@ function formatRelativeTime(iso: string): string {
   return `${days}d ago`;
 }
 
-export default function SpotifyWidget({ data }: Props) {
+export default function SpotifyWidget({ data: initialData }: Props) {
+  const [data, setData] = useState(initialData);
+
+  useEffect(() => {
+    const poll = async () => {
+      try {
+        const res = await fetch("/api/spotify");
+        if (res.ok) setData(await res.json());
+      } catch {
+        // keep showing last known state on network errors
+      }
+    };
+
+    const id = setInterval(poll, POLL_MS);
+    return () => clearInterval(id);
+  }, []);
+
   const timestamp = data.isPlaying
     ? "now"
     : data.playedAt
@@ -22,14 +43,14 @@ export default function SpotifyWidget({ data }: Props) {
     : null;
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 h-full">
       <p className="font-mono text-[10px] uppercase tracking-widest opacity-50">
         Spotify Activity
       </p>
-      <div className="flex items-center gap-4 min-w-0">
-        {/* Vinyl record — replace /vinyl.png with your own asset when ready */}
+      <div className="flex-1 flex items-center gap-4 min-w-0 min-h-0">
+        {/* Vinyl record */}
         <div
-          className={`relative w-20 h-20 flex-none motion-reduce:transition-none ${
+          className={`relative aspect-square h-full max-h-32 flex-none motion-reduce:transition-none ${
             data.isPlaying
               ? "animate-spin [animation-duration:3s]"
               : "opacity-30"
@@ -41,10 +62,10 @@ export default function SpotifyWidget({ data }: Props) {
             aria-hidden="true"
             fill
             className="object-contain"
-            sizes="80px"
+            sizes="128px"
           />
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="relative w-8 h-8 rounded-full overflow-hidden">
+            <div className="relative w-1/3 h-1/3 rounded-full overflow-hidden">
               <Image
                 src={data.albumArt}
                 alt=""

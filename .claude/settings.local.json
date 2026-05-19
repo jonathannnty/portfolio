@@ -21,7 +21,20 @@
       "Bash(git push *)",
       "Bash(not exist *)",
       "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\jonat\\\\OneDrive\\\\Desktop\\\\Projects\\\\portfolio\" -Recurse -Filter \"*.css\" -ErrorAction SilentlyContinue)",
-      "Bash(Select-Object FullName)"
+      "Bash(Select-Object FullName)",
+      "Skill(superpowers:brainstorming)",
+      "Bash(grep -E \"\\\\.tsx$\")",
+      "Bash(awk '{print $NF}')",
+      "Skill(superpowers:writing-plans)",
+      "Bash(gh repo *)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "mcp__plugin_playwright_playwright__browser_take_screenshot",
+      "mcp__plugin_playwright_playwright__browser_snapshot",
+      "mcp__plugin_playwright_playwright__browser_evaluate",
+      "mcp__plugin_playwright_playwright__browser_fill_form",
+      "mcp__plugin_playwright_playwright__browser_click",
+      "mcp__plugin_playwright_playwright__browser_console_messages"
     ]
   }
 }
