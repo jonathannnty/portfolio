@@ -1,24 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { motion, useSpring, useScroll } from "motion/react";
 
 export default function ReadingProgress() {
-  const [pct, setPct] = useState(0);
-
-  useEffect(() => {
-    const update = () => {
-      const scrolled  = window.scrollY;
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      setPct(maxScroll > 0 ? (scrolled / maxScroll) * 100 : 0);
-    };
-    window.addEventListener("scroll", update, { passive: true });
-    return () => window.removeEventListener("scroll", update);
-  }, []);
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
 
   return (
-    <div
-      className="fixed top-0 left-0 z-[200] h-[3px] bg-[color:var(--color-primary-500)] transition-[width] duration-75 ease-linear pointer-events-none"
-      style={{ width: `${pct}%` }}
+    <motion.div
+      style={{ scaleX, originX: 0 }}
+      className="fixed top-0 left-0 right-0 z-[200] h-[3px] bg-[color:var(--color-primary-500)] pointer-events-none"
       aria-hidden
     />
   );

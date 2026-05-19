@@ -34,7 +34,10 @@
       "mcp__plugin_playwright_playwright__browser_evaluate",
       "mcp__plugin_playwright_playwright__browser_fill_form",
       "mcp__plugin_playwright_playwright__browser_click",
-      "mcp__plugin_playwright_playwright__browser_console_messages"
+      "mcp__plugin_playwright_playwright__browser_console_messages",
+      "Bash(Get-Content package.json)",
+      "Bash(Select-String -Pattern \"motion|framer\")",
+      "Bash(npm install *)"
     ]
   }
 }
