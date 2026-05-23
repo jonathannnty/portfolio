@@ -37,7 +37,22 @@
       "mcp__plugin_playwright_playwright__browser_console_messages",
       "Bash(Get-Content package.json)",
       "Bash(Select-String -Pattern \"motion|framer\")",
-      "Bash(npm install *)"
+      "Bash(npm install *)",
+      "Bash(python -c ' *)",
+      "Bash(npx next *)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:devpost.com)",
+      "Bash(mkdir -p assets experiences idle cogs127 portfolio audio-har pathfinder)",
+      "Bash(mv Computer.svg 'Hello Speech Bubble.svg' 'Hi Speech Bubble.svg' Keyboard.svg Medal.svg Mouse.svg PencilNotes.svg SuitcasePaper.svg Thoughts.svg UCSD.svg github.svg Apple.svg Grass.svg Hero.svg Leaf.svg Tree.svg headshot.jpeg portfolio.png in-progress.png IMG_1279.HEIC assets/)",
+      "Bash(mv its-group.jpg handshake-ai.png experiences/)",
+      "Bash(mv IDLE-thumbnail.png idle/thumbnail.png)",
+      "Bash(mv IDLE.png idle/screenshot.png)",
+      "Bash(sed -i 's|src=\"/images/Medal\\\\.svg\"|src=\"/images/assets/Medal.svg\"|g' app/components/illustrations/awards-illustration.tsx)",
+      "Bash(sed -i 's|src=\"/images/Thoughts\\\\.svg\"|src=\"/images/assets/Thoughts.svg\"|g' app/components/illustrations/blog-illustration.tsx)",
+      "Bash(sed -i 's|src=\"/images/PencilNotes\\\\.svg\"|src=\"/images/assets/PencilNotes.svg\"|g' app/components/illustrations/blog-illustration.tsx)",
+      "Bash(sed -i 's|src=\"/images/Hello Speech Bubble\\\\.svg\"|src=\"/images/assets/Hello Speech Bubble.svg\"|g' app/components/illustrations/contact-illustration.tsx)",
+      "Bash(sed -i 's|src=\"/images/Hi Speech Bubble\\\\.svg\"|src=\"/images/assets/Hi Speech Bubble.svg\"|g' app/components/illustrations/contact-illustration.tsx)",
+      "Bash(Remove-Item *)"
     ]
   }
 }

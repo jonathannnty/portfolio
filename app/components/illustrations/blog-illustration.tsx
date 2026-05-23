@@ -81,7 +81,7 @@ export default function BlogIllustration() {
         style={{ left: -30, top: 18, opacity: 0 }}
       >
         <Image
-          src="/images/Thoughts.svg"
+          src="/images/assets/Thoughts.svg"
           alt="Thought bubbles"
           width={170}
           height={137}
@@ -97,7 +97,7 @@ export default function BlogIllustration() {
         style={{ right: 0, top: 0, opacity: 0 }}
       >
         <Image
-          src="/images/PencilNotes.svg"
+          src="/images/assets/PencilNotes.svg"
           alt="Pencil and notebook"
           width={170}
           height={152}

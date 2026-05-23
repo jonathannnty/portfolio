@@ -70,7 +70,7 @@ export const experiences: Experience[] = [
       label: "IT Service Desk",
       href: "https://cse.ucsd.edu",
     },
-    images: ["/images/its-group.jpg"],
+    images: ["/images/experiences/its-group.jpg"],
   },
   {
     id: "ai-research-fellow",
@@ -87,7 +87,7 @@ export const experiences: Experience[] = [
       label: "Handshake AI",
       href: "https://joinhandshake.com/blog/our-team/introducing-handshake-ai/",
     },
-    images: ["/images/handshake-ai.png"],
+    images: ["/images/experiences/handshake-ai.png"],
   },
   {
     id: "swe-intern-aimia",

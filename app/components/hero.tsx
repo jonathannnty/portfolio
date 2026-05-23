@@ -108,7 +108,7 @@ export default function Hero() {
         <div className="hero-grass-band">
           <Image
             className="hero-grass"
-            src="/images/Grass.svg"
+            src="/images/assets/Grass.svg"
             alt=""
             width={2126}
             height={483}
@@ -123,7 +123,7 @@ export default function Hero() {
               <Image
                 key={leaf.id}
                 className="hero-leaf"
-                src="/images/Leaf.svg"
+                src="/images/assets/Leaf.svg"
                 alt=""
                 width={97}
                 height={127}
@@ -134,7 +134,7 @@ export default function Hero() {
 
           <Image
             className="hero-tree"
-            src="/images/Tree.svg"
+            src="/images/assets/Tree.svg"
             alt=""
             width={940}
             height={998}

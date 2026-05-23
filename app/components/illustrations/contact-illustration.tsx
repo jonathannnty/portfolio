@@ -69,7 +69,7 @@ export default function ContactIllustration() {
         style={{ top: 0, right: 0, width: 204, opacity: 0 }}
       >
         <Image
-          src="/images/Hello Speech Bubble.svg"
+          src="/images/assets/Hello Speech Bubble.svg"
           alt="Hello!"
           width={204}
           height={119}
@@ -85,7 +85,7 @@ export default function ContactIllustration() {
         style={{ bottom: 0, left: 0, width: 136, opacity: 0 }}
       >
         <Image
-          src="/images/Hi Speech Bubble.svg"
+          src="/images/assets/Hi Speech Bubble.svg"
           alt="Hi!"
           width={136}
           height={84}

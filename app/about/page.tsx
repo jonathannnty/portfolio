@@ -55,7 +55,7 @@ export default function AboutPage() {
           <div className= "mx-auto w-full rounded-[1.9rem] bg-gradient-to-br from-[color:var(--color-primary-200)] via-[color:var(--color-surface)] to-[color:var(--color-primary-300)] p-[1.5px] shadow-[var(--shadow-md)] lg:mx-0">
             <figure className="relative aspect-[4/5] overflow-hidden rounded-[1.85rem] bg-[color:var(--color-surface)]">
               <Image
-                src="/images/headshot.jpeg"
+                src="/images/assets/headshot.jpeg"
                 alt={`${site.name} headshot`}
                 fill
                 priority

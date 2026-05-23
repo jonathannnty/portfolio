@@ -75,8 +75,13 @@ export default function ProjectsGrid({ projects, initialPersona }: Props) {
     if (status === "completed")   result = result.filter((p) => !p.inProgress);
     if (status === "in-progress") result = result.filter((p) => !!p.inProgress);
 
-    if (sort === "newest")  result.sort((a, b) => b.sortKey.localeCompare(a.sortKey));
-    if (sort === "oldest")  result.sort((a, b) => a.sortKey.localeCompare(b.sortKey));
+    const pinOngoing = (a: Project, b: Project) => {
+      const aO = a.period === "Ongoing", bO = b.period === "Ongoing";
+      if (aO !== bO) return aO ? -1 : 1;
+      return 0;
+    };
+    if (sort === "newest")  result.sort((a, b) => pinOngoing(a, b) || b.sortKey.localeCompare(a.sortKey));
+    if (sort === "oldest")  result.sort((a, b) => pinOngoing(a, b) || a.sortKey.localeCompare(b.sortKey));
     if (sort === "complex") result.sort((a, b) => b.stack.length - a.stack.length);
 
     return result;

@@ -96,7 +96,7 @@ export default function ProjectsIllustration() {
         style={{ top: 0, left: 32, width: 212, opacity: 0 }}
       >
         <Image
-          src="/images/Computer.svg"
+          src="/images/assets/Computer.svg"
           alt="Computer"
           width={212}
           height={190}
@@ -112,7 +112,7 @@ export default function ProjectsIllustration() {
         style={{ bottom: -6, left: -20, width: 218, opacity: 0 }}
       >
         <Image
-          src="/images/Keyboard.svg"
+          src="/images/assets/Keyboard.svg"
           alt="Keyboard"
           width={218}
           height={51}
@@ -128,7 +128,7 @@ export default function ProjectsIllustration() {
         style={{ bottom: -10, right: 60, width: 52, opacity: 0 }}
       >
         <Image
-          src="/images/Mouse.svg"
+          src="/images/assets/Mouse.svg"
           alt="Mouse"
           width={52}
           height={47}

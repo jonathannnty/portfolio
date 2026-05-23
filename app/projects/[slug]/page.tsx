@@ -4,6 +4,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import CopyLinkButton from "@/app/components/copy-link-button";
+import { CodeBlock } from "@/app/components/code-block";
 import { projects } from "@/content/projects";
 import { toSlugId, type Heading } from "@/lib/toc";
 import { ProjectTOCDesktop, ProjectTOCMobile } from "@/app/components/project-toc";
@@ -220,15 +221,29 @@ export default async function ProjectDetailPage({
                           if (block.type === "image") {
                             return (
                               <div key={bIdx} className="brushed my-6 rounded-[var(--radius-lg)]">
-                                <div className="relative aspect-[16/9] overflow-hidden rounded-[var(--radius-lg)] bg-[color:var(--color-primary-50)]">
+                                <div className="overflow-hidden rounded-[var(--radius-lg)] bg-[color:var(--color-primary-50)]">
                                   <Image
                                     src={block.src}
                                     alt={block.alt}
-                                    fill
-                                    className="object-cover"
+                                    width={0}
+                                    height={0}
                                     sizes="(min-width: 768px) 48rem, 100vw"
+                                    className="h-auto w-full"
                                   />
                                 </div>
+                              </div>
+                            );
+                          }
+                          if (block.type === "codeBlock") {
+                            return (
+                              <div key={bIdx} className="my-6 overflow-hidden rounded-[var(--radius-lg)] border border-neutral-700/50">
+                                <div className="flex items-center gap-1.5 border-b border-neutral-700/50 bg-neutral-800 px-4 py-2.5">
+                                  <span className="h-3 w-3 rounded-full bg-[#FF5F57]" aria-hidden="true" />
+                                  <span className="h-3 w-3 rounded-full bg-[#FFBD2E]" aria-hidden="true" />
+                                  <span className="h-3 w-3 rounded-full bg-[#28C840]" aria-hidden="true" />
+                                  <span className="ml-2 font-mono text-xs text-neutral-400">{block.language}</span>
+                                </div>
+                                <CodeBlock code={block.code} language={block.language} />
                               </div>
                             );
                           }

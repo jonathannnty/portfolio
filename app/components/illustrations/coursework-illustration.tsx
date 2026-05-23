@@ -56,7 +56,7 @@ export default function CourseworkIllustration() {
       style={{ width: 130, opacity: 0 }}
     >
       <Image
-        src="/images/UCSD.svg"
+        src="/images/assets/UCSD.svg"
         alt="UCSD Trident"
         width={130}
         height={147}

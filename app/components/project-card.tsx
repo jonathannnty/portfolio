@@ -2,42 +2,14 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/content/projects";
 
-/**
- * Project card — the entire card is a Link to the detail page.
- * Hover triggers a subtle anime.js lift.
- */
 export default function ProjectCard({ project }: { project: Project }) {
-  const ref = useRef<HTMLAnchorElement>(null);
-
-  const tilt = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!ref.current) return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) return;
-    const rect = ref.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width  - 0.5; // -0.5 to 0.5
-    const y = (e.clientY - rect.top)  / rect.height - 0.5;
-    ref.current.style.transform = `perspective(700px) rotateX(${y * -7}deg) rotateY(${x * 7}deg) translateY(-4px)`;
-    ref.current.style.transition = "transform 0.08s linear";
-  };
-
-  const resetTilt = () => {
-    if (!ref.current) return;
-    ref.current.style.transition = "transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)";
-    ref.current.style.transform  = "perspective(700px) rotateX(0deg) rotateY(0deg) translateY(0px)";
-  };
-
   return (
     <Link
-      ref={ref}
       href={`/projects/${project.slug}`}
-      onMouseMove={tilt}
-      onMouseLeave={resetTilt}
       className="card group flex h-full flex-col p-0"
-      style={{ willChange: "transform", transformStyle: "preserve-3d" }}
     >
       <div className="flex flex-1 flex-col p-6">
         <div className="mb-5 flex items-start justify-end">
