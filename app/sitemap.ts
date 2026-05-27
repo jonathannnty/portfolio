@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/projects`, lastModified: new Date(), priority: 0.8 },
     { url: `${BASE}/blog`, lastModified: new Date(), priority: 0.7 },
     { url: `${BASE}/contact`, lastModified: new Date(), priority: 0.6 },
+    { url: `${BASE}/cookie-jar/privacy`, lastModified: new Date(), priority: 0.3 },
   ];
 
   const projectRoutes: MetadataRoute.Sitemap = projects.map((p) => ({
