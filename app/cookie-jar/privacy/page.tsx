@@ -22,7 +22,7 @@ export default function CookieJarPrivacyPage() {
     >
       <div className="max-w-2xl space-y-10 text-[color:var(--color-fg-muted)]">
         <p className="text-sm">
-          <span className="font-semibold text-[color:var(--color-fg)]">Last updated:</span> May 26, 2025
+          <span className="font-semibold text-[color:var(--color-fg)]">Last updated:</span> May 26, 2026
           <span className="mx-3 opacity-30">·</span>
           <span className="font-semibold text-[color:var(--color-fg)]">Developer:</span> Jonathan Ty —{" "}
           <a
