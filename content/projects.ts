@@ -11,6 +11,7 @@ export type ContentBlock =
   | { type: "pullQuote"; text: string }
   | { type: "list"; items: string[] }
   | { type: "image"; src: string; alt: string }
+  | { type: "imageCarousel"; images: { src: string; alt: string }[] }
   | { type: "codeBlock"; language: string; code: string };
 
 export type ProjectSubsection = {
@@ -93,8 +94,92 @@ export const projects: Project[] = [
     body: [],
     thumbnail: "/images/cogs127/thumbnail.png",
     heroImage: "/images/cogs127/thumbnail.png",
-    images: ["/images/cogs127/kid-walking.jpg", "/images/cogs127/kid-walking2.png"],
     sections: [
+      {
+        heading: "High-Fidelity Prototypes",
+        subsections: [
+          {
+            content: [
+              {
+                type: "paragraph",
+                text: "These screens extend Get It Done's existing mobile app with three features that came directly out of the interviews: a community feed, an upvote layer on the submission flow, and a status timeline. The goal wasn't to redesign the app. It was to answer the specific thing Kriselda asked — if they're not being reassured, what's the point of reporting anything?",
+              },
+              {
+                type: "imageCarousel",
+                images: [
+                  {
+                    src: "/images/cogs127/PhoneFrame-1.png",
+                    alt: "Community feed screen showing nearby issues with upvote counts",
+                  },
+                  {
+                    src: "/images/cogs127/PhoneFrame-2.png",
+                    alt: "Report submission screen with upvote option for existing issues",
+                  },
+                  {
+                    src: "/images/cogs127/PhoneFrame-3.png",
+                    alt: "Status timeline screen showing a report's progress from submitted to resolved",
+                  },
+                  {
+                    src: "/images/cogs127/PhoneFrame-4.png",
+                    alt: "Issue detail screen with community upvote count and nearby activity",
+                  },
+                  {
+                    src: "/images/cogs127/PhoneFrame-5.png",
+                    alt: "Profile screen showing a student's submitted reports and current statuses",
+                  },
+                  {
+                    src: "/images/cogs127/PhoneFrame.png",
+                    alt: "Home screen with nearby issues surfaced on a map",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            heading: "Making the loop visible",
+            content: [
+              {
+                type: "paragraph",
+                text: "The community feed was the feature most of the interviewees described without being asked. Gael said it should feel more like TikTok. Daniel wanted a feed. Sol wanted to see what was finished. They were all pointing at the same thing: the current app submits to a void. You take a photo, you send it, and nothing connects your report to the broader community or to the eventual outcome.",
+              },
+              {
+                type: "paragraph",
+                text: "The feed is designed to surface nearby issues, show how many people have reported the same thing, and update as the city responds. The intent is to give a student a reason to open the app even when they aren't reporting something — and to let them see, over time, that reports actually lead to fixes. That visibility is the reassurance Kriselda was asking for.",
+              },
+            ],
+          },
+          {
+            heading: "Upvotes as social proof",
+            content: [
+              {
+                type: "paragraph",
+                text: "Adding upvotes changed the job of the submission form. In the original app, each report is discrete — you submit something and it enters a queue with no connection to anyone else who saw the same broken curb. The upvote layer means the form needs to surface whether you're submitting something new or whether a hundred people have already reported it.",
+              },
+              {
+                type: "paragraph",
+                text: "That changes the form from data entry to community verification. When Carlie sees that an issue she notices has been upvoted fifty times, she gets social proof that the problem is real and that other people care about it too. She also gets a lower-friction way to participate: she doesn't need to take a photo and write a description if the issue already exists. She just adds her name to it.",
+              },
+              {
+                type: "paragraph",
+                text: "We chose not to add rewards or a points system. Sol pointed this out during the interviews — people would just game the rewards. The goal isn't to pay students to care. The goal is to make sure that when they do care, the effort feels worth it.",
+              },
+            ],
+          },
+          {
+            heading: "Staying inside the app's voice",
+            content: [
+              {
+                type: "paragraph",
+                text: "Get It Done has a deliberate visual identity — functional, municipal, not trying to be a consumer product. The color palette, button treatments, and icon style in these screens are pulled from the existing app rather than invented from scratch. The goal was for these extensions to look like something the Get It Done team could plausibly ship, not a student redesign layered on top.",
+              },
+              {
+                type: "paragraph",
+                text: "The one deliberate departure is the status timeline, which uses a vertical step indicator that the original app doesn't have. That was a conscious choice: the existing track-your-request view is minimal to the point of being opaque. The timeline needed to communicate progress more explicitly, because the whole point of building it was to close the loop that currently leaves submitters with no feedback at all.",
+              },
+            ],
+          },
+        ],
+      },
       {
         heading: "Overview",
         subsections: [
@@ -169,11 +254,6 @@ export const projects: Project[] = [
               {
                 type: "paragraph",
                 text: "Going into the interviews, I expected to hear that teenagers wanted to report things and just didn't know how. That ended up being part of the story, but not the whole story.",
-              },
-              {
-                type: "image",
-                src: "/images/cogs127/kid-walking.jpg",
-                alt: "A kid scooting down a park path in San Diego",
               },
             ],
           },
@@ -250,6 +330,115 @@ export const projects: Project[] = [
               {
                 type: "paragraph",
                 text: "One thing we decided not to do was add a rewards or points system. Sol pointed out that people would just lie for the rewards, and I think he was right. The goal isn't to pay students to care. The goal is to make sure that when they do care, they can see something come of it.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "User Testing",
+        subsections: [
+          {
+            content: [
+              {
+                type: "paragraph",
+                text: "We tested with two high school freshmen from Escondido in separate remote sessions, both conducted after the initial round of prototypes was complete. Each session followed the same format: we walked through two versions of the designs side by side and asked participants to compare them directly. The sessions were moderated, which gave us room to ask follow-up questions, but it also meant the quality of what we learned depended heavily on how comfortable each participant was talking through what they were seeing.",
+              },
+            ],
+          },
+          {
+            heading: "The sessions",
+            content: [
+              {
+                type: "paragraph",
+                text: "The first participant was a freshman who had reviewed Figma prototypes before, which showed — she moved through the designs without needing much prompting. She gravitatied toward the simpler of the two interfaces and said our proposed changes were minimal, suggesting that further simplification might make the app feel more welcoming to someone encountering it for the first time. She also brought up the idea of a like or upvote feature without being asked.",
+              },
+              {
+                type: "paragraph",
+                text: "The second participant had more difficulty with the format. Because the prototypes were static screens rather than interactive flows, he had trouble envisioning how the app would actually work. He also preferred the simpler interface, but his most useful piece of feedback was that he couldn't easily tell which screens were the redesign and which were the original. The differences weren't apparent to him.",
+              },
+            ],
+          },
+          {
+            heading: "What I took from this",
+            content: [
+              {
+                type: "paragraph",
+                text: "The upvote suggestion caught my attention. Both participants arrived at a version of it independently — one explicitly named it, the other described wanting to see more engagement. We had already planned to build an upvote feature before these sessions, but hearing it surface unprompted was its own kind of confirmation. The students weren't just tolerating the idea of a civic app; they were imagining how to make it feel more like something they'd actually use.",
+              },
+              {
+                type: "paragraph",
+                text: "The harder finding was the confusion about which screens were ours. If a participant can't identify the redesign, the redesign hasn't done its job. That isn't a criticism of the participants — it's a signal that the changes we made weren't differentiated enough to communicate their purpose. A subtle layout adjustment doesn't convey that something meaningfully new is being offered.",
+              },
+              {
+                type: "pullQuote",
+                text: "\"If they're not being reassured, what's the point of reporting anything?\" — Kriselda (prior interview)",
+              },
+              {
+                type: "paragraph",
+                text: "Kriselda's line from the earlier interviews kept coming back to me during these sessions. The two test participants weren't asking for reassurance directly, but the gap they were identifying — designs that look nearly identical to the original, features that don't feel meaningfully different — points at the same thing. If a student opens the redesigned app and doesn't feel like anything has changed, we haven't addressed the problem.",
+              },
+            ],
+          },
+          {
+            heading: "Point of view",
+            content: [
+              {
+                type: "paragraph",
+                text: "High school students in San Diego notice city maintenance problems and are willing to report them — but only if reporting feels like it leads to something. The current design of Get It Done doesn't make that connection visible. Our redesign needs to do more than clean up the layout; it needs to give students a reason to believe their report matters, and it needs to make that reason immediately apparent the first time they open the app.",
+              },
+              {
+                type: "paragraph",
+                text: "Based on the testing, the next iteration will keep the clean, simple base that both participants responded to, but introduce changes that are distinct enough to register — primarily around the community feed, engagement mechanisms, and status visibility. We also plan to test with interactive prototypes rather than static screens, so participants can actually feel the experience rather than infer it.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Before & After",
+        subsections: [
+          {
+            content: [
+              {
+                type: "paragraph",
+                text: "These comparisons show the two screens that changed most directly as a result of user testing. Both changes were driven by the same finding: the original designs were too close to the existing app to feel like a meaningful improvement. The goal with each revision was to make the purpose of the change immediately legible — not just a different layout, but a different experience.",
+              },
+            ],
+          },
+          {
+            heading: "Reports feed",
+            content: [
+              {
+                type: "image",
+                src: "/images/cogs127/1.png",
+                alt: "Before and after comparison of the reports feed screen, showing a shift from a dense text list to an image-forward card layout with engagement tools",
+              },
+              {
+                type: "paragraph",
+                text: "The original reports view is a dense text list. Each report is readable, but nothing visual anchors your attention, and there's no mechanism to signal that other residents care about the same issues. The revised version introduces image-forward cards sorted by relevance, detailed timestamps, and engagement tools — a like button and comment count — directly on each card. The reasoning connects back to what Gael said in the initial interviews: the app needs to feel less like a government form. The card format is how every social platform a teenager already uses presents information. Making the feed feel familiar lowers the barrier to engagement.",
+              },
+              {
+                type: "paragraph",
+                text: "The engagement layer also serves the product's broader goal. When a student can see that a pothole near her school has been upvoted forty times, she has evidence that other people noticed it too. That social proof is part of what makes reporting feel worth doing — and it gives the city a clearer signal about which issues the community keeps surfacing.",
+              },
+            ],
+          },
+          {
+            heading: "Track progress",
+            content: [
+              {
+                type: "image",
+                src: "/images/cogs127/2.png",
+                alt: "Before and after comparison of the track progress screen, showing a shift from an undifferentiated list to a status-organized view with past and closed report categories",
+              },
+              {
+                type: "paragraph",
+                text: "The original track progress screen is another undifferentiated list. Past and closed reports sit together with no visual distinction, and the cards carry more text than they need to. The revised version organizes reports into two explicit categories — Past Reports and Closed Reports — with cleaner cards that surface ticket numbers and smaller thumbnails. The reduction in image size isn't just aesthetic; it makes the view more scannable, which matters when a student is checking back on something they reported weeks ago.",
+              },
+              {
+                type: "paragraph",
+                text: "The category split is the more important change. Sol asked for this during the initial interviews — he specifically wanted to see what was finished, not just what had been reported. Separating closed reports into their own section makes the outcome of reporting visible in a way the original view doesn't. That's the feedback loop the app currently lacks: you submit something, and eventually it disappears into the same list it always lived in. The revised view makes resolution a distinct state, which is the first step toward making the act of reporting feel like it has a payoff.",
               },
             ],
           },

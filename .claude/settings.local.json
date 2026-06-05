@@ -52,7 +52,10 @@
       "Bash(sed -i 's|src=\"/images/PencilNotes\\\\.svg\"|src=\"/images/assets/PencilNotes.svg\"|g' app/components/illustrations/blog-illustration.tsx)",
       "Bash(sed -i 's|src=\"/images/Hello Speech Bubble\\\\.svg\"|src=\"/images/assets/Hello Speech Bubble.svg\"|g' app/components/illustrations/contact-illustration.tsx)",
       "Bash(sed -i 's|src=\"/images/Hi Speech Bubble\\\\.svg\"|src=\"/images/assets/Hi Speech Bubble.svg\"|g' app/components/illustrations/contact-illustration.tsx)",
-      "Bash(Remove-Item *)"
+      "Bash(Remove-Item *)",
+      "Bash(New-Item *)",
+      "WebFetch(domain:localhost)",
+      "Bash(curl -s \"http://localhost:3000/cookie-jar/privacy\")"
     ]
   }
 }

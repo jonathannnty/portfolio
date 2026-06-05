@@ -4,6 +4,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import CopyLinkButton from "@/app/components/copy-link-button";
+import { PhoneCarousel } from "@/app/components/phone-carousel";
 import { CodeBlock } from "@/app/components/code-block";
 import { projects } from "@/content/projects";
 import { toSlugId, type Heading } from "@/lib/toc";
@@ -233,6 +234,9 @@ export default async function ProjectDetailPage({
                                 </div>
                               </div>
                             );
+                          }
+                          if (block.type === "imageCarousel") {
+                            return <PhoneCarousel key={bIdx} images={block.images} />;
                           }
                           if (block.type === "codeBlock") {
                             return (
