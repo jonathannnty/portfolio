@@ -204,8 +204,17 @@ export const projects: Project[] = [
             heading: "Team",
             content: [
               {
+                type: "list",
+                items: [
+                  "Ashley Padilla",
+                  "Jonathan Ty",
+                  "Julie Nguyen",
+                  "Ruth Mazariego Lemus",
+                ],
+              },
+              {
                 type: "paragraph",
-                text: "Ashley Padilla, Jonathan Ty, Julie Nguyen, Ruth Mazariego Lemus. COGS 127, Spring 2026.",
+                text: "COGS 127, Spring 2026.",
               },
             ],
           },
@@ -447,6 +456,135 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "cookie-jar",
+    title: "Cookie Jar",
+    tagline:
+      "A Chrome extension that reads, categorizes, and blocks unwanted cookies — built after a judge at a designathon said she'd be our first customer.",
+    period: "Spring 2026",
+    sortKey: "2026-05",
+    stack: ["JavaScript", "Chrome APIs", "Manifest V3", "HTML/CSS", "Figma"],
+    featured: true,
+    links: [
+      {
+        label: "GitHub Repository",
+        href: "https://github.com/jonathannnty/cookie-jar",
+      },
+    ],
+    body: [],
+    thumbnail: "/images/cookiejar/Cookie Jar Small promo tile.png",
+    heroImage: "/images/cookiejar/Cookie Jar Small promo tile.png",
+    sections: [
+      {
+        heading: "Overview",
+        subsections: [
+          {
+            content: [
+              {
+                type: "paragraph",
+                text: "Design Frontiers is a designathon run by Design CO at UCSD. Our team of four had 24 hours to design a product. We built a concept for a Chrome extension that would read, categorize, and automatically block unwanted browser cookies — the kind of thing that handles cookie consent banners for you so you stop clicking \"Reject All\" on every website you visit.",
+              },
+              {
+                type: "paragraph",
+                text: "We won second place. In the feedback session, one of the judges said she'd be the first customer when we built it. I don't think she expected anyone to take that literally.",
+              },
+              {
+                type: "paragraph",
+                text: "I was the only person on the team with programming experience. The other three had handled the research, the UI/UX, and the branding — I'd contributed to the design work too, but I was also the only one who could actually build it. So I did.",
+              },
+            ],
+          },
+          {
+            heading: "Team",
+            content: [
+              {
+                type: "list",
+                items: [
+                  "Renee Lau — UI/UX",
+                  "Yaena Chun — UI/UX",
+                  "Kiley Ku — graphic design",
+                  "Jonathan Ty — UI/UX, development",
+                ],
+              },
+              {
+                type: "paragraph",
+                text: "Design Frontiers, Design CO @ UC San Diego, Spring 2026.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "What it does",
+        subsections: [
+          {
+            content: [
+              {
+                type: "paragraph",
+                text: "Cookie Jar intercepts cookies in real time and classifies them into eight categories. Four are allowed by default — things the site genuinely needs to function, like authentication, session management, and necessary functionality. Four are blocked by default: analytics, tracking, advertising, and third-party scripts that exist primarily to follow you around the web.",
+              },
+              {
+                type: "paragraph",
+                text: "The classifier runs pattern matching against cookie names and domains from 50+ frameworks and platforms. When you visit a site, a service worker intercepts cookie operations before they settle, checks the category, and allows or blocks based on your preferences. You can override any category, pause the extension for a specific domain, or toggle between a simple view and a detailed breakdown of what's being blocked.",
+              },
+            ],
+          },
+          {
+            heading: "Consent banner suppression",
+            content: [
+              {
+                type: "paragraph",
+                text: "Most sites use a consent management platform — OneTrust, CookieBot, TrustArc — to show the cookie banners you see on almost every page. Cookie Jar suppresses them. Getting to 100% on 31 tested sites required handling banners injected inside iframes, shadow DOM elements, and dynamically loaded scripts. A few sites needed site-specific selectors before they'd cooperate.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Building it",
+        subsections: [
+          {
+            content: [
+              {
+                type: "paragraph",
+                text: "The extension is built on Manifest V3, Chrome's current extension format, which routes everything through a service worker rather than a persistent background page. Most of the core logic lives in three places: a cookie classifier that maps name and domain patterns to categories, a background service worker that intercepts cookie operations in real time, and a content script that handles banner suppression on the page itself.",
+              },
+            ],
+          },
+          {
+            heading: "The OAuth problem",
+            content: [
+              {
+                type: "paragraph",
+                text: "The hardest bug to fix was one I introduced myself. An early version of the extension was too aggressive — it was blocking cookies during page load that OAuth providers set after authentication. So if you logged in with Google or Microsoft, the extension would delete the session cookie before the app could read it, landing you in a redirect loop.",
+              },
+              {
+                type: "paragraph",
+                text: "The fix required building an explicit passlist for OAuth callback patterns across Google, Microsoft, Apple, Okta, and Auth0, and making the cookies.onChanged listener protect parent domains as well as the callback URL itself. The timing also mattered — the window between when the OAuth callback fires and when the app reads the resulting cookie is small, and the extension had to stay out of it.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "What I'd do differently",
+        subsections: [
+          {
+            content: [
+              {
+                type: "paragraph",
+                text: "The design was made in 24 hours, which means I inherited some decisions that were made fast. The popup is clean. The full-page view got complicated as features accumulated — it tries to do too many things at once. If I were starting from scratch I'd rethink that information architecture before writing a line of code.",
+              },
+              {
+                type: "paragraph",
+                text: "I also want to actually submit it to the Chrome Web Store. It works on my machine and on the 31 sites I tested, but 'works on tested sites' and 'works for real users' are different things. The judge said she'd be the first customer. I'd like to find out if that's still true.",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: "portfolio-website",
     title: "Portfolio Website",
     tagline: "Next.js + anime.js portfolio built using Claude plugins.",
@@ -564,15 +702,11 @@ export const projects: Project[] = [
     slug: "audio-har-data-collection",
     title: "Audio-Based Human Activity Recognition",
     tagline:
-      "Rethinking how activity data is collected: faster, more scalable, and less tedious!",
+      "Comparing annotation methods for IMU-based activity data — and finding the labeling pipeline matters more than the model.",
     period: "June 2025",
     sortKey: "2025-05",
-    stack: ["Python", "NumPy", "Pandas", "PyTorch", "LSTM", "GitHub Copilot"],
-    body: [
-      "This research project came about from my group's participation in the UCSD CSE Department's Early Research Scholars Program. In a team of 4, we learned how traditional human activity recognition (HAR) datasets rely heavily on video recording and manual annotation, which is time-consuming and difficult to scale. Our project explored whether synchronized audio instructions could replace these methods, making data collection faster and more accessible for both researchers and participants.",
-      "We designed a pipeline that aligned audio cues with time-series sensor data from 9-axis IMU devices, allowing activities to be labeled in real time without post-processing. I focused on building data preprocessing scripts and structuring the dataset for LSTM-based models, which ultimately achieved higher validation accuracy compared to button-based and standard baseline methods.",
-      "Looking back, I think we could’ve explored more robust generalization across different environments and users. Still, this project shifted how I think about data collection, not just optimizing models, but questioning the assumptions behind how data is gathered in the first place.",
-    ],
+    stack: ["Python", "PyTorch", "LSTM", "Android", "MIDI/YAML", "MoviePy"],
+    body: [],
     thumbnail: "/images/audio-har/thumbnail.png",
     heroImage: "/images/audio-har/thumbnail.png",
     links: [
@@ -583,6 +717,157 @@ export const projects: Project[] = [
       {
         label: "LinkedIn Post",
         href: "https://www.linkedin.com/posts/jonathan-ty_i-just-wrapped-up-an-incredible-year-with-activity-7335523246672330753-ucFq?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEeoZfoB3ThC295AU2C-EtteoS6JLAkSOy0",
+      },
+    ],
+    sections: [
+      {
+        heading: "Overview",
+        subsections: [
+          {
+            content: [
+              {
+                type: "paragraph",
+                text: "UCSD’s Early Research Scholars Program placed me in Pat Pannuto’s embedded systems lab for a year. Our team worked on a problem that doesn’t get as much attention as it should: human activity recognition models need large labeled datasets to train well, and the standard methods for building those datasets are slow and hard to scale.",
+              },
+            ],
+          },
+          {
+            heading: "Research question",
+            content: [
+              {
+                type: "pullQuote",
+                text: "How can Human Activity Recognition data be collected more efficiently to create large, high-quality datasets for training machine learning models?",
+              },
+            ],
+          },
+          {
+            heading: "Team",
+            content: [
+              {
+                type: "list",
+                items: [
+                  "Jonathan Ty",
+                  "Momina Habibi",
+                  "Yuan-Kai Yang",
+                ],
+              },
+              {
+                type: "paragraph",
+                text: "CSE 198, Early Research Scholars Program, 2024–2025.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "The labeling problem",
+        subsections: [
+          {
+            content: [
+              {
+                type: "paragraph",
+                text: "Human activity recognition is the task of classifying what someone is doing — walking, sitting, climbing stairs — from sensor data. It shows up in fitness trackers, fall detection systems, rehabilitation monitoring. The classifier side has gotten reasonably well-developed. What hasn’t kept pace is the data side.",
+              },
+              {
+                type: "paragraph",
+                text: "The standard collection method is video-based: record participants, then manually annotate the time-series sensor data by watching the video back and marking activity boundaries. The video provides genuine ground truth, but annotation is slow — often several minutes of work per minute of recorded data. At any meaningful scale, that’s the bottleneck.",
+              },
+              {
+                type: "paragraph",
+                text: "Button-based labeling shifts that burden onto participants: they press a button in an app when they switch activities, and the timestamps become the labels. Cheaper than video, but it depends on participants pressing at exactly the right moment, which they often don’t. The label quality ceiling sets the model quality ceiling, and sloppy button data has a low ceiling.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Three approaches",
+        subsections: [
+          {
+            content: [
+              {
+                type: "paragraph",
+                text: "We tested all three labeling methods on data from a chest-mounted 9-axis IMU sensor. The sensor logs accelerometer, gyroscope, and magnetometer readings at 100Hz. We collected data across five activities: walking, running, standing, and climbing stairs in both directions.",
+              },
+              {
+                type: "list",
+                items: [
+                  "Video-based: participants recorded while performing activities, with labeling done afterward using action annotation software. Accurate but time-intensive.",
+                  "Button-based: participants press a button in a custom Android app when they transition to a new activity. Timestamps from those button events become the labels.",
+                  "Audio-based: participants follow a pre-generated instruction track — verbal cues synchronized to a musical beat tell them which activity to do and when. The audio timestamps become labels automatically, with no post-hoc annotation required.",
+                ],
+              },
+            ],
+          },
+          {
+            heading: "The hardware",
+            content: [
+              {
+                type: "paragraph",
+                text: "The TotTag, built by the Pannuto lab, is a small wearable that records 9-axis IMU data and connects to a custom Android app over Bluetooth. We taped it to each participant’s chest in a small Ziploc bag to keep placement consistent across sessions. After each recording, the app exported a ZIP file with the sensor CSV and any audio or button logs, which we uploaded to a shared drive for processing.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "My contribution",
+        subsections: [
+          {
+            content: [
+              {
+                type: "paragraph",
+                text: "My main piece was the audio synthesis pipeline. The premise: if you can generate an instruction track where verbal cues are time-locked to a musical beat, and give that track to participants during data collection, you don’t need to label anything afterward. The audio timestamps tell you exactly when each activity started.",
+              },
+              {
+                type: "paragraph",
+                text: "In practice this meant writing Python scripts that parsed a YAML configuration defining activity transitions by timestamp, extracted measure positions from a MIDI file to locate beat positions in real time, generated Google TTS audio for each verbal cue, and combined everything using MoviePy and FluidSynth into a final MP3. The hard part was synchronization drift. A 300-millisecond late cue misaligns every label in that segment, and misaligned labels corrupt the training data in ways that don’t surface until you’re looking at validation numbers wondering what went wrong.",
+              },
+              {
+                type: "paragraph",
+                text: "I also handled data preprocessing: converting action annotation outputs into timestamped CSV files in the format the ML model expected, debugging edge cases where the exported video and audio durations didn’t match, and helping restructure the overall pipeline from raw sensor exports to model-ready inputs.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Results",
+        subsections: [
+          {
+            content: [
+              {
+                type: "paragraph",
+                text: "The audio approach achieved 81% validation accuracy on the CNN classifier — higher than both the button-based method and the standard baseline. It also had the lowest labeling time of the three, since the alignment step is mostly automated rather than manual.",
+              },
+              {
+                type: "paragraph",
+                text: "The result that actually surprised me wasn’t the accuracy number. It was the time cost gap. Manual video annotation takes substantially longer per labeled sample than audio-based alignment, and that difference compounds if you want a dataset large enough to generalize. A collection method that produces good labels automatically is worth more than a slightly better model trained on hand-labeled data.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Looking back",
+        subsections: [
+          {
+            content: [
+              {
+                type: "paragraph",
+                text: "We tested on a small participant pool, which limits what you can actually conclude. A model trained on ten people doing activities in a quiet hallway might be picking up on how those specific ten people walk, not on walking in general. Testing in noisier settings with more variation would tell you whether the audio approach holds up or just works under controlled conditions.",
+              },
+              {
+                type: "paragraph",
+                text: "The button approach probably got worse numbers than it deserved. We didn’t invest much in the app’s timing feedback loop, and participants were pressing when it felt right rather than when it was precise. That sloppiness went straight into the labels. With more design work on that part, it might have performed better.",
+              },
+              {
+                type: "paragraph",
+                text: "The bigger thing this project changed for me has less to do with HAR specifically. Before ERSP, I thought about ML mostly in terms of model architecture and training. After spending a year trying to produce a clean labeled dataset, I think about data collection as its own design problem — one that often constrains everything downstream more than the model does.",
+              },
+            ],
+          },
+        ],
       },
     ],
   },

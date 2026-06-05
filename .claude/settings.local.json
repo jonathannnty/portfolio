@@ -55,7 +55,9 @@
       "Bash(Remove-Item *)",
       "Bash(New-Item *)",
       "WebFetch(domain:localhost)",
-      "Bash(curl -s \"http://localhost:3000/cookie-jar/privacy\")"
+      "Bash(curl -s \"http://localhost:3000/cookie-jar/privacy\")",
+      "WebFetch(domain:docs.google.com)",
+      "Bash(gh api *)"
     ]
   }
 }
