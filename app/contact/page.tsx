@@ -9,6 +9,7 @@ import {
   StravaIcon,
 } from "../components/brand-icons";
 import ContactIllustration from "../components/illustrations/contact-illustration";
+import CalendlyLink from "../components/calendly-link";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -97,6 +98,7 @@ export default function ContactPage() {
                 <MapPin className="h-4 w-4 text-[color:var(--color-primary-600)]" />
                 <span>{site.location}</span>
               </li>
+              <CalendlyLink />
             </ul>
           </div>
           <p className="text-sm leading-relaxed text-[color:var(--color-fg-muted)]">
