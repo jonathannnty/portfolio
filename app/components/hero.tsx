@@ -134,7 +134,7 @@ export default function Hero() {
     if (!stage || !leafField) return;
 
     function handleShake() {
-      if (shakingRef.current) return;
+      if (shakingRef.current || !stage || !leafField) return;
       shakingRef.current = true;
 
       // Animate the tree image
