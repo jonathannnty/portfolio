@@ -236,7 +236,7 @@ export default async function ProjectDetailPage({
                             );
                           }
                           if (block.type === "imageCarousel") {
-                            return <PhoneCarousel key={bIdx} images={block.images} />;
+                            return <PhoneCarousel key={bIdx} images={block.images} variant={block.variant} />;
                           }
                           if (block.type === "codeBlock") {
                             return (

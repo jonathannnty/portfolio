@@ -13,3 +13,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - The lightbox raw `<img>` in `app/components/image-lightbox.tsx` is intentional (full-resolution overlay). The ESLint disable comment is correct — do not replace it with `<Image />`.
 - `app/sitemap.ts` auto-generates `/sitemap.xml` from `content/projects.ts` and `content/blog.tsx`. Add new routes to the `staticRoutes` array there.
 - `public/robots.txt` allows all crawlers and points to the sitemap.
+
+# Project Content Conventions
+
+- **`period` field must use a specific month and year** (e.g. `"May 2026"`, `"June 2025"`) — never a season, quarter, or vague range like "Spring 2026" or "Q1 2025". For ongoing projects use `"Ongoing"`. The `sortKey` field uses ISO `yyyy-mm` format and must match the month in `period`.

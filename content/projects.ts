@@ -11,7 +11,7 @@ export type ContentBlock =
   | { type: "pullQuote"; text: string }
   | { type: "list"; items: string[] }
   | { type: "image"; src: string; alt: string }
-  | { type: "imageCarousel"; images: { src: string; alt: string }[] }
+  | { type: "imageCarousel"; images: { src: string; alt: string }[]; variant?: "phone" | "wide" }
   | { type: "codeBlock"; language: string; code: string };
 
 export type ProjectSubsection = {
@@ -468,11 +468,15 @@ export const projects: Project[] = [
     title: "Cookie Jar",
     tagline:
       "A Chrome extension that reads, categorizes, and blocks unwanted cookies — built after a judge at a designathon said she'd be our first customer.",
-    period: "Spring 2026",
+    period: "May 2026",
     sortKey: "2026-05",
     stack: ["JavaScript", "Chrome APIs", "Manifest V3", "HTML/CSS", "Figma"],
     featured: true,
     links: [
+      {
+        label: "Chrome Web Store",
+        href: "https://chromewebstore.google.com/detail/cookie-jar/eimleipppddemhicjhpnnflcbmpdkjic",
+      },
       {
         label: "GitHub Repository",
         href: "https://github.com/jonathannnty/cookie-jar",
@@ -515,7 +519,7 @@ export const projects: Project[] = [
               },
               {
                 type: "paragraph",
-                text: "Design Frontiers, Design CO @ UC San Diego, Spring 2026.",
+                text: "Design Frontiers, Design CO @ UC San Diego, May 2026.",
               },
             ],
           },
@@ -526,6 +530,16 @@ export const projects: Project[] = [
         subsections: [
           {
             content: [
+              {
+                type: "imageCarousel",
+                variant: "wide",
+                images: [
+                  { src: "/images/cookiejar/2.png", alt: "Toggle Cookies — set your cookie preferences with session, authentication, analytics, and functional cookie controls" },
+                  { src: "/images/cookiejar/4.png", alt: "Consent Banner Suppression — automatically hides Accept all and Manage preferences overlays" },
+                  { src: "/images/cookiejar/3.png", alt: "Cookie Statistics — see exactly what has been blocked across your entire browsing history" },
+                  { src: "/images/cookiejar/1.png", alt: "Customize Rules — fine-tune per-domain and per-cookie blocking rules" },
+                ],
+              },
               {
                 type: "paragraph",
                 text: "Cookie Jar intercepts cookies in real time and classifies them into eight categories. Four are allowed by default — things the site genuinely needs to function, like authentication, session management, and necessary functionality. Four are blocked by default: analytics, tracking, advertising, and third-party scripts that exist primarily to follow you around the web.",
@@ -584,7 +598,7 @@ export const projects: Project[] = [
               },
               {
                 type: "paragraph",
-                text: "I also want to actually submit it to the Chrome Web Store. It works on my machine and on the 31 sites I tested, but 'works on tested sites' and 'works for real users' are different things. The judge said she'd be the first customer. I'd like to find out if that's still true.",
+                text: "It shipped. The Chrome Web Store approved it in May 2026. The honest next question is whether 'works on 31 tested sites' holds up at scale — the sites I didn't test are the interesting ones. I also want to revisit the full-page view's information architecture before the user base grows enough to make that disruptive.",
               },
             ],
           },

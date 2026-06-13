@@ -656,13 +656,50 @@
     position: relative;
   }
 
+  /* Filter chip — projects page stack filter buttons */
+  .filter-chip {
+    --brushed-color: var(--color-border);
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    background: transparent;
+    color: var(--color-fg-muted);
+    border: none;
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    position: relative;
+    transition: color 150ms;
+  }
+  .filter-chip:hover {
+    --brushed-color: var(--color-primary-400);
+    color: var(--color-primary-700);
+  }
+  .filter-chip.active {
+    --brushed-color: var(--color-primary-600);
+    background: var(--color-primary-600);
+    color: white;
+  }
+
+  /* Search bar wrapper — brushstroke border that intensifies on focus */
+  .search-wrapper {
+    --brushed-color: var(--color-border);
+    position: relative;
+    border: none;
+  }
+  .search-wrapper:focus-within {
+    --brushed-color: var(--color-primary-400);
+  }
+
   /* ─── Brushstroke border system ──────────────────────────────────────────── */
 
   /* Shared ::before for all all-sides brush borders */
   .brushed::before,
   .card::before,
   .chip::before,
-  .btn-ghost::before {
+  .btn-ghost::before,
+  .filter-chip::before,
+  .search-wrapper::before {
     content: '';
     position: absolute;
     inset: 0;
