@@ -211,7 +211,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="container-page relative z-10 flex min-h-[72vh] flex-col justify-center py-24 sm:pr-[14rem] md:py-32 md:pr-[22rem] lg:pr-[28rem]">
+      <div className="container-page relative z-10 flex min-h-[72vh] flex-col justify-center py-24 sm:pr-[14rem] md:py-32 md:pr-[22rem] lg:pr-[28rem] pointer-events-none">
         <span className="hero-stagger eyebrow opacity-100 motion-safe:opacity-0 [letter-spacing:0]">
           Hello - I&apos;m {site.name.split(" ")[0]}
         </span>
