@@ -228,6 +228,8 @@
     width: clamp(19rem, 43vw, 42rem);
     aspect-ratio: 940 / 998;
     transform-origin: bottom right;
+    pointer-events: auto; /* opt back in through pointer-events:none parent */
+    cursor: pointer;      /* show hand cursor over the tree area */
   }
 
   .hero-tree {
@@ -240,6 +242,19 @@
     max-height: 100%;
     filter: drop-shadow(0 1.25rem 1.75rem rgba(58, 30, 8, 0.18));
     user-select: none;
+    transform-origin: bottom center;
+  }
+
+  @keyframes treeShimmy {
+    0%, 100% { transform: rotate(0deg); }
+    30%       { transform: rotate(-2deg); }
+    70%       { transform: rotate(2deg); }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-tree-shaking {
+      animation: treeShimmy 0.5s ease-in-out;
+    }
   }
 
   .hero-leaf-field {
@@ -262,6 +277,11 @@
     animation-delay: var(--leaf-delay);
     will-change: transform, opacity;
     user-select: none;
+  }
+
+  .hero-leaf-spawned {
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
   }
 
   @keyframes heroLeafFall {

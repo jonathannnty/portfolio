@@ -77,11 +77,40 @@ const fallingLeaves: Array<{ id: string; style: SceneStyle }> = [
   },
 ];
 
+function spawnLeaf(container: HTMLElement): void {
+  const rand = (min: number, max: number) =>
+    Math.random() * (max - min) + min;
+  const sign = () => (Math.random() < 0.5 ? -1 : 1);
+
+  const img = document.createElement("img");
+  img.src = "/images/assets/Leaf.svg";
+  img.className = "hero-leaf hero-leaf-spawned";
+  img.setAttribute("aria-hidden", "true");
+  img.setAttribute("alt", "");
+  img.width = 97;
+  img.height = 127;
+
+  img.style.setProperty("--leaf-top", `${rand(15, 35).toFixed(1)}%`);
+  img.style.setProperty("--leaf-left", `${rand(38, 62).toFixed(1)}%`);
+  img.style.setProperty("--leaf-scale", `${rand(0.18, 0.30).toFixed(2)}`);
+  img.style.setProperty("--leaf-drift", `${(sign() * rand(8, 18)).toFixed(1)}rem`);
+  img.style.setProperty("--leaf-drop", `${rand(20, 32).toFixed(1)}rem`);
+  img.style.setProperty("--leaf-spin", `${(sign() * rand(180, 360)).toFixed(0)}deg`);
+  img.style.setProperty("--leaf-duration", `${rand(8, 12).toFixed(1)}s`);
+  img.style.setProperty("--leaf-delay", "0s");
+
+  container.appendChild(img);
+  img.addEventListener("animationend", () => img.remove(), { once: true });
+}
+
 /**
  * Hero - the first thing visitors see on the home page.
  */
 export default function Hero() {
   const rootRef = useRef<HTMLDivElement>(null);
+  const treeStageRef = useRef<HTMLDivElement>(null);
+  const leafFieldRef = useRef<HTMLDivElement>(null);
+  const shakingRef = useRef(false);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -97,6 +126,45 @@ export default function Hero() {
       duration: 750,
       stagger: 70,
     });
+  }, []);
+
+  useEffect(() => {
+    const stage = treeStageRef.current;
+    const leafField = leafFieldRef.current;
+    if (!stage || !leafField) return;
+
+    function handleShake() {
+      if (shakingRef.current || !stage || !leafField) return;
+      shakingRef.current = true;
+
+      // Animate the tree image
+      const treeImg = stage.querySelector<HTMLElement>(".hero-tree");
+      if (treeImg) {
+        treeImg.classList.add("hero-tree-shaking");
+        treeImg.addEventListener(
+          "animationend",
+          () => {
+            treeImg.classList.remove("hero-tree-shaking");
+            shakingRef.current = false;
+          },
+          { once: true }
+        );
+      } else {
+        shakingRef.current = false;
+      }
+
+      // Spawn 3 leaves with a small stagger
+      [0, 80, 160].forEach((delay) => {
+        setTimeout(() => spawnLeaf(leafField), delay);
+      });
+    }
+
+    stage.addEventListener("click", handleShake);
+    stage.addEventListener("touchstart", handleShake, { passive: true });
+    return () => {
+      stage.removeEventListener("click", handleShake);
+      stage.removeEventListener("touchstart", handleShake);
+    };
   }, []);
 
   return (
@@ -117,8 +185,8 @@ export default function Hero() {
           />
         </div>
 
-        <div className="hero-tree-stage">
-          <div className="hero-leaf-field">
+        <div className="hero-tree-stage" ref={treeStageRef}>
+          <div className="hero-leaf-field" ref={leafFieldRef}>
             {fallingLeaves.map((leaf) => (
               <Image
                 key={leaf.id}
@@ -143,7 +211,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="container-page relative z-10 flex min-h-[72vh] flex-col justify-center py-24 sm:pr-[14rem] md:py-32 md:pr-[22rem] lg:pr-[28rem]">
+      <div className="container-page relative z-10 flex min-h-[72vh] flex-col justify-center py-24 sm:pr-[14rem] md:py-32 md:pr-[22rem] lg:pr-[28rem] pointer-events-none">
         <span className="hero-stagger eyebrow opacity-100 motion-safe:opacity-0 [letter-spacing:0]">
           Hello - I&apos;m {site.name.split(" ")[0]}
         </span>
