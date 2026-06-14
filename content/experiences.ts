@@ -111,23 +111,6 @@ export const experiences: Experience[] = [
     images: ["/images/experiences/its-group.jpg"],
   },
   {
-    id: "ai-research-fellow",
-    role: "AI Research Fellow",
-    company: "Handshake",
-    period: "Sep 2025 – Oct 2025",
-    sortKey: "2025-09",
-    summary:
-      "Selected fellow assisting with data training and evaluation on image editing tasks for a top AI lab.",
-    highlights: [
-      "Assisted with data training on image editing pipelines for a leading AI research lab.",
-    ],
-    link: {
-      label: "Handshake AI",
-      href: "https://joinhandshake.com/blog/our-team/introducing-handshake-ai/",
-    },
-    images: ["/images/experiences/handshake-ai.png"],
-  },
-  {
     id: "swe-intern-aimia",
     role: "Software Development Intern",
     company: "Aimia Career Advisor Services",
