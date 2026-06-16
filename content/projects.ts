@@ -535,7 +535,7 @@ export const projects: Project[] = [
                 variant: "wide",
                 images: [
                   { src: "/images/cookiejar/2.png", alt: "Toggle Cookies — set your cookie preferences with session, authentication, analytics, and functional cookie controls" },
-                  { src: "/images/cookiejar/4.png", alt: "Consent Banner Suppression — automatically hides Accept all and Manage preferences overlays" },
+                  { src: "/images/cookiejar/4.png", alt: "Cookie Consent Banners — automatically selects \"Reject all\" on consent dialogs, with a fallback that hides Accept all and Manage preferences overlays" },
                   { src: "/images/cookiejar/3.png", alt: "Cookie Statistics — see exactly what has been blocked across your entire browsing history" },
                   { src: "/images/cookiejar/1.png", alt: "Customize Rules — fine-tune per-domain and per-cookie blocking rules" },
                 ],
@@ -551,11 +551,11 @@ export const projects: Project[] = [
             ],
           },
           {
-            heading: "Consent banner suppression",
+            heading: "Cookie consent banners",
             content: [
               {
                 type: "paragraph",
-                text: "Most sites use a consent management platform — OneTrust, CookieBot, TrustArc — to show the cookie banners you see on almost every page. Cookie Jar suppresses them. Getting to 100% on 31 tested sites required handling banners injected inside iframes, shadow DOM elements, and dynamically loaded scripts. A few sites needed site-specific selectors before they'd cooperate.",
+                text: "Most sites use a consent management platform — OneTrust, CookieBot, TrustArc — to show the cookie banners you see on almost every page. As of v1.1.0, Cookie Jar doesn't just hide them: it reads the consent dialog and clicks \"Reject\" or \"Decline\" for you, so you're opted out of non-essential cookies without touching a single banner. It does this entirely in your browser using DuckDuckGo's open-source autoconsent rule set (MPL-2.0), bundled with the extension — no remote code is downloaded or run, and nothing about which sites or banners you encounter is collected. When you turn auto-reject off, it falls back to the original behavior of hiding banners with a stylesheet. Getting to 100% on 31 tested sites required handling banners injected inside iframes, shadow DOM elements, and dynamically loaded scripts. A few sites needed site-specific selectors before they'd cooperate.",
               },
             ],
           },
@@ -568,7 +568,7 @@ export const projects: Project[] = [
             content: [
               {
                 type: "paragraph",
-                text: "The extension is built on Manifest V3, Chrome's current extension format, which routes everything through a service worker rather than a persistent background page. Most of the core logic lives in three places: a cookie classifier that maps name and domain patterns to categories, a background service worker that intercepts cookie operations in real time, and a content script that handles banner suppression on the page itself.",
+                text: "The extension is built on Manifest V3, Chrome's current extension format, which routes everything through a service worker rather than a persistent background page. Most of the core logic lives in three places: a cookie classifier that maps name and domain patterns to categories, a background service worker that intercepts cookie operations in real time, and a content script that handles consent banners on the page itself — auto-rejecting them through the bundled autoconsent rules, or hiding them with CSS when auto-reject is turned off.",
               },
             ],
           },
