@@ -62,7 +62,7 @@ export default function AwardsIllustration() {
       }}
     >
       <Image
-        src="/images/Medal.svg"
+        src="/images/assets/Medal.svg"
         alt="Medal"
         width={150}
         height={146}

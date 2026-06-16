@@ -228,6 +228,8 @@
     width: clamp(19rem, 43vw, 42rem);
     aspect-ratio: 940 / 998;
     transform-origin: bottom right;
+    pointer-events: auto; /* opt back in through pointer-events:none parent */
+    cursor: pointer;      /* show hand cursor over the tree area */
   }
 
   .hero-tree {
@@ -240,6 +242,19 @@
     max-height: 100%;
     filter: drop-shadow(0 1.25rem 1.75rem rgba(58, 30, 8, 0.18));
     user-select: none;
+    transform-origin: bottom center;
+  }
+
+  @keyframes treeShimmy {
+    0%, 100% { transform: rotate(0deg); }
+    30%       { transform: rotate(-2deg); }
+    70%       { transform: rotate(2deg); }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-tree-shaking {
+      animation: treeShimmy 0.5s ease-in-out;
+    }
   }
 
   .hero-leaf-field {
@@ -262,6 +277,11 @@
     animation-delay: var(--leaf-delay);
     will-change: transform, opacity;
     user-select: none;
+  }
+
+  .hero-leaf-spawned {
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
   }
 
   @keyframes heroLeafFall {
@@ -656,13 +676,50 @@
     position: relative;
   }
 
+  /* Filter chip — projects page stack filter buttons */
+  .filter-chip {
+    --brushed-color: var(--color-border);
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    background: transparent;
+    color: var(--color-fg-muted);
+    border: none;
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    position: relative;
+    transition: color 150ms;
+  }
+  .filter-chip:hover {
+    --brushed-color: var(--color-primary-400);
+    color: var(--color-primary-700);
+  }
+  .filter-chip.active {
+    --brushed-color: var(--color-primary-600);
+    background: var(--color-primary-600);
+    color: white;
+  }
+
+  /* Search bar wrapper — brushstroke border that intensifies on focus */
+  .search-wrapper {
+    --brushed-color: var(--color-border);
+    position: relative;
+    border: none;
+  }
+  .search-wrapper:focus-within {
+    --brushed-color: var(--color-primary-400);
+  }
+
   /* ─── Brushstroke border system ──────────────────────────────────────────── */
 
   /* Shared ::before for all all-sides brush borders */
   .brushed::before,
   .card::before,
   .chip::before,
-  .btn-ghost::before {
+  .btn-ghost::before,
+  .filter-chip::before,
+  .search-wrapper::before {
     content: '';
     position: absolute;
     inset: 0;

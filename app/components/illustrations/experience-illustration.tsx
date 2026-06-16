@@ -56,7 +56,7 @@ export default function ExperienceIllustration() {
       style={{ width: 260, opacity: 0 }}
     >
       <Image
-        src="/images/SuitcasePaper.svg"
+        src="/images/assets/SuitcasePaper.svg"
         alt="Suitcase with documents"
         width={260}
         height={112}

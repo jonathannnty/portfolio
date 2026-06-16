@@ -1,18 +1,12 @@
-import { Award as AwardIcon, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { awards } from "@/content/awards";
 
 export default function AwardsGrid() {
   return (
     <ul className="grid gap-4 sm:grid-cols-2">
       {awards.map((a) => (
-        <li key={a.id} className="card flex gap-4 p-5">
-          <span
-            aria-hidden
-            className="flex h-10 w-10 flex-none items-center justify-center rounded-md bg-[color:var(--color-primary-50)] text-[color:var(--color-primary-700)]"
-          >
-            <AwardIcon className="h-5 w-5" />
-          </span>
-          <div className="min-w-0 flex-1">
+        <li key={a.id} className="card p-5">
+          <div className="min-w-0">
             <div className="flex items-baseline justify-between gap-3">
               <p className="font-display text-base font-semibold text-[color:var(--color-fg)]">
                 {a.title}

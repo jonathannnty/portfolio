@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     url: "https://www.jonathan-ty.com",
     images: [
       {
-        url: "/images/portfolio.png",
+        url: "/images/assets/portfolio.png",
         width: 1200,
         height: 630,
         alt: `${site.name} — Portfolio`,

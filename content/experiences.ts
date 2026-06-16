@@ -30,6 +30,44 @@ export type Experience = {
 
 export const experiences: Experience[] = [
   {
+    id: "cogsci-research-assistant",
+    role: "Undergraduate Research Assistant",
+    company: "UC San Diego Cognitive Science Department",
+    period: "Jun 2026 – Present",
+    // pinned above the IA role (sortKey 9999-01) to stay at the very top
+    sortKey: "9999-12",
+    location: "La Jolla, CA",
+    summary:
+      "Core software developer on Chiba Lab's technology team, building data pipelines for a large-scale multimodal study of child development in naturalistic quasi-classroom environments.",
+    highlights: [
+      "Core software developer on data collection and preprocessing for Chiba Lab's study of child development in naturalistic classroom environments.",
+      "Write Python scripts for processing pipelines handling time-series physiological data from wearable biosensors.",
+      "Synchronize and integrate multimodal datasets spanning video, behavioral annotations, and physiological signals.",
+    ],
+    stack: ["Python", "Time-Series Data", "Signal Processing", "Multimodal Data"],
+    link: {
+      label: "UC San Diego Cognitive Science",
+      href: "https://cogsci.ucsd.edu",
+    },
+  },
+  {
+    id: "sdsc-swe-intern",
+    role: "Software Engineer Intern",
+    company: "San Diego Supercomputer Center",
+    period: "Jun 2026 – Present",
+    sortKey: "2026-06",
+    location: "San Diego, CA",
+    summary:
+      "Summer software engineering internship at the San Diego Supercomputer Center (SDSC).",
+    highlights: [
+      "Joined SDSC's engineering team for a summer (June–August) software engineering internship.",
+    ],
+    link: {
+      label: "San Diego Supercomputer Center",
+      href: "https://www.sdsc.edu",
+    },
+  },
+  {
     id: "ia-dsa",
     role: "Instructional Assistant — Data Structures & OOD",
     company: "UC San Diego CSE Department",
@@ -70,24 +108,7 @@ export const experiences: Experience[] = [
       label: "IT Service Desk",
       href: "https://cse.ucsd.edu",
     },
-    images: ["/images/its-group.jpg"],
-  },
-  {
-    id: "ai-research-fellow",
-    role: "AI Research Fellow",
-    company: "Handshake",
-    period: "Sep 2025 – Oct 2025",
-    sortKey: "2025-09",
-    summary:
-      "Selected fellow assisting with data training and evaluation on image editing tasks for a top AI lab.",
-    highlights: [
-      "Assisted with data training on image editing pipelines for a leading AI research lab.",
-    ],
-    link: {
-      label: "Handshake AI",
-      href: "https://joinhandshake.com/blog/our-team/introducing-handshake-ai/",
-    },
-    images: ["/images/handshake-ai.png"],
+    images: ["/images/experiences/its-group.jpg"],
   },
   {
     id: "swe-intern-aimia",

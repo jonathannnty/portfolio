@@ -75,8 +75,13 @@ export default function ProjectsGrid({ projects, initialPersona }: Props) {
     if (status === "completed")   result = result.filter((p) => !p.inProgress);
     if (status === "in-progress") result = result.filter((p) => !!p.inProgress);
 
-    if (sort === "newest")  result.sort((a, b) => b.sortKey.localeCompare(a.sortKey));
-    if (sort === "oldest")  result.sort((a, b) => a.sortKey.localeCompare(b.sortKey));
+    const pinOngoing = (a: Project, b: Project) => {
+      const aO = a.period === "Ongoing", bO = b.period === "Ongoing";
+      if (aO !== bO) return aO ? -1 : 1;
+      return 0;
+    };
+    if (sort === "newest")  result.sort((a, b) => pinOngoing(a, b) || b.sortKey.localeCompare(a.sortKey));
+    if (sort === "oldest")  result.sort((a, b) => pinOngoing(a, b) || a.sortKey.localeCompare(b.sortKey));
     if (sort === "complex") result.sort((a, b) => b.stack.length - a.stack.length);
 
     return result;
@@ -113,14 +118,14 @@ export default function ProjectsGrid({ projects, initialPersona }: Props) {
 
       <div className="mb-6 space-y-3">
         {/* Search */}
-        <div className="relative">
+        <div className="search-wrapper rounded-lg">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[color:var(--color-fg-subtle)]" />
           <input
             type="text"
             placeholder="Search by title, stack, or keyword…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-bg)] py-2 pl-9 pr-4 text-md text-[color:var(--color-fg)] placeholder:text-[color:var(--color-fg-subtle)] focus:border-[color:var(--color-primary-400)] focus:outline-none"
+            className="w-full rounded-lg bg-[color:var(--color-bg)] py-2 pl-9 pr-4 text-md text-[color:var(--color-fg)] placeholder:text-[color:var(--color-fg-subtle)] focus:outline-none border-0"
           />
         </div>
 
@@ -130,11 +135,7 @@ export default function ProjectsGrid({ projects, initialPersona }: Props) {
             <button
               key={s}
               onClick={() => toggleStack(s)}
-              className={`rounded-full px-3 py-1 text-sm font-medium transition-colors ${
-                selectedStacks.includes(s)
-                  ? "bg-[color:var(--color-primary-600)] text-white"
-                  : "border border-[color:var(--color-border)] text-[color:var(--color-fg-muted)] hover:border-[color:var(--color-primary-400)] hover:text-[color:var(--color-primary-700)]"
-              }`}
+              className={`filter-chip${selectedStacks.includes(s) ? " active" : ""}`}
             >
               {s}
             </button>
@@ -145,7 +146,7 @@ export default function ProjectsGrid({ projects, initialPersona }: Props) {
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div className="flex flex-wrap items-center gap-2">
             {/* Status */}
-            <div className="flex rounded-lg border border-[color:var(--color-border)] overflow-hidden text-sm font-medium">
+            <div className="brushed flex rounded-lg overflow-hidden text-sm font-medium">
               {(["all", "completed", "in-progress"] as StatusFilter[]).map((s) => (
                 <button
                   key={s}
@@ -162,11 +163,11 @@ export default function ProjectsGrid({ projects, initialPersona }: Props) {
             </div>
 
             {/* Year */}
-            <div className="relative">
+            <div className="brushed rounded-lg">
               <select
                 value={selectedYear}
                 onChange={(e) => setSelectedYear(e.target.value)}
-                className="appearance-none rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-bg)] py-1.5 pl-3 pr-7 text-sm text-[color:var(--color-fg-muted)] focus:outline-none"
+                className="appearance-none rounded-lg bg-[color:var(--color-bg)] py-1.5 pl-3 pr-7 text-sm text-[color:var(--color-fg-muted)] focus:outline-none border-0"
               >
                 <option value="all">All years</option>
                 {allYears.map((y) => (
@@ -189,11 +190,11 @@ export default function ProjectsGrid({ projects, initialPersona }: Props) {
 
           <div className="flex items-center gap-2">
             {/* Sort */}
-            <div className="relative">
+            <div className="brushed rounded-lg">
               <select
                 value={sort}
                 onChange={(e) => setSort(e.target.value as SortKey)}
-                className="appearance-none rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-bg)] py-1.5 pl-3 pr-7 text-sm text-[color:var(--color-fg-muted)] focus:outline-none"
+                className="appearance-none rounded-lg bg-[color:var(--color-bg)] py-1.5 pl-3 pr-7 text-sm text-[color:var(--color-fg-muted)] focus:outline-none border-0"
               >
                 <option value="newest">Newest first</option>
                 <option value="oldest">Oldest first</option>
@@ -203,7 +204,7 @@ export default function ProjectsGrid({ projects, initialPersona }: Props) {
             </div>
 
             {/* View toggle */}
-            <div className="flex overflow-hidden rounded-lg border border-[color:var(--color-border)]">
+            <div className="brushed flex overflow-hidden rounded-lg">
               <button
                 onClick={() => setView("card")}
                 aria-label="Card view"
